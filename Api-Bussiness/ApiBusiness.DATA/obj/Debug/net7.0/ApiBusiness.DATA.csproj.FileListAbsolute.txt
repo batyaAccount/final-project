@@ -1,0 +1,17 @@
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\bin\Debug\net7.0\ApiBusiness.DATA.deps.json
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\bin\Debug\net7.0\ApiBusiness.DATA.runtimeconfig.json
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\bin\Debug\net7.0\ApiBusiness.DATA.dll
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\bin\Debug\net7.0\ApiBusiness.DATA.pdb
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\bin\Debug\net7.0\ApiBusiness.CORE.dll
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\bin\Debug\net7.0\ApiBusiness.CORE.pdb
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\obj\Debug\net7.0\ApiBusiness.DATA.csproj.AssemblyReference.cache
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\obj\Debug\net7.0\ApiBusiness.DATA.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\obj\Debug\net7.0\ApiBusiness.DATA.AssemblyInfoInputs.cache
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\obj\Debug\net7.0\ApiBusiness.DATA.AssemblyInfo.cs
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\obj\Debug\net7.0\ApiBusiness.DATA.csproj.CoreCompileInputs.cache
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\obj\Debug\net7.0\ApiBusiness.DATA.dll
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\obj\Debug\net7.0\refint\ApiBusiness.DATA.dll
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\obj\Debug\net7.0\ApiBusiness.DATA.pdb
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\obj\Debug\net7.0\ApiBusiness.DATA.genruntimeconfig.cache
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\obj\Debug\net7.0\ref\ApiBusiness.DATA.dll
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.DATA\obj\Debug\net7.0\ApiBusiness.DATA.csproj.CopyComplete

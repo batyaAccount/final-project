@@ -1,0 +1,15 @@
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\bin\Debug\net7.0\ApiBusiness.SERVICE.deps.json
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\bin\Debug\net7.0\ApiBusiness.SERVICE.dll
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\bin\Debug\net7.0\ApiBusiness.SERVICE.pdb
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\bin\Debug\net7.0\ApiBusiness.CORE.dll
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\bin\Debug\net7.0\ApiBusiness.CORE.pdb
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\ApiBusiness.SERVICE.csproj.AssemblyReference.cache
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\ApiBusiness.SERVICE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\ApiBusiness.SERVICE.AssemblyInfoInputs.cache
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\ApiBusiness.SERVICE.AssemblyInfo.cs
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\ApiBusiness.SERVICE.csproj.CoreCompileInputs.cache
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\ApiBusiness.SERVICE.dll
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\refint\ApiBusiness.SERVICE.dll
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\ApiBusiness.SERVICE.pdb
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\ref\ApiBusiness.SERVICE.dll
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\ApiBusiness.SERVICE.csproj.CopyComplete

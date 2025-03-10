@@ -1,0 +1,50 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #f4f7fc; /* Light background color */
+  padding: 20px;
+}
+
+.sign-in-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Spacing between form fields */
+  background-color: #fff; /* White background for the form */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Maximum width for form */
+}
+
+
+.sign-in-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Spacing between form fields */
+  background-color: #fff; /* White background for the form */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Maximum width for form */
+}
+
+.form-field {
+  width: 100%;
+}
+
+.sign-in-button {
+  margin-top: 10px;
+  width: 100%; /* Full width for button */
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+button.mat-raised-button {
+  padding: 10px 20px;
+}
