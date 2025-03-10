@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LoginService } from '../../service/login.service';
 import { User } from '../../entities/User';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -19,14 +20,14 @@ import { User } from '../../entities/User';
 export class SignUpComponent {
 
 
-  constructor(private login: LoginService, private router: Router, private dialogRef: MatDialog) {
+  constructor(private user: UserService, private login: LoginService, private router: Router, private dialogRef: MatDialog) {
 
   }
   signUpForm = new FormGroup({
-    name: new FormControl<string>('', [Validators.required]),
-    email: new FormControl<string>('', [Validators.required]),
-    password: new FormControl<string>('', [Validators.required]),
-    role: new FormControl<string>('', [Validators.required]),
+    Name: new FormControl<string>('', [Validators.required]),
+    Email: new FormControl<string>('', [Validators.required]),
+    Password: new FormControl<string>('', [Validators.required]),
+    RoleName: new FormControl<string>('', [Validators.required]),
   });
 
   private closeDialogAndNavigate() {

@@ -6,6 +6,7 @@ using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,7 @@ namespace ApiBusiness.SERVICE.Services
         private readonly IRoleRpository _roleRpository;
        private readonly IMapper _mapper;
        private readonly IUserRolesRepository _userRolesRepository;
+       private readonly IUserRoleService _userRoleService;
 
 
         public UserService(IUserRepository userRepository, IRepositoryManager repositoryManager ,IMapper mapper,IUserRolesRepository userRolesRepository)
@@ -35,8 +37,8 @@ namespace ApiBusiness.SERVICE.Services
             var user2 = _mapper.Map<Users>(user);
             if (await GetByIdAsync(user.Id) != null)
                 return null;
-
             Users u = await _userRepository.AddAsync(user2);
+          
             await _repositoryManager.SaveAsync();
             var user3 = _mapper.Map<UserDto>(u);
             return user3;

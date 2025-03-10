@@ -65,14 +65,14 @@ namespace Api_Bussiness.API.Controllers
             var modelD = _mapper.Map<UserDto>(model);
             var existingUser = await _userService.AddAsync(modelD);
             if (existingUser == null)
-            {
-                return Conflict("User already exists.");
-            }
-            var userRole =await _userRoleService.AddAsync(model.RoleName, existingUser.Id);
+                return BadRequest();
+            var userRole = await _userRoleService.AddAsync(model.RoleName, existingUser.Id);
             if (userRole == null)
-                return null;
+                return BadRequest();
             var token = _authService.GenerateJwtToken(model.Name, new[] { model.RoleName });
             return Ok(new { Token = token });
+
+
         }
     }
 }

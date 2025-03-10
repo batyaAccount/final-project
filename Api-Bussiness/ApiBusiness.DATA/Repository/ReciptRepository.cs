@@ -19,6 +19,7 @@ namespace ApiBusiness.DATA.Repository
         public async Task<Receipts> AddAsync(Receipts receipt)
         {
             await _dbSet.AddAsync(receipt);
+            receipt.CreatedAt = DateTime.UtcNow;
             return receipt;
         }
 

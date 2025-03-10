@@ -3,6 +3,7 @@ using ApiBusiness.CORE.IRepositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace ApiBusiness.DATA.Repository
         public async Task<Users> AddAsync(Users user)
         {
             await _dbSet.AddAsync(user);
+            user.CreatedAt = DateTime.UtcNow;
+
             return user;
         }
 
@@ -45,7 +48,6 @@ namespace ApiBusiness.DATA.Repository
             {
                 r.Email = user.Email;
                 r.Name = user.Name;
-                r.RoleName = user.RoleName;
                 r.Password = user.Password;
                 r.UpdatedAt = DateTime.UtcNow;
                 return true;

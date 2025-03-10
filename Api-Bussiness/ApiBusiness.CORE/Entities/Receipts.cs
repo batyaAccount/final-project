@@ -19,7 +19,7 @@ namespace ApiBusiness.CORE.Entities
         public string Supplier { get; set; } // שם הספק
         [Required]
         public string Url { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } 
+        public DateTime UpdatedAt { get; set; } 
     }
 }

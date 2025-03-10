@@ -4,11 +4,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { LoginService } from '../../services/login.service';
-import { Person } from '../../../Person';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { UserService } from '../../services/user.service';
+import { LoginService } from '../../service/login.service';
+import { UserService } from '../../service/user.service';
+import { User } from '../../entities/User';
 @Component({
   selector: 'app-sign-in',
   standalone: true,
@@ -22,18 +22,18 @@ export class SignInComponent {
 
   }
   signInForm = new FormGroup({
-    email: new FormControl<string>('', [Validators.required]),
-    password: new FormControl<string>('', [Validators.required]),
+    Name: new FormControl<string>('', [Validators.required]),
+    Password: new FormControl<string>('', [Validators.required]),
   });
 
   private closeDialogAndNavigate() {
     this.dialogRef.closeAll();
     setTimeout(() => this.router.navigate(['/home']), 100);
   }
-
+  
   signIn() {
     if (this.signInForm.valid) {
-      const res = this.login.loginUser(this.signInForm.value as Partial<Person>).subscribe({
+      const res = this.login.loginUser(this.signInForm.value as Partial<User>).subscribe({
         next: (response) => {
           console.log(response);
           this.user.setValue(response);

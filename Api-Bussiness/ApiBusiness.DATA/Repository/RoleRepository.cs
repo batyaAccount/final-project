@@ -21,6 +21,8 @@ namespace ApiBusiness.DATA.Repository
         public async Task<Roles> AddAsync(Roles role)
         {
             await _dbSet.AddAsync(role);
+            role.CreatedAt = DateTime.UtcNow;
+
             return role;
         }
 

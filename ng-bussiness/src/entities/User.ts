@@ -5,6 +5,7 @@ export type User = {
     Email: string,
     Password: string,
     RoleName: string,
+    token: string
 }
 /*
 public int Id { get; set; }

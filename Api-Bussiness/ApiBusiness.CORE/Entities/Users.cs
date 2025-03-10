@@ -20,9 +20,8 @@ namespace ApiBusiness.CORE.Entities
         public string Email { get; set; }
         [MinLength(5)]
         public string Password { get; set; }
-        public string RoleName { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
     }
 }
