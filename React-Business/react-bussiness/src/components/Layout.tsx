@@ -1,6 +1,6 @@
-import { Navigate, Outlet } from "react-router"
+import {  Outlet } from "react-router"
 import NavBar from "./NavBar"
-import Login from "./Login/Login"
+import LoginPage from "./Login/LoginPage"
 
 
 export default () => {
@@ -12,8 +12,7 @@ export default () => {
                 top: "5%",
                 left: "5%"
             }}>
-                <Login>
-                </Login>
+              <LoginPage></LoginPage>
             </div>
             <Outlet></Outlet>
         </>

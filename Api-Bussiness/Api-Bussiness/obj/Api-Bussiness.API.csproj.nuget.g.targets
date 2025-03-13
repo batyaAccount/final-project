@@ -3,5 +3,6 @@
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.apidescription.server\6.0.5\build\Microsoft.Extensions.ApiDescription.Server.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.apidescription.server\6.0.5\build\Microsoft.Extensions.ApiDescription.Server.targets')" />
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.logging.abstractions\6.0.4\buildTransitive\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.logging.abstractions\6.0.4\buildTransitive\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.targets')" />
+    <Import Project="$(NuGetPackageRoot)awssdk.extensions.netcore.setup\4.0.0-preview.10\buildTransitive\netcoreapp3.1\AWSSDK.Extensions.NETCore.Setup.targets" Condition="Exists('$(NuGetPackageRoot)awssdk.extensions.netcore.setup\4.0.0-preview.10\buildTransitive\netcoreapp3.1\AWSSDK.Extensions.NETCore.Setup.targets')" />
   </ImportGroup>
 </Project>

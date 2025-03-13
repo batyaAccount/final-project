@@ -1,3 +1,4 @@
+using Amazon.S3;
 using Api_Bussiness.API;
 using ApiBusiness.CORE;
 using ApiBusiness.CORE.IRepositories;
@@ -12,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
+
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped<ApiBusiness.CORE.Entities.Users>();
@@ -22,7 +24,6 @@ builder.Services.AddDbContext<DataContext>(option =>
 });
 builder.Services.AddScoped<IReciptService, ReciptService>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IUserRoleService, UserRoleService>();
 builder.Services.AddScoped<AuthService, AuthService>();
 
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
@@ -97,6 +98,11 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
+
+builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
+builder.Services.AddAWSService<IAmazonS3>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

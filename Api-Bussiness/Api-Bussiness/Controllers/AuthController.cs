@@ -23,36 +23,37 @@ namespace Api_Bussiness.API.Controllers
         private readonly AuthService _authService;
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
-        IUserRoleService _userRoleService;
-        public AuthController(IConfiguration configuration, AuthService authService, IUserService userService, IMapper mapper, IUserRoleService userRoleService)
+        public AuthController(IConfiguration configuration, AuthService authService, IUserService userService, IMapper mapper)
         {
             _configuration = configuration;
             _authService = authService;
             _userService = userService;
             _mapper = mapper;
-            _userRoleService = userRoleService;
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
-            var roleName = await _userService.AuthenticateAsync(model.Name, model.Password);
-            if (roleName == "admin")
+            
+            var role = await _userService.AuthenticateAsync(model.Name, model.Password);
+            if (role != null)
             {
-                var token = _authService.GenerateJwtToken(model.Name, new[] { "Admin" });
-                return Ok(new { Token = token });
+                if (role.Role.RoleName == "admin")
+                {
+                    var token = _authService.GenerateJwtToken(model.Name, new[] { "Admin" });
+                    return Ok(new { Token = token, User = role.User });
+                }
+                else if (role.Role.RoleName == "editor")
+                {
+                    var token = _authService.GenerateJwtToken(model.Name, new[] { "Editor" });
+                    return Ok(new { Token = token, User = role.User });
+                }
+                else if (role.Role.RoleName == "viewer")
+                {
+                    var token = _authService.GenerateJwtToken(model.Name, new[] { "Viewer" });
+                    return Ok(new { Token = token, User = role.User });
+                }
             }
-            else if (roleName == "editor")
-            {
-                var token = _authService.GenerateJwtToken(model.Name, new[] { "Editor" });
-                return Ok(new { Token = token });
-            }
-            else if (roleName == "viewer")
-            {
-                var token = _authService.GenerateJwtToken(model.Name, new[] { "Viewer" });
-                return Ok(new { Token = token });
-            }
-
             return Unauthorized();
         }
         [HttpPost("register")]
@@ -63,15 +64,12 @@ namespace Api_Bussiness.API.Controllers
                 return Conflict("User is not valid");
             }
             var modelD = _mapper.Map<UserDto>(model);
-            var existingUser = await _userService.AddAsync(modelD);
+            var existingUser = await _userService.AddAsync(modelD,model.RoleName);
             if (existingUser == null)
                 return BadRequest();
-            var userRole = await _userRoleService.AddAsync(model.RoleName, existingUser.Id);
-            if (userRole == null)
-                return BadRequest();
             var token = _authService.GenerateJwtToken(model.Name, new[] { model.RoleName });
-            return Ok(new { Token = token });
-
+            var user = _userService.GetByIdAsync(existingUser.Id);
+            return Ok(new { Token = token ,User = user.Result});
 
         }
     }

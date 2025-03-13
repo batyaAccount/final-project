@@ -10,11 +10,11 @@ namespace ApiBusiness.CORE.IServices
 {
     public interface IUserService
     {
-        Task<UserDto> AddAsync(UserDto user);
+        public Task<UserDto> AddAsync(UserDto user, string roleName);
         Task DeleteAsync(int id);
         Task<IEnumerable<UserDto>> GetAllAsync();
         Task<UserDto> GetByIdAsync(int id);
         Task<bool> UpdateAsync(int id, UserDto user);
-        public Task<string> AuthenticateAsync(string username, string password);
+        public Task<UserRoles> AuthenticateAsync(string username, string password);
     }
 }

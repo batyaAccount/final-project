@@ -51,7 +51,7 @@ namespace Api_Bussiness.API.Controllers
         {
             var user = _mapper.Map<UserDto>(userDto);
             {
-                var createdUser = await _userService.AddAsync(user);
+                var createdUser = await _userService.AddAsync(user,userDto.RoleName);
                 if (createdUser == null)
                     return BadRequest();
                 return Ok(createdUser);

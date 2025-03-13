@@ -21,7 +21,6 @@ namespace ApiBusiness.DATA.Repository
         {
             await _dbSet.AddAsync(user);
             user.CreatedAt = DateTime.UtcNow;
-
             return user;
         }
 

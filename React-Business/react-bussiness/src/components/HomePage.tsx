@@ -1,4 +1,5 @@
 import { Container, Typography } from "@mui/material";
+import FileUploader from "./Files/FileUploader";
 
 
 const HomePage = () => {
@@ -15,12 +16,10 @@ const HomePage = () => {
             }}
         >
             <Typography variant="h2" component="h1" gutterBottom>
-                The Recipes House
+                <FileUploader></FileUploader>
             </Typography>
-            <Typography variant="h5" component="p" align="center" gutterBottom>
-                Discover a variety of delicious recipes from around the world.
-            </Typography>
-         
+            
+    
         </Container>
     );
 
