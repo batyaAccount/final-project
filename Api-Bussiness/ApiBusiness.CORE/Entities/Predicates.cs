@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApiBusiness.CORE.Entities
 {
-    internal class Predicates
+    public class Predicates
     {
 
         public class PredictionField

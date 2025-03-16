@@ -17,6 +17,6 @@ namespace ApiBusiness.CORE.IServices
         Task<ReceipeDto> GetByIdAsync(int id);
         Task<bool> UpdateAsync(int id, ReceipeDto receipt);
         Task<ReceipeDto> AddByUrlAsync(string receiptUrl);
-        Task ConfirmReceipe(int id);
+        Task<ReceipeDto> ConfirmReceipeAsync(int id);
     }
 }

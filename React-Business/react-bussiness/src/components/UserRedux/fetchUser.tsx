@@ -30,10 +30,18 @@ export const signUp = createAsyncThunk('Auth/register', async ({ user }: { user:
     }
 
 });
+
+const loadUserFromSession = (): User | null => {
+    const userData = sessionStorage.getItem("user");
+    if (userData) {
+        return JSON.parse(userData);
+    }
+    return null;
+}
 export const userSlice = createSlice({
     name: 'Auth',
     initialState: {
-        user: {} as User,
+        user: loadUserFromSession() || {} as User,
         loading: false,
         error: ""
     },
@@ -48,7 +56,7 @@ export const userSlice = createSlice({
                 state.loading = false;
                 state.user = action.payload.user;
                 state.user.token = action.payload.token;
-                
+                sessionStorage.setItem('user', JSON.stringify(state.user));
             })
             .addCase(signIn.rejected, (state, action) => {
                 state.loading = false;
@@ -62,6 +70,8 @@ export const userSlice = createSlice({
                 state.loading = false;
                 state.user = action.payload.user;
                 state.user.token = action.payload.token;
+                sessionStorage.setItem('user', JSON.stringify(state.user));
+
             })
             .addCase(signUp.rejected, (state, action) => {
                 state.loading = false;

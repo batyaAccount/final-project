@@ -13,15 +13,15 @@ namespace Api_Bussiness.API.Controllers
         private readonly IAmazonS3 _s3Client;
         private readonly IReciptService _reciptService;
 
-        public UploadController(IAmazonS3 s3Client,IReciptService reciptService)
+        public UploadController(IAmazonS3 s3Client, IReciptService receiptService)
         {
             _s3Client = s3Client;
-            _reciptService = reciptService;
+            _reciptService = receiptService;
         }
+
         [HttpGet("presigned-url")]
         public async Task<IActionResult> GetPresignedUrlAsync([FromQuery] string fileName)
         {
-            
             var request = new GetPreSignedUrlRequest
             {
                 BucketName = "your-bucket-name",
@@ -32,7 +32,7 @@ namespace Api_Bussiness.API.Controllers
             };
 
             string url = _s3Client.GetPreSignedURL(request);
-           await _reciptService.AddByUrlAsync(url);
+            //כאן צריך להוסיף פונ' של הוספת file
             return Ok(new { url });
         }
     }

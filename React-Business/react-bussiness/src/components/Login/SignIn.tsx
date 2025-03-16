@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../UserRedux/reduxStore";
 import { signIn } from "../UserRedux/fetchUser";
 import { useNavigate } from 'react-router-dom';
+import { IsloginContext } from "../Layout";
 const SignIn = () => {
     const style = {
         position: 'absolute',
@@ -21,6 +22,7 @@ const SignIn = () => {
     const passwordRef = useRef<HTMLInputElement>(null);
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();  // Initialize navigate
+    const [, setIslogin] = useContext(IsloginContext);
 
     const handleSignIn = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -29,10 +31,13 @@ const SignIn = () => {
             password: passwordRef.current?.value,
         };
 
-        await dispatch(signIn({ user: newUser }));
+        var res =  await dispatch(signIn({ user: newUser }));
+      
+        // console.log(res);
+        
         setOpen(false);
-
-        navigate("/HomePage", { replace: true }); 
+        setIslogin(true);
+        navigate("/HomePage", { replace: true });
     };
 
     return (

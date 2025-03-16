@@ -67,6 +67,17 @@ namespace Api_Bussiness.API.Controllers
             }
             return Ok();
         }
+        [HttpPut("confirm/{id}")]
+        public async Task<IActionResult> ConfirmAsync(int id)
+        { 
+            var re = await _receiptService.ConfirmReceipeAsync(id) == null;
+            if (re== null)
+            {
+                return NotFound();
+            }
+            return Ok(re);
+        }
+
         // DELETE api/<ReciptController>/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(int id)

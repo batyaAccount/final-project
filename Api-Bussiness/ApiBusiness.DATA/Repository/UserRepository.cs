@@ -55,7 +55,7 @@ namespace ApiBusiness.DATA.Repository
         }
         public async Task<Users> FindByUsernameAsync(string username)
         {
-            return await _dbSet.SingleOrDefaultAsync(u => u.Name == username);
+            return await _dbSet.FirstOrDefaultAsync(u => u.Name == username);
         }
     }
 }

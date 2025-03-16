@@ -101,11 +101,12 @@ namespace ApiBusiness.SERVICE.Services
             }
 
         }
-        public async Task ConfirmReceipe(int id)
+        public async Task<ReceipeDto> ConfirmReceipeAsync(int id)
         {
-
             var r = await _receiptRepository.GetByIdAsync(id);
             r.Update = true;
+            var rD = _mapper.Map<ReceipeDto>(r);
+            return rD;
         }
         public async Task DeleteAsync(int id)
         {
@@ -127,7 +128,6 @@ namespace ApiBusiness.SERVICE.Services
 
         public async Task<bool> UpdateAsync(int id, ReceipeDto receipt)
         {
-            
             var reD = _mapper.Map<Receipts>(receipt);
             reD.Update = true;
             bool f = await _receiptRepository.UpdateAsync(id, reD);

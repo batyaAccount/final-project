@@ -17,6 +17,7 @@ namespace ApiBusiness.CORE
         {
             CreateMap<Users, UserDto>().ReverseMap();
             CreateMap<Receipts, ReceipeDto>().ReverseMap();
+            CreateMap<Entities.File, FileDto>().ReverseMap();
             
         }
     }

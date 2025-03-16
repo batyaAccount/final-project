@@ -18,6 +18,8 @@ namespace ApiBusiness.CORE.Entities
         public long Size { get; set; }
         [MaxLength(500)]
         public string S3Key { get; set; }
+        public int ReceiptId { get; set; }
+        public Receipts Receipt { get; set; }
         public int? FolderId { get; set; }
         public Folder Folder { get; set; }
         public int OwnerId { get; set; }
@@ -25,6 +27,6 @@ namespace ApiBusiness.CORE.Entities
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public bool IsDeleted { get; set; }
-
+        public virtual ICollection<Users> viewUsers { get; set; } = new List<Users>(); // הרשאות
     }
 }

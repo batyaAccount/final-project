@@ -12,12 +12,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
-
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped<ApiBusiness.CORE.Entities.Users>();
 builder.Services.AddScoped<ApiBusiness.CORE.Entities.Receipts>();
+builder.Services.AddScoped<ApiBusiness.CORE.Entities.File>();
 builder.Services.AddDbContext<DataContext>(option =>
 {
     option.UseSqlServer("Data Source=DESKTOP-SSNMLFD;Initial Catalog=Invoicify;Integrated Security=true;");
@@ -31,7 +32,14 @@ builder.Services.AddScoped<IRoleRpository, RoleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IReciptsRepository, ReciptRepository>();
 builder.Services.AddScoped<IUserRolesRepository, UserRolesRepository>();
+builder.Services.AddScoped<IFileRepository, FileRepository>();
+builder.Services.AddScoped<IFileService, FileService>();
 
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.WriteIndented = true;
+});
 //OutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile), typeof(MappingProfilePostEntity));
 //JWT

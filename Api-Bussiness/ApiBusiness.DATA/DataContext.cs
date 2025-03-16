@@ -20,6 +20,7 @@ namespace ApiBusiness.DATA
         public DbSet<Receipts> Recipts { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
+        public DbSet<CORE.Entities.File> files { get; set; }
       
 
 

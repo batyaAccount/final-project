@@ -22,6 +22,95 @@ namespace ApiBusiness.DATA.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("ApiBusiness.CORE.Entities.File", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FileType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("FolderId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReceiptId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("S3Key")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<long>("Size")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FolderId");
+
+                    b.HasIndex("OwnerId");
+
+                    b.HasIndex("ReceiptId");
+
+                    b.ToTable("files");
+                });
+
+            modelBuilder.Entity("ApiBusiness.CORE.Entities.Folder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ParentFolderId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.HasIndex("ParentFolderId");
+
+                    b.ToTable("Folder");
+                });
+
             modelBuilder.Entity("ApiBusiness.CORE.Entities.Receipts", b =>
                 {
                     b.Property<int>("Id")
@@ -46,6 +135,9 @@ namespace ApiBusiness.DATA.Migrations
                     b.Property<string>("Supplier")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Update")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -124,6 +216,9 @@ namespace ApiBusiness.DATA.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int?>("FileId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -137,10 +232,56 @@ namespace ApiBusiness.DATA.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("FileId");
+
                     b.HasIndex("Email", "Name")
                         .IsUnique();
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ApiBusiness.CORE.Entities.File", b =>
+                {
+                    b.HasOne("ApiBusiness.CORE.Entities.Folder", "Folder")
+                        .WithMany()
+                        .HasForeignKey("FolderId");
+
+                    b.HasOne("ApiBusiness.CORE.Entities.Users", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ApiBusiness.CORE.Entities.Receipts", "Receipt")
+                        .WithMany()
+                        .HasForeignKey("ReceiptId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Folder");
+
+                    b.Navigation("Owner");
+
+                    b.Navigation("Receipt");
+                });
+
+            modelBuilder.Entity("ApiBusiness.CORE.Entities.Folder", b =>
+                {
+                    b.HasOne("ApiBusiness.CORE.Entities.Users", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ApiBusiness.CORE.Entities.Folder", "ParentFolder")
+                        .WithMany()
+                        .HasForeignKey("ParentFolderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Owner");
+
+                    b.Navigation("ParentFolder");
                 });
 
             modelBuilder.Entity("ApiBusiness.CORE.Entities.UserRoles", b =>
@@ -160,6 +301,18 @@ namespace ApiBusiness.DATA.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ApiBusiness.CORE.Entities.Users", b =>
+                {
+                    b.HasOne("ApiBusiness.CORE.Entities.File", null)
+                        .WithMany("viewUsers")
+                        .HasForeignKey("FileId");
+                });
+
+            modelBuilder.Entity("ApiBusiness.CORE.Entities.File", b =>
+                {
+                    b.Navigation("viewUsers");
                 });
 #pragma warning restore 612, 618
         }

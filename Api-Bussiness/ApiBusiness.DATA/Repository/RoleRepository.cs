@@ -30,6 +30,7 @@ namespace ApiBusiness.DATA.Repository
         {
             var role = await GetRoleByIdAsync(id);
             _dbSet.Remove(role);
+            
         }
 
         public async Task<IEnumerable<Roles>> GetAllAsync()

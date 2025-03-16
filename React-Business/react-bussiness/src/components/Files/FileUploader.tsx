@@ -1,5 +1,14 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
+import { 
+    Box, Button, Container, LinearProgress, Typography, Paper 
+} from "@mui/material";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload"; // Upload icon
+import { styled } from "@mui/system";
+
+const HiddenInput = styled("input")({
+    display: "none",
+});
 
 const FileUploader = () => {
     const [file, setFile] = useState<File | null>(null);
@@ -15,37 +24,107 @@ const FileUploader = () => {
         if (!file) return;
 
         try {
-            // שלב 1: קבלת Presigned URL מהשרת
-            const response = await axios.get('https://localhost:7160/api/Upload/presigned-url', {
-                params: { fileName: file.name }
+            // Get Presigned URL from server
+            const response = await axios.get("https://localhost:7160/api/Upload/presigned-url", {
+                params: { fileName: file.name },
             });
-
             const presignedUrl = response.data.url;
-            // שלב 2: העלאת הקובץ ישירות ל-S3
+
+            // Upload file to S3
             await axios.put(presignedUrl, file, {
                 headers: {
-                    'Content-Type': file.type,
+                    "Content-Type": file.type,
                 },
                 onUploadProgress: (progressEvent) => {
-                    const percent = Math.round(
-                        (progressEvent.loaded * 100) / (progressEvent.total || 1)
-                    );
+                    const percent = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
                     setProgress(percent);
                 },
             });
 
-            alert('הקובץ הועלה בהצלחה!');
+            alert("הקובץ הועלה בהצלחה!");
         } catch (error) {
-            console.error('שגיאה בהעלאה:', error);
+            console.error("שגיאה בהעלאה:", error);
         }
     };
 
     return (
-        <div>
-            <input type="file" onChange={handleFileChange} />
-            <button onClick={handleUpload}>העלה קובץ</button>
-            {progress > 0 && <div>התקדמות: {progress}%</div>}
-        </div>
+        <Container
+            maxWidth="sm"
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: "100vh",
+            }}
+        >
+            <Paper
+                elevation={4}
+                sx={{
+                    width: "100%",
+                    padding: 4,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    borderRadius: 3,
+                    backgroundColor: "#fff",
+                    textAlign: "center",
+                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+                }}
+            >
+                <Typography variant="h4" fontWeight="bold" color="primary" gutterBottom>
+                    Upload Your File
+                </Typography>
+
+                <Typography variant="body1" color="textSecondary" sx={{ mb: 3 }}>
+                    Choose a file and upload it securely.
+                </Typography>
+
+                {/* Custom File Upload Button */}
+                <label htmlFor="file-upload">
+                    <HiddenInput id="file-upload" type="file" onChange={handleFileChange} />
+                    <Button
+                        component="span"
+                        variant="outlined"
+                        startIcon={<CloudUploadIcon />}
+                        sx={{
+                            borderRadius: 2,
+                            paddingX: 3,
+                            paddingY: 1,
+                            fontSize: "16px",
+                            mb: 2,
+                        }}
+                    >
+                        {file ? file.name : "Choose File"}
+                    </Button>
+                </label>
+
+                {/* Upload Button */}
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleUpload}
+                    disabled={!file}
+                    sx={{
+                        borderRadius: 2,
+                        paddingX: 4,
+                        paddingY: 1,
+                        fontSize: "16px",
+                        boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.2)",
+                    }}
+                >
+                    Upload File
+                </Button>
+
+                {/* Progress Bar */}
+                {progress > 0 && (
+                    <Box width="100%" sx={{ mt: 3 }}>
+                        <Typography variant="body1">Uploading: {progress}%</Typography>
+                        <LinearProgress variant="determinate" value={progress} sx={{ height: 8, borderRadius: 5 }} />
+                    </Box>
+                )}
+            </Paper>
+        </Container>
     );
 };
 

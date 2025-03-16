@@ -77,3 +77,5 @@ C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\Api-Bussiness\bin\D
 C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\Api-Bussiness\bin\Debug\net7.0\AWSSDK.Core.dll
 C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\Api-Bussiness\bin\Debug\net7.0\AWSSDK.S3.dll
 C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\Api-Bussiness\bin\Debug\net7.0\AWSSDK.Extensions.NETCore.Setup.dll
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\Api-Bussiness\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\Api-Bussiness\bin\Debug\net7.0\RestSharp.dll

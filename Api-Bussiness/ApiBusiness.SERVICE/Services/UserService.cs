@@ -60,6 +60,11 @@ namespace ApiBusiness.SERVICE.Services
         {
             return _mapper.Map<UserDto>(await _userRepository.GetByIdAsync(id));
         }
+        public async Task<UserDto> GetByNameAsync(string name)
+        {
+            return _mapper.Map<UserDto>(await _userRepository.FindByUsernameAsync(name));
+        }
+
 
         public async Task<bool> UpdateAsync(int id, UserDto user)
         {

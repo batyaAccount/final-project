@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ApiBusiness.CORE.Entities
 {
-    public class Pemmisions
+    public class Permissions
     {
         [Key]
         public int Id { get; set; }

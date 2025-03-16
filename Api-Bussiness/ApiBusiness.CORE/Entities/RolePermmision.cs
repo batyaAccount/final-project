@@ -13,7 +13,7 @@ namespace ApiBusiness.CORE.Entities
         [Key]
         public int Id { get; set; }
         public int PermissionId { get; set; }
-        public Pemmisions Permission { get; set; }
+        public Permissions Permission { get; set; }
 
         public int RoleId { get; set; }
         public Roles Role { get; set; }

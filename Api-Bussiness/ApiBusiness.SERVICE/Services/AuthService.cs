@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using ApiBusiness.CORE.Entities;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,8 @@ namespace ApiBusiness.SERVICE.Services
 
             var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, username)
+            new Claim(ClaimTypes.Name, username),
+
         };
 
             // הוספת תפקידים כ-Claims

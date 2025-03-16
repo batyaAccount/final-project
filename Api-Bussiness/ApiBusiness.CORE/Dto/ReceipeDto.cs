@@ -15,5 +15,6 @@ namespace ApiBusiness.CORE.Dto
         public DateTime Date { get; set; } 
         public string Supplier { get; set; } 
         public string Url { get; set; }
+        public bool Update { get; set; }
     }
 }
