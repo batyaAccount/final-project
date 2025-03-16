@@ -45,14 +45,15 @@ const ShowInvoices = () => {
     const [invoices, setInvoices] = useState<Array<invoice>>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const [selectedInvoice, setSelectedInvoice] = useState<invoice | null>(null); // שדה לבחור חשבונית לעדכון
+    const [selectedInvoice, setSelectedInvoice] = useState<invoice | null>(null);
+    const [confirmedInvoices, setConfirmedInvoices] = useState<Record<number, boolean>>({});
 
     const fetchInvoices = () => {
         const localInvoices: Array<invoice> = [
             { s3Key: im, ownerId: undefined, ReceiptId: 1 },
             { s3Key: im1, ownerId: undefined, ReceiptId: 2 },
             { s3Key: im2, ownerId: undefined, ReceiptId: 3 },
-            { s3Key: im3, ownerId: undefined, ReceiptId: 4 },
+            { s3Key: im3, ownerId: undefined, ReceiptId: 7 },
         ];
         setInvoices(localInvoices);
         setLoading(false);
@@ -63,25 +64,18 @@ const ShowInvoices = () => {
     }, []);
 
     const handleUpdateClick = (invoice: invoice) => {
-        setSelectedInvoice(invoice); // עדכון לחשבונית שצריך לעדכן
+        setSelectedInvoice(invoice);
     };
 
     const handleApproveClick = async (invoice: invoice) => {
         try {
-            // Send the confirmation request to the API
-            const response = await axios.put(`https://localhost:7160/api/Recipt/confirm/${invoice.ReceiptId}`);
-            
-            // Check if the response contains updated invoice data
-            const updatedInvoice = response.data; // assuming it returns the updated invoice
-    
-            // Update the local state by modifying the specific invoice
-            const updatedInvoices = invoices.map(inv =>
-                inv.ReceiptId === invoice.ReceiptId ? { ...inv, ...updatedInvoice } : inv
-            );
-    
-            // Set the state with updated invoices
-            setInvoices(updatedInvoices);
-    
+            await axios.put(`https://localhost:7160/api/Recipt/confirm/${invoice.ReceiptId}`);
+
+            setConfirmedInvoices(prev => ({
+                ...prev,
+                [invoice.ReceiptId]: true,
+            }));
+
             alert("The invoice was confirmed successfully!");
         } catch (err) {
             console.error(err);
@@ -106,7 +100,7 @@ const ShowInvoices = () => {
                         </AccordionSummary>
                         <AccordionDetails style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
                             <div style={{ flex: 1, minWidth: '300px', maxWidth: '400px' }}>
-                                <ShowOneInvoice invoiceId={invoice.ReceiptId} />
+                                <ShowOneInvoice key={confirmedInvoices[invoice.ReceiptId] ? `confirmed-${invoice.ReceiptId}` : `invoice-${invoice.ReceiptId}`} invoiceId={invoice.ReceiptId} />
                             </div>
                             <img
                                 src={invoice.s3Key}
@@ -140,7 +134,7 @@ const ShowInvoices = () => {
             {selectedInvoice && (
                 <InvoiceForm
                     invoiceId={selectedInvoice.ReceiptId}
-                    onClose={() => setSelectedInvoice(null)} // Move onClose here for clean handling
+                    onClose={() => setSelectedInvoice(null)}
                 />
             )}
         </div>

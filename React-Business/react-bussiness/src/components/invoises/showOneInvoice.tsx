@@ -6,8 +6,6 @@ import {
 import { ReceiptLong, Category, CalendarToday, Store, Link as LinkIcon, CheckCircle, Cancel } from "@mui/icons-material";
 import { Invoice } from "../models/invoice";
 
-
-
 // Invoice Component
 export default ({ invoiceId }: { invoiceId: number }) => {
     const [invoice, setInvoice] = useState<Invoice | null>(null);
@@ -17,7 +15,7 @@ export default ({ invoiceId }: { invoiceId: number }) => {
     const getInvoiceById = async () => {
         try {
             const response = await axios.get(`https://localhost:7160/api/Recipt/${invoiceId}`);
-            console.log("API Response:", response.data); // Debugging
+            console.log("API Response:", response.data);
             if (response.data) {
                 setInvoice(response.data);
                 setIsLoading(false);  // Move this inside
@@ -33,7 +31,7 @@ export default ({ invoiceId }: { invoiceId: number }) => {
 
     useEffect(() => {
         getInvoiceById();
-    }, [invoiceId]);
+    }, [invoiceId]);  // Re-fetch when invoiceId changes
 
     if (isLoading) return <CircularProgress style={{ display: "block", margin: "auto", marginTop: 50 }} />;
     if (error) return <Typography color="error">{error}</Typography>;
