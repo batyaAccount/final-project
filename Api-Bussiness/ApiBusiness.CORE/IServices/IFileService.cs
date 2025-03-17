@@ -1,4 +1,5 @@
 ﻿using ApiBusiness.CORE.Dto;
+using ApiBusiness.CORE.Entities;
 using ApiBusiness.CORE.IRepositories;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace ApiBusiness.CORE.IServices
 {
     public interface IFileService
     {
-        Task<FileDto> AddAsync(string url);
+        Task<FileDto> AddAsync(string url, int category);
         Task DeleteAsync(int id);
         Task<IEnumerable<FileDto>> GetUserAccessibleProjectsAsync(int id);
         Task<IEnumerable<FileDto>> GetAllAsync();

@@ -17,6 +17,7 @@ using System.Text.Json.Serialization;
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped<ApiBusiness.CORE.Entities.Users>();
+builder.Services.AddScoped<ApiBusiness.CORE.Entities.FinancialTransaction>();
 builder.Services.AddScoped<ApiBusiness.CORE.Entities.Receipts>();
 builder.Services.AddScoped<ApiBusiness.CORE.Entities.File>();
 builder.Services.AddDbContext<DataContext>(option =>
@@ -34,6 +35,8 @@ builder.Services.AddScoped<IReciptsRepository, ReciptRepository>();
 builder.Services.AddScoped<IUserRolesRepository, UserRolesRepository>();
 builder.Services.AddScoped<IFileRepository, FileRepository>();
 builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<IFinancialTransactionRepository, FinancialTransactionRepository>();
+builder.Services.AddScoped<IFinancialTransactionService, FinancialTransactionService>();
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {

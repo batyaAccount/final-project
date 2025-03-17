@@ -14,11 +14,13 @@ namespace ApiBusiness.CORE.Entities
         [Required]
         public double Amount { get; set; } // סכום ההוצאה
         [Required]
-        public string Category { get; set; } // קטגוריה
+        public int Category { get; set; } // קטגוריה
         public DateTime Date { get; set; } // תאריך ההוצאה
         public string Supplier { get; set; } // שם הספק
         [Required]
         public string Url { get; set; }
+        public int FinancialTransactionId { get; set; }
+        public FinancialTransaction FinancialTransaction { get; set; }
         public DateTime CreatedAt { get; set; } 
         public DateTime UpdatedAt { get; set; }
         public bool Update { get; set; }

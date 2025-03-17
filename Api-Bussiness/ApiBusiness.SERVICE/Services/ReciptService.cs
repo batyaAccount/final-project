@@ -18,12 +18,14 @@ namespace ApiBusiness.SERVICE.Services
     {
         private readonly IReciptsRepository _receiptRepository;
         private readonly IRepositoryManager _repositoryManager;
+        private readonly IFinancialTransactionService _financialTransactionService;
         readonly IMapper _mapper;
 
-        public ReciptService(IReciptsRepository receiptRepository, IRepositoryManager repositoryManager, IMapper mapper)
+        public ReciptService(IFinancialTransactionService financialTransactionService, IReciptsRepository receiptRepository, IRepositoryManager repositoryManager, IMapper mapper)
         {
             _receiptRepository = receiptRepository;
             _repositoryManager = repositoryManager;
+            _financialTransactionService = financialTransactionService;
             _mapper = mapper;
         }
 
@@ -33,6 +35,14 @@ namespace ApiBusiness.SERVICE.Services
                 return null;
             var rD = _mapper.Map<Receipts>(receipt);
             rD.Update = false;
+            FinancialTransaction financialTransaction = new FinancialTransaction()
+            {
+                Amount = rD.Amount,
+                Timestamp = rD.Date,
+                Type = rD.Category,
+
+            };
+            _financialTransactionService.AddAsync(financialTransaction);
             Receipts r = await _receiptRepository.AddAsync(rD);
             await _repositoryManager.SaveAsync();
             var r2 = _mapper.Map<ReceipeDto>(r);
@@ -106,6 +116,7 @@ namespace ApiBusiness.SERVICE.Services
             var r = await _receiptRepository.GetByIdAsync(id);
             r.Update = true;
             var rD = _mapper.Map<ReceipeDto>(r);
+            await _repositoryManager.SaveAsync();
             return rD;
         }
         public async Task DeleteAsync(int id)

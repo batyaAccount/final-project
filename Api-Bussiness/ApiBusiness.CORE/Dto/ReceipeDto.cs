@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApiBusiness.CORE.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace ApiBusiness.CORE.Dto
     {
         public int Id { get; set; } 
         public double Amount { get; set; } 
-        public string Category { get; set; } 
+        public int Category { get; set; } 
         public DateTime Date { get; set; } 
         public string Supplier { get; set; } 
         public string Url { get; set; }

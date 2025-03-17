@@ -20,7 +20,6 @@ namespace ApiBusiness.SERVICE.Services
         private readonly IMapper _mapper;
         private readonly IUserRolesRepository _userRolesRepository;
 
-
         public UserService(IRoleRpository roleRpository, IUserRepository userRepository, IRepositoryManager repositoryManager, IMapper mapper, IUserRolesRepository userRolesRepository)
         {
             _userRepository = userRepository;
@@ -29,7 +28,6 @@ namespace ApiBusiness.SERVICE.Services
             _userRolesRepository = userRolesRepository;
             _roleRpository = roleRpository;
         }
-
         public async Task<UserDto> AddAsync(UserDto user, string roleName)
         {
             var user2 = _mapper.Map<Users>(user);
@@ -44,18 +42,15 @@ namespace ApiBusiness.SERVICE.Services
             var user3 = _mapper.Map<UserDto>(u);
             return user3;
         }
-
         public async Task DeleteAsync(int id)
         {
             await _userRepository.DeleteAsync(id);
             await _repositoryManager.SaveAsync();
         }
-
         public async Task<IEnumerable<UserDto>> GetAllAsync()
         {
             return _mapper.Map<IEnumerable<UserDto>>(await _userRepository.GetAsync());
         }
-
         public async Task<UserDto> GetByIdAsync(int id)
         {
             return _mapper.Map<UserDto>(await _userRepository.GetByIdAsync(id));
@@ -64,8 +59,6 @@ namespace ApiBusiness.SERVICE.Services
         {
             return _mapper.Map<UserDto>(await _userRepository.FindByUsernameAsync(name));
         }
-
-
         public async Task<bool> UpdateAsync(int id, UserDto user)
         {
             var user2 = _mapper.Map<Users>(user);
@@ -74,7 +67,6 @@ namespace ApiBusiness.SERVICE.Services
             await _repositoryManager.SaveAsync();
             return f;
         }
-
         public async Task<UserRoles> AuthenticateAsync(string username, string password)
         {
             Users user = await _userRepository.FindByUsernameAsync(username);

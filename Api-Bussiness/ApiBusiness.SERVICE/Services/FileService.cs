@@ -21,30 +21,34 @@ namespace ApiBusiness.SERVICE.Services
         private readonly IRepositoryManager _repositoryManager;
         private readonly IReciptService _receiptService;
         private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
         private readonly IMapper _mapper;
 
-        public FileService(IUserRepository userRepository, IFileRepository fileRepository, IRepositoryManager repositoryManager, IReciptService receiptService, IMapper mapper)
+        public FileService(IUserService userService, IUserRepository userRepository, IFileRepository fileRepository, IRepositoryManager repositoryManager, IReciptService receiptService, IMapper mapper)
         {
             _fileRepository = fileRepository;
             _repositoryManager = repositoryManager;
             _receiptService = receiptService;
             _mapper = mapper;
+            _userService = userService;
             _userRepository = userRepository;
         }
 
-        public async Task<FileDto> AddAsync(string url)
+        public async Task<FileDto> AddAsync(string url, int category)
         {
             FileDto fileDto = new FileDto();
             //פענוח של הניתוב לקובץ צריך להוסיף
             var invoice = await _receiptService.AddByUrlAsync(url);
+            invoice.Category = category;
             if (invoice == null)
                 return null;
-            //var users = await _userRepository.GetAsync();
-            //if (users == null)
-            //    return null;
+          
             var file = _mapper.Map<File>(fileDto);
             file.CreatedAt = DateTime.UtcNow;
             file.ReceiptId = invoice.Id;
+            var userName = ClaimTypes.Name;
+            var id = _userService.GetByNameAsync(userName).Result.Id;
+            file.OwnerId = id;
             File r = await _fileRepository.AddAsync(file);
             if (r == null)
                 return null;

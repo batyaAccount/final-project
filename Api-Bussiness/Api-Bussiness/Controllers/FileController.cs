@@ -33,7 +33,6 @@ namespace Api_Bussiness.API.Controllers
             return Ok(invoiceDto);
         }
 
-
         [HttpGet("editor-or-admin")]
         [Authorize(Policy = "EditorOrAdmin")] // Editor או Admin יכולים לגשת
         public async Task<IActionResult> EditorOrAdminAsync()
