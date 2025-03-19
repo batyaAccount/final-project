@@ -17,8 +17,6 @@ namespace ApiBusiness.CORE.Entities
         public int Category { get; set; } // קטגוריה
         public DateTime Date { get; set; } // תאריך ההוצאה
         public string Supplier { get; set; } // שם הספק
-        [Required]
-        public string Url { get; set; }
         public int FinancialTransactionId { get; set; }
         public FinancialTransaction FinancialTransaction { get; set; }
         public DateTime CreatedAt { get; set; } 

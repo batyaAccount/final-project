@@ -27,6 +27,14 @@
           }
         }
       },
+      "AWSSDK.Core/3.7.402.21": {
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.402.21"
+          }
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "runtime": {
           "lib/netstandard2.0/Humanizer.dll": {
@@ -497,6 +505,7 @@
       },
       "ApiBusiness.CORE/1.0.0": {
         "dependencies": {
+          "AWSSDK.Core": "3.7.402.21",
           "AutoMapper": "12.0.1",
           "Microsoft.EntityFrameworkCore.Abstractions": "6.0.36"
         },
@@ -518,6 +527,13 @@
       "sha512": "sha512-hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
       "path": "automapper/12.0.1",
       "hashPath": "automapper.12.0.1.nupkg.sha512"
+    },
+    "AWSSDK.Core/3.7.402.21": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EliYjOVbBITpmdHDuELPK+Oc7ryK/nO4pG/xNsbxocO/ehicGfbPMkL9OFDi3lvyAYi/daMJnPH8xeNM7+IkVw==",
+      "path": "awssdk.core/3.7.402.21",
+      "hashPath": "awssdk.core.3.7.402.21.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",

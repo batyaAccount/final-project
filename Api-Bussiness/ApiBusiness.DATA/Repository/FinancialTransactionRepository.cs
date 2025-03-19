@@ -30,7 +30,7 @@ namespace ApiBusiness.DATA.Repository
 
         public async Task<FinancialTransaction> AddAsync(FinancialTransaction transaction)
         {
-            _dbSet.Add(transaction);
+            await _dbSet.AddAsync(transaction);
             transaction.CreatedAt = DateTime.UtcNow;
             return transaction;
 

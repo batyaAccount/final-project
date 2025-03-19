@@ -11,7 +11,7 @@ namespace ApiBusiness.CORE.IServices
 {
     public interface IFileService
     {
-        Task<FileDto> AddAsync(string url, int category);
+        Task<FileDto> AddAsync(int category,FileDto fileDto);
         Task DeleteAsync(int id);
         Task<IEnumerable<FileDto>> GetUserAccessibleProjectsAsync(int id);
         Task<IEnumerable<FileDto>> GetAllAsync();

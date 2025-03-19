@@ -34,15 +34,15 @@ namespace ApiBusiness.SERVICE.Services
             _userRepository = userRepository;
         }
 
-        public async Task<FileDto> AddAsync(string url, int category)
+        public async Task<FileDto> AddAsync(int category,FileDto fileDto)
         {
-            FileDto fileDto = new FileDto();
-            //פענוח של הניתוב לקובץ צריך להוסיף
-            var invoice = await _receiptService.AddByUrlAsync(url);
+           
+            var invoice = await _receiptService.AddByUrlAsync(fileDto.OwnerId.ToString(),fileDto.FileName);
+            if (invoice == null)
+                return null;
             invoice.Category = category;
             if (invoice == null)
                 return null;
-          
             var file = _mapper.Map<File>(fileDto);
             file.CreatedAt = DateTime.UtcNow;
             file.ReceiptId = invoice.Id;

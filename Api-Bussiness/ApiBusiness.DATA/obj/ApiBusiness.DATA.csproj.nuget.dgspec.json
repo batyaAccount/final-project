@@ -40,6 +40,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AWSSDK.Core": {
+              "target": "Package",
+              "version": "[3.7.402.21, )"
+            },
             "AutoMapper": {
               "target": "Package",
               "version": "[12.0.1, )"

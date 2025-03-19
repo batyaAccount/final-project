@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Invoice } from "../models/invoice";
+import { Invoice } from "../models/Invoice";
 
 export default ({ invoiceId, onClose }: { invoiceId: number, onClose: Function }) => {
     const [invoice, setInvoice] = useState<Invoice | null>(null);
@@ -36,7 +36,7 @@ export default ({ invoiceId, onClose }: { invoiceId: number, onClose: Function }
             try {
                 await axios.put(`https://localhost:7160/api/Recipt/${invoiceId}`, invoice);
                 alert("Invoice updated successfully!");
-                onClose(); // Close the form after submit
+                onClose();
             } catch (err) {
                 console.error(err);
             }

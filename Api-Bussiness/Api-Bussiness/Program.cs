@@ -1,3 +1,4 @@
+using Amazon.Runtime;
 using Amazon.S3;
 using Api_Bussiness.API;
 using ApiBusiness.CORE;
@@ -13,6 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Text.Json.Serialization;
+using Amazon.Runtime;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -37,6 +39,7 @@ builder.Services.AddScoped<IFileRepository, FileRepository>();
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IFinancialTransactionRepository, FinancialTransactionRepository>();
 builder.Services.AddScoped<IFinancialTransactionService, FinancialTransactionService>();
+builder.Services.AddScoped<IS3Service, S3Service>();
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
@@ -110,8 +113,8 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
-builder.Services.AddAWSService<IAmazonS3>();
+
+
 
 
 var app = builder.Build();

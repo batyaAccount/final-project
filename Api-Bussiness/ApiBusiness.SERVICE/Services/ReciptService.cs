@@ -8,6 +8,7 @@ using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using static ApiBusiness.CORE.Entities.Predicates;
@@ -19,14 +20,16 @@ namespace ApiBusiness.SERVICE.Services
         private readonly IReciptsRepository _receiptRepository;
         private readonly IRepositoryManager _repositoryManager;
         private readonly IFinancialTransactionService _financialTransactionService;
-        readonly IMapper _mapper;
+        private readonly IS3Service _s3Service;
+        private readonly IMapper _mapper;
 
-        public ReciptService(IFinancialTransactionService financialTransactionService, IReciptsRepository receiptRepository, IRepositoryManager repositoryManager, IMapper mapper)
+        public ReciptService(IS3Service s3Service, IFinancialTransactionService financialTransactionService, IReciptsRepository receiptRepository, IRepositoryManager repositoryManager, IMapper mapper)
         {
             _receiptRepository = receiptRepository;
             _repositoryManager = repositoryManager;
             _financialTransactionService = financialTransactionService;
             _mapper = mapper;
+            _s3Service = s3Service;
         }
 
         public async Task<ReceipeDto> AddAsync(ReceipeDto receipt)
@@ -42,7 +45,8 @@ namespace ApiBusiness.SERVICE.Services
                 Type = rD.Category,
 
             };
-            _financialTransactionService.AddAsync(financialTransaction);
+            var f = await _financialTransactionService.AddAsync(financialTransaction);
+            rD.FinancialTransaction = f;
             Receipts r = await _receiptRepository.AddAsync(rD);
             await _repositoryManager.SaveAsync();
             var r2 = _mapper.Map<ReceipeDto>(r);
@@ -53,10 +57,9 @@ namespace ApiBusiness.SERVICE.Services
         /// </summary>
         /// <param name="receiptUrl"></param>
         /// <returns></returns>
-        public async Task<ReceipeDto> AddByUrlAsync(string receiptUrl)
+        public async Task<ReceipeDto> AddByUrlAsync(string userId, string fileName)
         {
             ReceipeDto receipeDto = new ReceipeDto();
-            receipeDto.Url = receiptUrl;
             var client = new RestClient("https://app.nanonets.com/api/v2/OCR/Model/a7776203-11b3-4b5c-ba88-1c38391a7f93/LabelFile/?async=false");
             var request = new RestRequest("", Method.Post);
 
@@ -64,7 +67,25 @@ namespace ApiBusiness.SERVICE.Services
             request.AddHeader("Accept", "multipart/form-data");
 
             // הוסף את הנתיב של הקובץ שאתה רוצה לשלוח
-            request.AddFile("file", receiptUrl);
+            var url = await _s3Service.GetDownloadUrlAsync(userId, fileName);
+
+            // Download the file content using HttpClient
+            using (var httpClient = new HttpClient())
+            {
+                try
+                {
+                    // Download the file content as a byte array
+                    var fileBytes = await httpClient.GetByteArrayAsync(url);
+
+                    // Add the file content to the request
+                    request.AddFile("file", fileBytes, fileName);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error downloading file: {ex.Message}");
+                    return null;
+                }
+            }
 
             var response = await client.ExecuteAsync(request);
 

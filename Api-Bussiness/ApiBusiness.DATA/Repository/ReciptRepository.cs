@@ -49,7 +49,6 @@ namespace ApiBusiness.DATA.Repository
                 r.Category = receipt.Category;
                 r.Amount = receipt.Amount;
                 r.Supplier = receipt.Supplier;
-                r.Url = receipt.Url;
                 r.UpdatedAt = DateTime.UtcNow;
 
                 return true;

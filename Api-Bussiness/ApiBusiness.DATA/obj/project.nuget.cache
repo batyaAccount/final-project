@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "TxBj7hZFdUd4ZPfexHnAkUoqeTAcU1pKMIef5z31yK1vg7DS2zZZMywl3uSLajXYkNN60YPrEvKTQ4akIS7VEA==",
+  "dgSpecHash": "yzURVOfmC/af+rC2XeY9RN3fcTXD6zth3yOM1ZsHq9NVgD5e9sTq3GlQ2dbhK/u1KRIN47zSP84KJJSSO3+F/Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\ApiBusiness.DATA\\ApiBusiness.DATA.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user1\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\user1\\.nuget\\packages\\awssdk.core\\3.7.402.21\\awssdk.core.3.7.402.21.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.7\\microsoft.data.sqlclient.2.1.7.nupkg.sha512",

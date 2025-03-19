@@ -4,7 +4,7 @@ import {
     Card, CardContent, Typography, CircularProgress, Container, Grid, Paper 
 } from "@mui/material";
 import { ReceiptLong, Category, CalendarToday, Store, Link as LinkIcon, CheckCircle, Cancel } from "@mui/icons-material";
-import { Invoice } from "../models/invoice";
+import { Invoice } from "../models/Invoice";
 
 // Invoice Component
 export default ({ invoiceId }: { invoiceId: number }) => {
