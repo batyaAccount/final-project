@@ -1,6 +1,5 @@
 import { Container, Typography } from "@mui/material";
 import FileUploader from "./Files/FileUploader";
-import ShowInvoices from "./invoises/showInvoises";
 
 
 const HomePage = () => {

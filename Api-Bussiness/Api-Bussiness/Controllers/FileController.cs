@@ -1,4 +1,5 @@
-﻿using ApiBusiness.CORE.Dto;
+﻿using Api_Bussiness.API.PostEntity;
+using ApiBusiness.CORE.Dto;
 using ApiBusiness.CORE.Entities;
 using ApiBusiness.CORE.IServices;
 using AutoMapper;
@@ -47,6 +48,16 @@ namespace Api_Bussiness.API.Controllers
             return Ok(invoices);
         }
 
+        [HttpPost("{category}")]
+        [Authorize] 
+        public async Task<IActionResult> AddAsync([FromBody] FilePostEntity filePostEntity,int category)
+        {
+            
+            FileDto file =_mapper.Map<FileDto>(filePostEntity);
+           
+            var res = await _fileService.AddAsync(category, file);
+            return Ok(res);
+        }
 
         //[HttpGet("viewer-only")]
         //[Authorize(Policy = "ViewerOnly")] // רק Viewer יכול לגשת

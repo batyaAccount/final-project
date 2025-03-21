@@ -1,5 +1,4 @@
-import { Avatar, Typography } from "@mui/material";
-import { deepOrange } from '@mui/material/colors';
+import { Avatar } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../UserRedux/reduxStore";
 
@@ -8,10 +7,9 @@ const Userdetails = () => {
 
     return (
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Avatar sx={{ bgcolor: deepOrange[500], marginRight: "8px" }}>
+            <Avatar sx={{ bgcolor: "lightblue", marginRight: "8px" }}>
                 {user.name?.charAt(0)}
             </Avatar>
-            <Typography variant="body1">{user.name}</Typography>
         </div>
     );
 };

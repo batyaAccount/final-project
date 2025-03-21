@@ -14,6 +14,7 @@ namespace Api_Bussiness.API
             CreateMap<ReceipePostEntity, ReceipeDto>().ReverseMap();
             CreateMap<RegisterModel, UserDto>().ReverseMap();
             CreateMap<ApiBusiness.CORE.Entities.File, FileDto>().ReverseMap();
+            CreateMap<FilePostEntity, FileDto>().ReverseMap();
         }
     }
 }

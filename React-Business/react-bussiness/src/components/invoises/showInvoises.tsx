@@ -1,18 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { User } from "../Login/SignUp";
-import { Accordion, AccordionDetails, AccordionSummary, Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
-import im from "../../invoice/1.png"
-import im1 from "../../invoice/2.png"
-import im2 from "../../invoice/3.png"
-import im3 from "../../invoice/4.png"
-import InvoiceForm from "./InvoiceForm";
-import ShowOneInvoice from "./showOneInvoice";
-type invoice = {
-    s3Key: string,
-    ownerId: number | undefined,
-    ReceiptId: number,
-};
+
 // const fetchInvoices = async () => {
 //     const user: User = JSON.parse(sessionStorage.getItem('user') || 'null') as User;
 //     const token = user.token;
@@ -40,6 +26,21 @@ type invoice = {
 //         setLoading(false);
 //     }
 // };
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Accordion, AccordionDetails, AccordionSummary, Button, Typography } from "@mui/material";
+import im from "../../invoice/1.png";
+import im1 from "../../invoice/2.png";
+import im2 from "../../invoice/3.png";
+import im3 from "../../invoice/4.png";
+import InvoiceForm from "./InvoiceForm";
+import ShowOneInvoice from "./showOneInvoice";
+
+type invoice = {
+    s3Key: string,
+    ownerId: number | undefined,
+    ReceiptId: number,
+};
 
 const ShowInvoices = () => {
     const [invoices, setInvoices] = useState<Array<invoice>>([]);
@@ -50,10 +51,10 @@ const ShowInvoices = () => {
 
     const fetchInvoices = () => {
         const localInvoices: Array<invoice> = [
-            { s3Key: im, ownerId: undefined, ReceiptId: 1 },
-            { s3Key: im1, ownerId: undefined, ReceiptId: 2 },
-            { s3Key: im2, ownerId: undefined, ReceiptId: 3 },
-            { s3Key: im3, ownerId: undefined, ReceiptId: 7 },
+            { s3Key: im, ownerId: undefined, ReceiptId: 14 },
+            { s3Key: im1, ownerId: undefined, ReceiptId: 14 },
+            { s3Key: im2, ownerId: undefined, ReceiptId: 14 },
+            { s3Key: im3, ownerId: undefined, ReceiptId: 14 },
         ];
         setInvoices(localInvoices);
         setLoading(false);
@@ -87,16 +88,16 @@ const ShowInvoices = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div>
-            <h2>חשבוניות</h2>
+        <div style={{ padding: '20px' }}>
+            <Typography variant="h4" gutterBottom align="center">חשבוניות</Typography>
             {invoices.length > 0 ? (
                 invoices.map((invoice, index) => (
-                    <Accordion key={index} style={{ width: '100%', marginBottom: '5px' }}>
+                    <Accordion key={index} style={{ width: '100%', marginBottom: '10px', boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}>
                         <AccordionSummary
                             aria-controls={`panel${index}-content`}
                             id={`panel${index}-header`}
                         >
-                            <Typography>חשבונית {index + 1}</Typography>
+                            <Typography variant="h6">חשבונית {index + 1}</Typography>
                         </AccordionSummary>
                         <AccordionDetails style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
                             <div style={{ flex: 1, minWidth: '300px', maxWidth: '400px' }}>
@@ -105,14 +106,14 @@ const ShowInvoices = () => {
                             <img
                                 src={invoice.s3Key}
                                 alt={`Invoice`}
-                                style={{ flex: 1, minWidth: '300px', maxWidth: '400px', objectFit: "cover", borderRadius: "8px" }}
+                                style={{ flex: 1, minWidth: '300px', maxWidth: '400px', objectFit: "cover", borderRadius: "8px", boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}
                             />
                             <div>
                                 <Button
                                     variant="contained"
                                     color="primary"
                                     onClick={() => handleUpdateClick(invoice)}
-                                    style={{ marginBottom: '10px' }}
+                                    style={{ marginBottom: '10px', backgroundColor: '#1976d2', color: '#fff' }}
                                 >
                                     Update
                                 </Button>
@@ -120,7 +121,7 @@ const ShowInvoices = () => {
                                     variant="contained"
                                     color="secondary"
                                     onClick={() => handleApproveClick(invoice)}
-                                    style={{ marginBottom: '10px' }}
+                                    style={{ marginBottom: '10px', backgroundColor: '#dc004e', color: '#fff' }}
                                 >
                                     Confirm
                                 </Button>
@@ -129,7 +130,7 @@ const ShowInvoices = () => {
                     </Accordion>
                 ))
             ) : (
-                <p>לא נמצאו חשבוניות.</p>
+                <Typography variant="body1" color="textSecondary" align="center">לא נמצאו חשבוניות.</Typography>
             )}
             {selectedInvoice && (
                 <InvoiceForm

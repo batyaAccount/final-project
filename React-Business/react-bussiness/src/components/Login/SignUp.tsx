@@ -1,9 +1,9 @@
 import { Box, Button, Modal, TextField } from "@mui/material"
 import { useContext, useRef, useState } from "react"
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { signUp } from "../UserRedux/fetchUser";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../UserRedux/reduxStore";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../UserRedux/reduxStore";
 import { IsloginContext } from "../Layout";
 export type User = {
     id: number | undefined,
@@ -32,8 +32,8 @@ const SignUp = () => {
     const passwordRef = useRef<HTMLInputElement>(null);
     const roleNameRef = useRef<HTMLInputElement>(null);
     const dispatch = useDispatch<AppDispatch>();
-   const [, setIslogin] = useContext(IsloginContext);
-    
+    const [, setIslogin] = useContext(IsloginContext);
+
     const navigate = useNavigate();  // Initialize navigate
 
     const handleSignUp = async (e: React.FormEvent) => {
@@ -48,7 +48,7 @@ const SignUp = () => {
         await dispatch(signUp({ user: newUser }));
         setOpen(false);
         setIslogin(true)
-        navigate("/HomePage", { replace: true }); 
+        navigate("/HomePage", { replace: true });
 
     };
 

@@ -1,9 +1,7 @@
-import { AppBar, styled, Toolbar, Button } from "@mui/material";
-import { NavLink } from "react-router-dom";  // Using react-router-dom instead of 'react-router'
+import { AppBar, Toolbar, Button } from "@mui/material";
 import { useState } from "react";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import Userdetails from "./Userdetails";
 
 const LoginPage = () => {
     const [showLogin, setShowLogin] = useState(false);

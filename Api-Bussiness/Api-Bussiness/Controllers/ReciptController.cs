@@ -57,7 +57,7 @@ namespace Api_Bussiness.API.Controllers
 
         // PUT api/<ReciptController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id, [FromBody] ReceipePostEntity receipt)
+        public async Task<IActionResult> PutAsync( [FromBody] ReceipePostEntity receipt,int id)
         {
             var receiptD = _mapper.Map<ReceipeDto>(receipt);
 

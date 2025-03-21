@@ -10,10 +10,11 @@ export const router = createBrowserRouter(
             path: "/", element:
                 <Layout />,
             children: [
-                { path: "/HomePage", element: <><HomePage/><Outlet/></> },
-                { path: "/ShowInvoices", element: <><ShowInvoices/><Outlet/></> },
-                { path: "/Uplaod Invoice", element: <><FileUploader/><Outlet/></> },
-                 
+                { path: "/HomePage", element: <><HomePage /><Outlet /></> },
+                { path: "/ShowInvoices", element: <><ShowInvoices /><Outlet /></> },
+                { path: "/Uplaod Invoice", element: <><FileUploader /><Outlet /></> },
+                { path: "/Layout", element: <><Layout /></> },
+
             ]
         },
 

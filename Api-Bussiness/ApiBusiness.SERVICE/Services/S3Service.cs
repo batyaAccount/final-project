@@ -1,4 +1,5 @@
-﻿using Amazon.S3;
+﻿
+using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.Util;
 using ApiBusiness.CORE.IServices;
@@ -35,7 +36,6 @@ namespace ApiBusiness.SERVICE.Services
         {
           
             var key = $"users/{userId}/{fileName}"; // נתיב כולל תיקיה
-
             var request = new GetPreSignedUrlRequest
             {
                 BucketName = "batyabucket",
@@ -45,25 +45,21 @@ namespace ApiBusiness.SERVICE.Services
                 ContentType = contentType
             };
 
-            return _s3Client.GetPreSignedURL(request);
+            return await _s3Client.GetPreSignedURLAsync(request);
         }
 
-        public async Task<string> GetDownloadUrlAsync(string userId, string fileName)
+        public async Task<string> GetDownloadUrlAsync(string userId,string fileName)
         {
-           
-
-            var key = $"users/{userId}/{fileName}"; // נתיב כולל תיקיה
-
             var request = new GetPreSignedUrlRequest
             {
                 BucketName = "batyabucket",
-                Key = key,
+                Key = $"users/{userId}/{fileName}",
                 Verb = HttpVerb.GET,
-                Expires = DateTime.UtcNow.AddMinutes(60) // תוקף של שעה
+                Expires = DateTime.UtcNow.AddDays(7),
             };
 
-            return _s3Client.GetPreSignedURL(request);
+            return await _s3Client.GetPreSignedURLAsync(request);
         }
-
+     
     }
 }

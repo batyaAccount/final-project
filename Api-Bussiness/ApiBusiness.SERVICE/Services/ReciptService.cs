@@ -52,6 +52,7 @@ namespace ApiBusiness.SERVICE.Services
             var r2 = _mapper.Map<ReceipeDto>(r);
             return r2;
         }
+
         /// <summary>
         ///של חשבונית ששמורה בענן ומכניסה נתונים לטבלת חשבוניות url פונקציה זו מקבלת ניתוב ל 
         /// </summary>
@@ -69,22 +70,14 @@ namespace ApiBusiness.SERVICE.Services
             // הוסף את הנתיב של הקובץ שאתה רוצה לשלוח
             var url = await _s3Service.GetDownloadUrlAsync(userId, fileName);
 
-            // Download the file content using HttpClient
+            //request.AddFile("file", url2);
             using (var httpClient = new HttpClient())
             {
-                try
-                {
-                    // Download the file content as a byte array
-                    var fileBytes = await httpClient.GetByteArrayAsync(url);
+                var fileBytes = await httpClient.GetByteArrayAsync(url);
+                var tempFilePath = Path.GetTempFileName(); // יוצר קובץ זמני
+                await System.IO.File.WriteAllBytesAsync(tempFilePath, fileBytes);
 
-                    // Add the file content to the request
-                    request.AddFile("file", fileBytes, fileName);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error downloading file: {ex.Message}");
-                    return null;
-                }
+                request.AddFile("file", tempFilePath);
             }
 
             var response = await client.ExecuteAsync(request);

@@ -1,5 +1,4 @@
-﻿using Amazon.S3;
-using Amazon.S3.Model;
+﻿
 using ApiBusiness.CORE.Dto;
 using ApiBusiness.CORE.Entities;
 using ApiBusiness.CORE.IServices;
@@ -29,16 +28,6 @@ namespace Api_Bussiness.API.Controllers
             if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(fileName))
                 return BadRequest("Missing userId or fileName");
             var url = await _s3Service.GeneratePresignedUrlAsync(userId, fileName, contentType);
-            FileDto f = new FileDto()
-            {
-                FileName = fileName,
-                FileType = contentType,
-                OwnerId = int.Parse(userId),
-                S3Key = $"users/{userId}/{fileName}",
-                Size = fileSize,
-            };
-            var res = await _fileService.AddAsync(category, f);
-
             return Ok(new { url });
         }
 

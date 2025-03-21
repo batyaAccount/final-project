@@ -1,28 +1,30 @@
-import { Outlet } from "react-router"
-import NavBar from "./NavBar"
-import LoginPage from "./Login/LoginPage"
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { Outlet } from "react-router";
+import NavBar from "./NavBar";
+import LoginPage from "./Login/LoginPage";
+import { createContext, useState } from "react";
+import { Container, Box } from "@mui/material"; // Importing MUI components
 
-    export const IsloginContext = createContext<any>(undefined);
+export const IsloginContext = createContext<any>(undefined);
 
-export default () => {
-
+const Layout = () => {
     const [islogin, setIslogin] = useState(false);
 
-
     return (
-        <>
-            <IsloginContext value={[islogin, setIslogin]}>
-                <NavBar></NavBar>
-                <div style={{
-                    display: "flex", position: "absolute", alignItems: "center",
-                    top: "5%",
-                    left: "5%"
-                }}>
-                    <LoginPage></LoginPage>
-                </div>
-                <Outlet></Outlet>
-            </IsloginContext>
-        </>
-    )
-}
+        <IsloginContext.Provider value={[islogin, setIslogin]}>
+            <NavBar />
+            <Container maxWidth="md" style={{ marginTop: "20px" }}>
+                <Box 
+                    display="flex" 
+                    justifyContent="center" 
+                    alignItems="flex-start" // Align items to the top
+                    style={{ width: "100%", marginBottom: "20px" }} // Set width for full width
+                >
+                    <LoginPage />
+                </Box>
+                <Outlet />
+            </Container>
+        </IsloginContext.Provider>
+    );
+};
+
+export default Layout;

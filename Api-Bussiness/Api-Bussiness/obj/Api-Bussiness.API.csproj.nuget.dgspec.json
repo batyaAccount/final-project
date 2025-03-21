@@ -57,7 +57,7 @@
             },
             "AWSSDK.S3": {
               "target": "Package",
-              "version": "[3.7.415.20, )"
+              "version": "[3.7.415.21, )"
             },
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",

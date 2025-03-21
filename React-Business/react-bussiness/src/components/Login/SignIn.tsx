@@ -1,7 +1,7 @@
 import { Box, Button, Modal, TextField } from "@mui/material";
-import { FormEvent, useContext, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../UserRedux/reduxStore";
+import { useContext, useRef, useState } from "react";
+import { useDispatch  } from "react-redux";
+import { AppDispatch } from "../UserRedux/reduxStore";
 import { signIn } from "../UserRedux/fetchUser";
 import { useNavigate } from 'react-router-dom';
 import { IsloginContext } from "../Layout";
@@ -31,7 +31,7 @@ const SignIn = () => {
             password: passwordRef.current?.value,
         };
 
-        var res =  await dispatch(signIn({ user: newUser }));
+        await dispatch(signIn({ user: newUser }));
       
         // console.log(res);
         
