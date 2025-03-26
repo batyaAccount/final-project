@@ -20,13 +20,10 @@ namespace ApiBusiness.CORE.Entities
         public string S3Key { get; set; }
         public int ReceiptId { get; set; }
         public Receipts Receipt { get; set; }
-        //public int? FolderId { get; set; }
-        //public Folder Folder { get; set; }
-        public int OwnerId { get; set; }
-        public Users Owner { get; set; }
+        public int ClientId { get; set; }
+        public Users Client { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public bool IsDeleted { get; set; }
-        public virtual ICollection<Users> viewUsers { get; set; } = new List<Users>(); // הרשאות
     }
 }

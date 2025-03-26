@@ -38,7 +38,7 @@ namespace ApiBusiness.SERVICE.Services
         public async Task<FileDto> AddAsync(int category, FileDto fileDto)
         {
 
-            var invoice = await _receiptService.AddByUrlAsync(fileDto.OwnerId.ToString(), fileDto.FileName);
+            var invoice = await _receiptService.AddByUrlAsync(fileDto.ClientId.ToString(), fileDto.FileName);
             if (invoice == null)
                 return null;
             invoice.Category = category;
@@ -75,9 +75,14 @@ namespace ApiBusiness.SERVICE.Services
             var r = await _fileRepository.GetByIdAsync(id);
             return _mapper.Map<FileDto>(r);
         }
-        public async Task<IEnumerable<FileDto>> GetUserAccessibleProjectsAsync(int id)
+        public async Task<IEnumerable<FileDto>> GetClientAccessibleProjectsAsync(int id)
         {
-            var r = await _fileRepository.GetUserAccessibleProjectsAsync(id);
+            var r = await _fileRepository.GetClientAccessibleProjectsAsync(id);
+            return _mapper.Map<IEnumerable<FileDto>>(r);
+        }
+        public async Task<IEnumerable<FileDto>> GetClientsByAccountantAccessibleProjectsAsync(int idClient,int idAccountant)
+        {
+            var r = await _fileRepository.GetClientsByAccountantAccessibleProjectsAsync(idClient,idAccountant);
             return _mapper.Map<IEnumerable<FileDto>>(r);
         }
 

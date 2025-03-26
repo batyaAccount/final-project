@@ -2,7 +2,6 @@ import { AppBar, Toolbar, Button, Typography, Container } from "@mui/material";
 import { useState } from "react";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import { DisplaySettings } from "@mui/icons-material";
 
 const LoginPage = () => {
     const [showLogin, setShowLogin] = useState(false);

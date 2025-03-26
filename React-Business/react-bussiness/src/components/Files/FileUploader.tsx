@@ -39,7 +39,7 @@ const FileUploader = () => {
                 params: { userId: user.id?.toString(), fileName: file.name, contentType: file.type, Category: uploadType, size: file.size },
             });
             const presignedUrl = response.data.url;
-            console.log(response);
+            // console.log(response);
             
             // Upload file to S3
             

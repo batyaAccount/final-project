@@ -50,7 +50,7 @@ namespace ApiBusiness.DATA.Repository
                 r.Amount = receipt.Amount;
                 r.Supplier = receipt.Supplier;
                 r.UpdatedAt = DateTime.UtcNow;
-
+                r.Update = true;
                 return true;
             }
             return false;

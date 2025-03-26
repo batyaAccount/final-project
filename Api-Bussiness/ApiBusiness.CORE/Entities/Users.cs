@@ -22,6 +22,7 @@ namespace ApiBusiness.CORE.Entities
         public string Password { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public int? AccountantId { get; set; }
 
     }
 }

@@ -26,12 +26,17 @@ namespace ApiBusiness.DATA.Repository
         {
             return await _dbSet.FindAsync(id);
         }
-        public async Task<IEnumerable<CORE.Entities.File>> GetUserAccessibleProjectsAsync(int userId)
+        public async Task<IEnumerable<CORE.Entities.File>> GetClientAccessibleProjectsAsync(int userId)
         {
             var f = await GetAllAsync();
-            return f.Where(p => p.viewUsers.Any(perm => perm.Id == userId) || p.OwnerId == userId && p.IsDeleted == false);
+            return f.Where(p=> p.ClientId == userId && p.IsDeleted == false);
         }
 
+        public async Task<IEnumerable<CORE.Entities.File>> GetClientsByAccountantAccessibleProjectsAsync(int clientId,int accountantId)
+        {
+            var f = await GetAllAsync();
+            return f.Where(p => p.Client.AccountantId == accountantId || p.ClientId == clientId && p.IsDeleted == false);
+        }
 
         public async Task<IEnumerable<CORE.Entities.File>> GetAllAsync()
         {
@@ -48,11 +53,9 @@ namespace ApiBusiness.DATA.Repository
                 existingRole.FileName = role.FileName;
                 existingRole.UpdatedAt = DateTime.UtcNow;
                 existingRole.FileType = role.FileType;
-                //existingRole.FolderId = role.FolderId;
-                existingRole.viewUsers = role.viewUsers;
-                existingRole.Owner = role.Owner;
                 existingRole.S3Key = role.S3Key;
-                existingRole.OwnerId = role.OwnerId;
+                existingRole.ClientId = role.ClientId;
+                existingRole.Client = role.Client;
 
                 return true;
             }
@@ -62,7 +65,7 @@ namespace ApiBusiness.DATA.Repository
         public async Task<bool> DeleteByInvoiceIdAsync(int id)
         {
             var file = await _dbSet.FirstOrDefaultAsync(f => f.ReceiptId == id);
-            if (file == null) 
+            if (file == null)
                 return false;
             file.IsDeleted = true;
             _dbSet.Remove(file);

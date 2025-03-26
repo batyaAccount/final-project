@@ -34,17 +34,31 @@ namespace Api_Bussiness.API.Controllers
             return Ok(invoiceDto);
         }
 
-        [HttpGet("editor-or-admin")]
-        [Authorize(Policy = "EditorOrAdmin")] // Editor או Admin יכולים לגשת
-        public async Task<IActionResult> EditorOrAdminAsync()
+        [HttpGet("accountant/{clientId}")]
+        [Authorize(Policy = "AccountantAndClient")] //Accountant can access
+        public async Task<IActionResult> AccountantAsync(int clientId)
         {
             var userClaim = User.FindFirstValue(ClaimTypes.Name);
             if (userClaim == null)
             {
                 return Unauthorized("User is not authenticated.");
             }
-            var userId = _userService.GetByNameAsync(userClaim).Result.Id;
-            var invoices = await _fileService.GetUserAccessibleProjectsAsync(userId);
+            var accountantId = _userService.GetByNameAsync(userClaim).Result.Id;
+            var invoices = await _fileService.GetClientsByAccountantAccessibleProjectsAsync(clientId, accountantId);
+            return Ok(invoices);
+        }
+
+        [HttpGet("client")]
+        [Authorize(Policy = "Client")] //Client can access
+        public async Task<IActionResult> ClientAsync()
+        {
+            var userClaim = User.FindFirstValue(ClaimTypes.Name);
+            if (userClaim == null)
+            {
+                return Unauthorized("User is not authenticated.");
+            }
+            var clientId = _userService.GetByNameAsync(userClaim).Result.Id;
+            var invoices = await _fileService.GetClientAccessibleProjectsAsync(clientId);
             return Ok(invoices);
         }
 
@@ -67,6 +81,7 @@ namespace Api_Bussiness.API.Controllers
                 return Ok(res);
             return BadRequest();
         }
+
         [HttpGet("viewer-only")]
         [Authorize(Policy = "ViewerOnly")] // רק Viewer יכול לגשת
         public IActionResult ViewerOnly()

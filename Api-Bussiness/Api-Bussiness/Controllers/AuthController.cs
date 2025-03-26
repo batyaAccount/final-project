@@ -34,7 +34,6 @@ namespace Api_Bussiness.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
-            
             var role = await _userService.AuthenticateAsync(model.Name, model.Password);
             if (role != null)
             {
@@ -43,14 +42,14 @@ namespace Api_Bussiness.API.Controllers
                     var token = _authService.GenerateJwtToken(model.Name, new[] { "Admin" });
                     return Ok(new { Token = token, User = role.User });
                 }
-                else if (role.Role.RoleName == "editor")
+                else if (role.Role.RoleName == "Accountant")
                 {
-                    var token = _authService.GenerateJwtToken(model.Name, new[] { "Editor" });
+                    var token = _authService.GenerateJwtToken(model.Name, new[] { "Accountant" });
                     return Ok(new { Token = token, User = role.User });
                 }
-                else if (role.Role.RoleName == "viewer")
+                else if (role.Role.RoleName == "Client")
                 {
-                    var token = _authService.GenerateJwtToken(model.Name, new[] { "Viewer" });
+                    var token = _authService.GenerateJwtToken(model.Name, new[] { "Client" });
                     return Ok(new { Token = token, User = role.User });
                 }
             }

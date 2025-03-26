@@ -14,7 +14,7 @@ const style = {
     p: 4,
 };
 
-export default ({ invoiceId, onClose }: { invoiceId: number, onClose: Function }) => {
+export default ({ invoiceId }: { invoiceId: number }) => {
     const [invoice, setInvoice] = useState<Invoice | null>(null);
     const [open, setOpen] = useState<boolean>(true);
     const [isLoading, setIsLoading] = useState(true);
@@ -34,41 +34,40 @@ export default ({ invoiceId, onClose }: { invoiceId: number, onClose: Function }
         getInvoiceById();
     }, [invoiceId]);
 
-    const handleChange = (event: any) => {
-        // debugger
+    const handleChange = async (event: any) => {
         if (invoice) {
             setInvoice(
                 {
                     ...invoice,
-
                     [event.target.name]: event.target.value,
                 });
         }
     };
-const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    if (invoice) {
-        try {
-            await axios.put(`https://localhost:7160/api/Recipt/${invoiceId}`, {
-                amount: invoice.amount,
-                category: invoice.category,
-                date: invoice.date, 
-                supplier: invoice.supplier, 
-            });
-            setOpen(false);  
-            alert("Invoice updated successfully!");
-        } catch (err) {
-            setOpen(false);  
-            console.error(err);
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
+        if (invoice) {
+            try {
+                await axios.put(`https://localhost:7160/api/Recipt/${invoiceId}`, {
+                    amount: invoice.amount,
+                    category: invoice.category,
+                    date: invoice.date,
+                    supplier: invoice.supplier,
+                });
+                setOpen(!open);
+               debugger
+                alert("Invoice updated successfully!");
+            } catch (err) {
+                setOpen(!open);
+                console.error(err);
+            }
         }
-    }
-};
+    };
     if (isLoading) return <div>Loading...</div>;
 
     return (
         <Modal
             open={open}
-            onClose={() => onClose()}
+            onClose={() => setOpen(!open)}
         >
             <Box sx={style}>
                 <Typography variant="h6" component="h2">
@@ -112,7 +111,7 @@ const handleSubmit = async (event: React.FormEvent) => {
                             fullWidth
                             margin="normal"
                         />
-                      
+
                         <Button type="submit" variant="contained" color="primary" style={{ marginTop: '16px' }}>
                             Update Invoice
                         </Button>

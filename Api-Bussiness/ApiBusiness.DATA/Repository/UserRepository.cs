@@ -48,6 +48,7 @@ namespace ApiBusiness.DATA.Repository
                 r.Email = user.Email;
                 r.Name = user.Name;
                 r.Password = user.Password;
+                r.AccountantId  = user.AccountantId;
                 r.UpdatedAt = DateTime.UtcNow;
                 return true;
             }

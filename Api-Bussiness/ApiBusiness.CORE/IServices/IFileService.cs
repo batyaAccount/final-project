@@ -14,7 +14,8 @@ namespace ApiBusiness.CORE.IServices
     {
         Task<FileDto> AddAsync(int category,FileDto fileDto);
         Task<bool> DeleteByInvoiceIdAsync(int id);
-        Task<IEnumerable<FileDto>> GetUserAccessibleProjectsAsync(int id);
+        Task<IEnumerable<FileDto>> GetClientAccessibleProjectsAsync(int id);
+        Task<IEnumerable<FileDto>> GetClientsByAccountantAccessibleProjectsAsync(int idClient,int idAccountant);
         Task<IEnumerable<FileDto>> GetAllAsync();
         Task<FileDto> GetByIdAsync(int id);
         Task<bool> UpdateAsync(int id, FileDto receipt);

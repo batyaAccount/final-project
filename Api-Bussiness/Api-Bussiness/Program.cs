@@ -74,8 +74,8 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
-    options.AddPolicy("EditorOrAdmin", policy => policy.RequireRole("Editor", "Admin"));
-    options.AddPolicy("ViewerOnly", policy => policy.RequireRole("Viewer"));
+    options.AddPolicy("AccountantAndClient", policy => policy.RequireRole("Accountant", "Client"));
+    options.AddPolicy("ClientOnly", policy => policy.RequireRole("Client"));
 });
 builder.Services.AddCors(options =>
 {

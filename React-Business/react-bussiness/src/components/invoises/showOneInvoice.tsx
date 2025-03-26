@@ -15,7 +15,7 @@ export default ({ invoiceId }: { invoiceId: number }) => {
     const getInvoiceById = async () => {
         try {
             const response = await axios.get(`https://localhost:7160/api/Recipt/${invoiceId}`);
-            console.log("API Response:", response.data);
+            // console.log("API Response:", response.data);
             if (response.data) {
                 setInvoice(response.data);
                 setIsLoading(false);  
