@@ -8,6 +8,5 @@ namespace Api_Bussiness.API.PostEntity
         public int Category { get; set; } 
         public DateTime Date { get; set; } 
         public string Supplier { get; set; } 
-        public string Url { get; set; }
     }
 }

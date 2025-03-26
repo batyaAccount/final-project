@@ -3,6 +3,7 @@ using ApiBusiness.CORE.Entities;
 using ApiBusiness.CORE.IRepositories;
 using ApiBusiness.CORE.IServices;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
@@ -61,11 +62,12 @@ namespace ApiBusiness.SERVICE.Services
         public async Task<ReceipeDto> AddByUrlAsync(string userId, string fileName)
         {
             ReceipeDto receipeDto = new ReceipeDto();
-            var client = new RestClient("https://app.nanonets.com/api/v2/OCR/Model/a7776203-11b3-4b5c-ba88-1c38391a7f93/LabelFile/?async=false");
+            var client = new RestClient("https://app.nanonets.com/api/v2/OCR/Model/0b2a69ae-c240-42d6-a8bd-cade12838663/LabelFile/?async=false");
             var request = new RestRequest("", Method.Post);
 
             request.AddHeader("Authorization", "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes("6dadde48-f559-11ef-8bef-22cdfa4e5554:")));
             request.AddHeader("Accept", "multipart/form-data");
+            // שמירת הקובץ הזמני
 
             // הוסף את הנתיב של הקובץ שאתה רוצה לשלוח
             var url = await _s3Service.GetDownloadUrlAsync(userId, fileName);
@@ -84,6 +86,7 @@ namespace ApiBusiness.SERVICE.Services
 
             if (response.IsSuccessful)
             {
+
                 // Deserialize the response content into a PredictionResponse object
                 var predictionResponse = JsonConvert.DeserializeObject<PredictionResponse>(response.Content);
                 if (predictionResponse != null && predictionResponse.Result != null)
@@ -93,6 +96,7 @@ namespace ApiBusiness.SERVICE.Services
                     {
                         foreach (var prediction in result.Prediction)
                         {
+
                             switch (prediction.Label)
                             {
                                 case "seller_name":
@@ -105,6 +109,8 @@ namespace ApiBusiness.SERVICE.Services
                                     receipeDto.Date = DateTime.Parse(prediction.Ocr_text);
                                     break;
                                 default:
+                                    receipeDto.Amount = 0;
+                                    receipeDto.Supplier = " ";
                                     break;
                             }
 

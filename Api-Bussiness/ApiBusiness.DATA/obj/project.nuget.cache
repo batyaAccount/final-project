@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "yzURVOfmC/af+rC2XeY9RN3fcTXD6zth3yOM1ZsHq9NVgD5e9sTq3GlQ2dbhK/u1KRIN47zSP84KJJSSO3+F/Q==",
+  "dgSpecHash": "xvX6kcH3AUcxs2sUUQ+jWDeZtywVhBT0beqXyF6uofPhAkgRxWcql8b5CIL15VjyUv5Vg82I24dP+rIUlJkTVA==",
   "success": true,
   "projectFilePath": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\ApiBusiness.DATA\\ApiBusiness.DATA.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user1\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\awssdk.core\\3.7.402.21\\awssdk.core.3.7.402.21.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\user1\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.7\\microsoft.data.sqlclient.2.1.7.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
@@ -41,6 +42,7 @@
     "C:\\Users\\user1\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.2\\system.diagnostics.diagnosticsource.6.0.2.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\system.drawing.common\\4.7.3\\system.drawing.common.4.7.3.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.36.0\\system.identitymodel.tokens.jwt.6.36.0.nupkg.sha512",
+    "C:\\Users\\user1\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\system.runtime.caching\\4.7.0\\system.runtime.caching.4.7.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512",

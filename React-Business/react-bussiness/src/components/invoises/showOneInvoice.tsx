@@ -18,7 +18,7 @@ export default ({ invoiceId }: { invoiceId: number }) => {
             console.log("API Response:", response.data);
             if (response.data) {
                 setInvoice(response.data);
-                setIsLoading(false);  // Move this inside
+                setIsLoading(false);  
             } else {
                 setError("No invoice data received.");
             }
@@ -31,7 +31,7 @@ export default ({ invoiceId }: { invoiceId: number }) => {
 
     useEffect(() => {
         getInvoiceById();
-    }, [invoiceId]);  // Re-fetch when invoiceId changes
+    }, [invoice]);  
 
     if (isLoading) return <CircularProgress style={{ display: "block", margin: "auto", marginTop: 50 }} />;
     if (error) return <Typography color="error">{error}</Typography>;
@@ -71,15 +71,6 @@ export default ({ invoiceId }: { invoiceId: number }) => {
                             <Paper elevation={3} sx={{ p: 2, display: "flex", alignItems: "center" }}>
                                 <Typography variant="body1" sx={{ fontWeight: "bold", color: "success.main" }}>
                                     Amount: ${invoice.amount}
-                                </Typography>
-                            </Paper>
-                        </Grid>
-
-                        <Grid item xs={12}>
-                            <Paper elevation={3} sx={{ p: 2, display: "flex", alignItems: "center" }}>
-                                <LinkIcon sx={{ color: "primary.main", mr: 1 }} />
-                                <Typography variant="body1">
-                                    <b>URL:</b> <a href={invoice.url} target="_blank" rel="noopener noreferrer">{invoice.url}</a>
                                 </Typography>
                             </Paper>
                         </Grid>

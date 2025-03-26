@@ -45,11 +45,18 @@ const SignUp = () => {
             roleName: roleNameRef.current?.value,
         };
 
-        await dispatch(signUp({ user: newUser }));
-        setOpen(false);
-        setIslogin(true)
-        navigate("/HomePage", { replace: true });
+        const actionResult = await dispatch(signUp({ user: newUser }));
 
+        if (signUp.fulfilled.match(actionResult)) {
+            setOpen(false);
+            setIslogin(true);
+            navigate("/HomePage", { replace: true });
+        } else {
+            setOpen(false);
+
+            alert("Cant login. please enter the correct details.");
+
+        }
     };
 
 

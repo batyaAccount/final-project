@@ -14,6 +14,6 @@ namespace ApiBusiness.CORE.IRepositories
         Task<bool> UpdateAsync(int id, CORE.Entities.File role);
         Task<IEnumerable<CORE.Entities.File>> GetUserAccessibleProjectsAsync(int userId);
 
-        Task<bool> DeleteAsync(int id);
+        Task<bool> DeleteByInvoiceIdAsync(int id);
     }
 }

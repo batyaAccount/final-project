@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "ub/LFhLUf3qk0LkaiZOLzdBtUPXR2pQl60iemYvaysVDUpLxPd3PJRdPmrEJmC4etxiKccnTRtSDV07UAP0WKA==",
+  "dgSpecHash": "jiaEMamTGpRqr+rSI8SnTdxfDkybais1Pd544VpuBSOt9cgwtgTn7DSutcLx1hqFqmnaEpFAtEF+5LpK7CdRBw==",
   "success": true,
   "projectFilePath": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\ApiBusiness.SERVICE\\ApiBusiness.SERVICE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user1\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\awssdk.core\\3.7.402.21\\awssdk.core.3.7.402.21.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\awssdk.s3\\3.7.415.20\\awssdk.s3.3.7.415.20.nupkg.sha512",
+    "C:\\Users\\user1\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.36\\microsoft.entityframeworkcore.abstractions.6.0.36.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.1\\microsoft.extensions.configuration.abstractions.6.0.1.nupkg.sha512",
@@ -46,6 +47,7 @@
     "C:\\Users\\user1\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\system.io.filesystem\\4.3.0\\system.io.filesystem.4.3.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\user1\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\system.net.http\\4.3.4\\system.net.http.4.3.4.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",

@@ -20,8 +20,8 @@ namespace ApiBusiness.CORE.Entities
         public string S3Key { get; set; }
         public int ReceiptId { get; set; }
         public Receipts Receipt { get; set; }
-        public int? FolderId { get; set; }
-        public Folder Folder { get; set; }
+        //public int? FolderId { get; set; }
+        //public Folder Folder { get; set; }
         public int OwnerId { get; set; }
         public Users Owner { get; set; }
         public DateTime CreatedAt { get; set; }

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { v4 as uuidv4 } from 'uuid';
 
 import {
     Box, Button, Container, LinearProgress, Typography, Paper,
@@ -32,9 +31,8 @@ const FileUploader = () => {
 
     const handleUpload = async () => {
         if (!file) return;
-        // const updateFile = new File([file], `${uuidv4()}_${file.name}`, {
-        //     type: file.type,
-        // });
+
+
         try {
             // Get Presigned URL from server
             const response = await axios.get("https://localhost:7160/api/Upload/presigned-url", {
@@ -42,9 +40,9 @@ const FileUploader = () => {
             });
             const presignedUrl = response.data.url;
             console.log(response);
-
+            
             // Upload file to S3
-
+            
             await axios.put(presignedUrl, file, {
                 headers: {
                     "Content-Type": file.type,
@@ -54,8 +52,8 @@ const FileUploader = () => {
                     setProgress(percent);
                 },
             });
-            debugger
-            await axios.post("https://localhost:7160/api/File/"+uploadType, {
+     debugger
+            await axios.post("https://localhost:7160/api/File/" + uploadType, {
                 FileName: file.name,
                 FileType: file.type,
                 Size: file.size,
@@ -66,12 +64,12 @@ const FileUploader = () => {
                     'Authorization': `Bearer ${token}`,
                 }
             });
-            
+
             alert("הקובץ הועלה בהצלחה!");
         } catch (error) {
             console.error("שגיאה בהעלאה:", error);
         }
-    };
+    }
 
     return (
         <Container maxWidth="sm" sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
@@ -117,6 +115,6 @@ const FileUploader = () => {
             </Paper>
         </Container>
     );
-};
+}
 
 export default FileUploader;

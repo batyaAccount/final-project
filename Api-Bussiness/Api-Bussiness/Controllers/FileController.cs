@@ -49,22 +49,30 @@ namespace Api_Bussiness.API.Controllers
         }
 
         [HttpPost("{category}")]
-        [Authorize] 
-        public async Task<IActionResult> AddAsync([FromBody] FilePostEntity filePostEntity,int category)
+        [Authorize]
+        public async Task<IActionResult> AddAsync([FromBody] FilePostEntity filePostEntity, int category)
         {
-            
-            FileDto file =_mapper.Map<FileDto>(filePostEntity);
-           
+
+            FileDto file = _mapper.Map<FileDto>(filePostEntity);
             var res = await _fileService.AddAsync(category, file);
             return Ok(res);
         }
 
-        //[HttpGet("viewer-only")]
-        //[Authorize(Policy = "ViewerOnly")] // רק Viewer יכול לגשת
-        //public IActionResult ViewerOnly()
-        //{
-        //    return Ok("This is accessible only by Viewers.");
-        //}
+        [HttpDelete("delete/{id}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteByInvoiceIdAsync(int id)
+        {
+            var res = await _fileService.DeleteByInvoiceIdAsync(id);
+            if (res == true)
+                return Ok(res);
+            return BadRequest();
+        }
+        [HttpGet("viewer-only")]
+        [Authorize(Policy = "ViewerOnly")] // רק Viewer יכול לגשת
+        public IActionResult ViewerOnly()
+        {
+            return Ok("This is accessible only by Viewers.");
+        }
 
 
 

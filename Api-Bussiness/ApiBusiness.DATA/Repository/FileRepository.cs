@@ -29,13 +29,14 @@ namespace ApiBusiness.DATA.Repository
         public async Task<IEnumerable<CORE.Entities.File>> GetUserAccessibleProjectsAsync(int userId)
         {
             var f = await GetAllAsync();
-            return f.Where(p => p.viewUsers.Any(perm => perm.Id == userId)||p.OwnerId == userId);
+            return f.Where(p => p.viewUsers.Any(perm => perm.Id == userId) || p.OwnerId == userId && p.IsDeleted == false);
         }
 
 
         public async Task<IEnumerable<CORE.Entities.File>> GetAllAsync()
         {
-            return await _dbSet.ToListAsync();
+            var files = await _dbSet.ToListAsync();
+            return files.FindAll(f => f.IsDeleted == false);
         }
 
         public async Task<bool> UpdateAsync(int id, CORE.Entities.File role)
@@ -47,7 +48,7 @@ namespace ApiBusiness.DATA.Repository
                 existingRole.FileName = role.FileName;
                 existingRole.UpdatedAt = DateTime.UtcNow;
                 existingRole.FileType = role.FileType;
-                existingRole.FolderId = role.FolderId;
+                //existingRole.FolderId = role.FolderId;
                 existingRole.viewUsers = role.viewUsers;
                 existingRole.Owner = role.Owner;
                 existingRole.S3Key = role.S3Key;
@@ -58,11 +59,12 @@ namespace ApiBusiness.DATA.Repository
             return false;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteByInvoiceIdAsync(int id)
         {
-            var file = await GetByIdAsync(id);
-            if (file == null) return false;
-
+            var file = await _dbSet.FirstOrDefaultAsync(f => f.ReceiptId == id);
+            if (file == null) 
+                return false;
+            file.IsDeleted = true;
             _dbSet.Remove(file);
             return true;
         }

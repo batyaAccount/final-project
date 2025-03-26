@@ -1,6 +1,6 @@
 import { Box, Button, Modal, TextField } from "@mui/material";
 import { useContext, useRef, useState } from "react";
-import { useDispatch  } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppDispatch } from "../UserRedux/reduxStore";
 import { signIn } from "../UserRedux/fetchUser";
 import { useNavigate } from 'react-router-dom';
@@ -30,14 +30,15 @@ const SignIn = () => {
             name: nameRef.current?.value,
             password: passwordRef.current?.value,
         };
-
-        await dispatch(signIn({ user: newUser }));
-      
-        // console.log(res);
-        
-        setOpen(false);
-        setIslogin(true);
-        navigate("/HomePage", { replace: true });
+        const res = await dispatch(signIn({ user: newUser }));
+        if (signIn.fulfilled.match(res)) {
+            setOpen(false);
+            setIslogin(true);
+            navigate("/HomePage", { replace: true });
+        } else {
+            setOpen(false);
+            alert("Cant login. please enter the correct details.");
+        }
     };
 
     return (

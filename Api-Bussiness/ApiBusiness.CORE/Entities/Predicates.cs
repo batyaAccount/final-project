@@ -26,5 +26,6 @@ namespace ApiBusiness.CORE.Entities
         {
             public List<PredictionField> Prediction { get; set; }
         }
+
     }
 }

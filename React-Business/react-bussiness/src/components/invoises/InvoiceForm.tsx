@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Invoice } from "../models/Invoice";
 import { Modal, Box, Button, TextField, Typography } from "@mui/material";
-import { Category } from "@mui/icons-material";
 
 const style = {
     position: 'absolute',
@@ -17,6 +16,7 @@ const style = {
 
 export default ({ invoiceId, onClose }: { invoiceId: number, onClose: Function }) => {
     const [invoice, setInvoice] = useState<Invoice | null>(null);
+    const [open, setOpen] = useState<boolean>(true);
     const [isLoading, setIsLoading] = useState(true);
 
     const getInvoiceById = async () => {
@@ -54,12 +54,12 @@ const handleSubmit = async (event: React.FormEvent) => {
                 category: invoice.category,
                 date: invoice.date, 
                 supplier: invoice.supplier, 
-                url: invoice.url
             });
+            setOpen(false);  
             alert("Invoice updated successfully!");
         } catch (err) {
+            setOpen(false);  
             console.error(err);
-            // הוסף טיפול בשגיאות אם יש צורך
         }
     }
 };
@@ -67,7 +67,7 @@ const handleSubmit = async (event: React.FormEvent) => {
 
     return (
         <Modal
-            open={true}
+            open={open}
             onClose={() => onClose()}
         >
             <Box sx={style}>
@@ -112,15 +112,7 @@ const handleSubmit = async (event: React.FormEvent) => {
                             fullWidth
                             margin="normal"
                         />
-                        <TextField
-                            label="URL"
-                            type="text"
-                            name="url"
-                            value={invoice.url}
-                            onChange={handleChange}
-                            fullWidth
-                            margin="normal"
-                        />
+                      
                         <Button type="submit" variant="contained" color="primary" style={{ marginTop: '16px' }}>
                             Update Invoice
                         </Button>

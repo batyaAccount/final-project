@@ -38,7 +38,7 @@ namespace Api_Bussiness.API.Controllers
             var role = await _userService.AuthenticateAsync(model.Name, model.Password);
             if (role != null)
             {
-                if (role.Role.RoleName == "admin")
+                if (role.Role.RoleName == "Admin")
                 {
                     var token = _authService.GenerateJwtToken(model.Name, new[] { "Admin" });
                     return Ok(new { Token = token, User = role.User });

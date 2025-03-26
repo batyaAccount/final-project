@@ -3,6 +3,7 @@ using ApiBusiness.CORE.Entities;
 using ApiBusiness.CORE.IRepositories;
 using ApiBusiness.CORE.IServices;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,11 +34,11 @@ namespace ApiBusiness.SERVICE.Services
             _userService = userService;
             _userRepository = userRepository;
         }
-        
-        public async Task<FileDto> AddAsync(int category,FileDto fileDto)
+
+        public async Task<FileDto> AddAsync(int category, FileDto fileDto)
         {
-           
-            var invoice = await _receiptService.AddByUrlAsync(fileDto.OwnerId.ToString(),fileDto.FileName);
+
+            var invoice = await _receiptService.AddByUrlAsync(fileDto.OwnerId.ToString(), fileDto.FileName);
             if (invoice == null)
                 return null;
             invoice.Category = category;
@@ -46,9 +47,9 @@ namespace ApiBusiness.SERVICE.Services
             var file = _mapper.Map<File>(fileDto);
             file.CreatedAt = DateTime.UtcNow;
             file.ReceiptId = invoice.Id;
-            var userName = ClaimTypes.Name;
-            var id = _userService.GetByNameAsync(userName).Result.Id;
-            file.OwnerId = id;
+            //var userNameClaim = User.FindFirst(ClaimTypes.Name);
+            //var id = _userService.GetByNameAsync(userName).Result.Id;
+            //file.OwnerId = id;
             File r = await _fileRepository.AddAsync(file);
             if (r == null)
                 return null;
@@ -56,10 +57,11 @@ namespace ApiBusiness.SERVICE.Services
             await _repositoryManager.SaveAsync();
             return fileD;
         }
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteByInvoiceIdAsync(int id)
         {
-            await _fileRepository.DeleteAsync(id);
+            var res = await _fileRepository.DeleteByInvoiceIdAsync(id);
             await _repositoryManager.SaveAsync();
+            return res;
         }
 
         public async Task<IEnumerable<FileDto>> GetAllAsync()

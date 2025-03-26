@@ -1,86 +1,100 @@
 
-// const fetchInvoices = async () => {
-//     const user: User = JSON.parse(sessionStorage.getItem('user') || 'null') as User;
-//     const token = user.token;
 
-//     if (!token) {
-//         setError("No token found");
-//         setLoading(false);
-//         return;
-//     }
-
-//     try {
-//         const response = await axios.get("https://localhost:7160/api/File/editor-or-admin", {
-//             headers: {
-//                 'Authorization': `Bearer ${token}`,
-//                 'Content-Type': 'application/json'
-//             }
-//         });
-
-//         const invoices = response.data;
-//         setInvoices(invoices);
-//     } catch (err) {
-//         setError("Error fetching invoices");
-//         console.error(err);
-//     } finally {
-//         setLoading(false);
-//     }
-// };
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Accordion, AccordionDetails, AccordionSummary, Button, Typography } from "@mui/material";
-import im from "../../invoice/1.png";
-import im1 from "../../invoice/2.png";
-import im2 from "../../invoice/3.png";
-import im3 from "../../invoice/4.png";
 import InvoiceForm from "./InvoiceForm";
 import ShowOneInvoice from "./showOneInvoice";
+import { useSelector } from "react-redux";
+import { RootState } from "../UserRedux/reduxStore";
+import { Files } from "../models/Files";
 
-type invoice = {
-    s3Key: string,
-    ownerId: number | undefined,
-    ReceiptId: number,
-};
 
 const ShowInvoices = () => {
-    const [invoices, setInvoices] = useState<Array<invoice>>([]);
+    const [invoices, setInvoices] = useState<Array<Files>>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const [selectedInvoice, setSelectedInvoice] = useState<invoice | null>(null);
+    const [selectedInvoice, setSelectedInvoice] = useState<Files | null>(null);
     const [confirmedInvoices, setConfirmedInvoices] = useState<Record<number, boolean>>({});
+    const user = useSelector((state: RootState) => state.Auth.user);
 
-    const fetchInvoices = () => {
-        const localInvoices: Array<invoice> = [
-            { s3Key: im, ownerId: undefined, ReceiptId: 14 },
-            { s3Key: im1, ownerId: undefined, ReceiptId: 14 },
-            { s3Key: im2, ownerId: undefined, ReceiptId: 14 },
-            { s3Key: im3, ownerId: undefined, ReceiptId: 14 },
-        ];
-        setInvoices(localInvoices);
-        setLoading(false);
+    const fetchInvoices = async () => {
+        const token = user.token;
+    
+        if (!token) {
+            setError("No token found");
+            setLoading(false);
+            return;
+        }
+        try {
+            const response = await axios.get("https://localhost:7160/api/File/editor-or-admin", {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            const inv: Array<Files> = response.data;
+    
+            // טוען את התמונות בצורה אסינכרונית וממתין להן
+            const updatedInvoices = await Promise.all(inv.map(async (i) => {
+                const img = await axios.get("https://localhost:7160/api/Upload/download-url/" + i.fileName, {
+                    params: { userId: user.id?.toString() },
+                });
+                i.imgSrc = img.data.downloadUrl;
+                return i;
+            }));
+    
+            setInvoices(updatedInvoices);
+    
+        } catch (err) {
+            setError("Error fetching invoices");
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
     };
-
+    
     useEffect(() => {
         fetchInvoices();
     }, []);
 
-    const handleUpdateClick = (invoice: invoice) => {
+    const handleUpdateClick = (invoice: Files) => {
         setSelectedInvoice(invoice);
     };
 
-    const handleApproveClick = async (invoice: invoice) => {
+    const handleApproveClick = async (invoice: Files) => {
         try {
-            await axios.put(`https://localhost:7160/api/Recipt/confirm/${invoice.ReceiptId}`);
+            await axios.put(`https://localhost:7160/api/Recipt/confirm/${invoice.receiptId}`);
 
             setConfirmedInvoices(prev => ({
                 ...prev,
-                [invoice.ReceiptId]: true,
+                [invoice.receiptId]: true,
             }));
 
             alert("The invoice was confirmed successfully!");
         } catch (err) {
             console.error(err);
             setError("Error confirming invoice");
+        }
+    };
+    const handleDelete = async (invoice: Files) => {
+        try {
+            debugger
+            await axios.delete(`https://localhost:7160/api/File/delete/${invoice.receiptId}`, {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`,
+                }
+            });
+
+            setConfirmedInvoices(prev => ({
+                ...prev,
+                [invoice.receiptId]: true,
+            }));
+
+            alert("The invoice was deleted successfully!");
+        } catch (err) {
+            alert("An error occurred")
         }
     };
 
@@ -101,10 +115,10 @@ const ShowInvoices = () => {
                         </AccordionSummary>
                         <AccordionDetails style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
                             <div style={{ flex: 1, minWidth: '300px', maxWidth: '400px' }}>
-                                <ShowOneInvoice key={confirmedInvoices[invoice.ReceiptId] ? `confirmed-${invoice.ReceiptId}` : `invoice-${invoice.ReceiptId}`} invoiceId={invoice.ReceiptId} />
+                                <ShowOneInvoice key={confirmedInvoices[invoice.receiptId] ? `confirmed-${invoice.receiptId}` : `invoice-${invoice.receiptId}`} invoiceId={invoice.receiptId} />
                             </div>
                             <img
-                                src={invoice.s3Key}
+                                src={invoice.imgSrc}
                                 alt={`Invoice`}
                                 style={{ flex: 1, minWidth: '300px', maxWidth: '400px', objectFit: "cover", borderRadius: "8px", boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}
                             />
@@ -125,6 +139,14 @@ const ShowInvoices = () => {
                                 >
                                     Confirm
                                 </Button>
+                                <Button
+                                    variant="contained"
+                                    color="error"
+                                    onClick={() => handleDelete(invoice)}
+                                    style={{ marginBottom: '10px', backgroundColor: '#dc004e', color: '#fff' }}
+                                >
+                                    Delete
+                                </Button>
                             </div>
                         </AccordionDetails>
                     </Accordion>
@@ -134,7 +156,7 @@ const ShowInvoices = () => {
             )}
             {selectedInvoice && (
                 <InvoiceForm
-                    invoiceId={selectedInvoice.ReceiptId}
+                    invoiceId={selectedInvoice.receiptId}
                     onClose={() => setSelectedInvoice(null)}
                 />
             )}

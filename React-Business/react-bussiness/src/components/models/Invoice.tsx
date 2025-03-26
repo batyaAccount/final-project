@@ -4,6 +4,5 @@ export type Invoice = {
     category: string,
     date: Date,
     supplier: string,
-    url: string,
     update: boolean
 }

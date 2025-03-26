@@ -5,6 +5,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { RootState } from "./UserRedux/reduxStore";
 import { Home, Upload, ExitToApp } from '@mui/icons-material'; // Importing icons
 import Userdetails from "./Login/Userdetails";
+import { useContext } from "react";
+import { IsloginContext } from "./Layout";
 
 const NavLinkStyled = styled(NavLink)(({ theme }) => ({
     margin: theme.spacing(1),
@@ -12,7 +14,7 @@ const NavLinkStyled = styled(NavLink)(({ theme }) => ({
     color: 'white',
     padding: theme.spacing(1, 2),
     borderRadius: '5px',
-   
+
 }));
 
 
@@ -20,7 +22,7 @@ const NavLinkStyled = styled(NavLink)(({ theme }) => ({
 const NavBar = () => {
     const isLoggedIn = sessionStorage.getItem('user');
     const navigate = useNavigate();
-
+    const [ ,setIslogin] = useContext(IsloginContext);
     if (!isLoggedIn) {
         return null;
     }
@@ -28,7 +30,8 @@ const NavBar = () => {
     const Logout = () => {
         console.log("logout");
         sessionStorage.clear();
-        navigate("/Layout", { replace: true });
+        setIslogin(false);
+        navigate("/", { replace: true });
     }
 
     return (
@@ -55,7 +58,7 @@ const NavBar = () => {
                         style={{ marginLeft: '10px' }}
                         onClick={Logout}
                     >
-                        <ExitToApp /> {/* Logout icon */}
+                        <ExitToApp />
                         Log Out
                     </Button>
                 </div>
