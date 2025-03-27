@@ -13,6 +13,7 @@ namespace ApiBusiness.CORE.IServices
         public Task<UserDto> AddAsync(UserDto user, string roleName);
         Task DeleteAsync(int id);
         Task<IEnumerable<UserDto>> GetAllAsync();
+        Task<IEnumerable<UserDto>> GetClientsForAccountantAsync(int id);
         Task<UserDto> GetByIdAsync(int id);
         Task<UserDto> GetByNameAsync(string name);
         Task<bool> UpdateAsync(int id, UserDto user);

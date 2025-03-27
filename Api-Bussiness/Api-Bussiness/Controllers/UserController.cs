@@ -30,7 +30,7 @@ namespace Api_Bussiness.API.Controllers
             var userDtos = _mapper.Map<IEnumerable<UserDto>>(users);
             return Ok(userDtos);
         }
-       
+
         // GET api/<UserController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetAsync(int id)
@@ -44,6 +44,13 @@ namespace Api_Bussiness.API.Controllers
             return Ok(userDto);
         }
 
+        [HttpGet("clients/{id}")]
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetClients(int id)
+        {
+            var users = await _userService.GetClientsForAccountantAsync(id);
+            var userDtos = _mapper.Map<IEnumerable<UserDto>>(users);
+            return Ok(userDtos);
+        }
 
         // POST api/<UserController>
         [HttpPost]
@@ -51,30 +58,30 @@ namespace Api_Bussiness.API.Controllers
         {
             var user = _mapper.Map<UserDto>(userDto);
             {
-                var createdUser = await _userService.AddAsync(user,userDto.RoleName);
+                var createdUser = await _userService.AddAsync(user, userDto.RoleName);
                 if (createdUser == null)
                     return BadRequest();
                 return Ok(createdUser);
 
             }
         }
-            // PUT api/<UserController>/5
-            [HttpPut("{id}")]
-            public async Task<IActionResult> PutAsync(int id, [FromBody] UserPostEntity userDto)
+        // PUT api/<UserController>/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutAsync(int id, [FromBody] UserPostEntity userDto)
+        {
+            var user = _mapper.Map<UserDto>(userDto);
+            if (!await _userService.UpdateAsync(id, user))
             {
-                var user = _mapper.Map<UserDto>(userDto);
-                if (!await _userService.UpdateAsync(id, user))
-                {
-                    return NotFound();
-                }
-                return Ok();
+                return NotFound();
             }
-            // DELETE api/<UserController>/5
-            [HttpDelete("{id}")]
-            public async Task<IActionResult> DeleteAsync(int id)
-            {
-                await _userService.DeleteAsync(id);
-                return NoContent();
-            }
+            return Ok();
+        }
+        // DELETE api/<UserController>/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            await _userService.DeleteAsync(id);
+            return NoContent();
         }
     }
+}

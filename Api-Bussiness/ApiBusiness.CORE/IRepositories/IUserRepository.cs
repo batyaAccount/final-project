@@ -11,6 +11,7 @@ namespace ApiBusiness.CORE.IRepositories
     {
         public Task<IEnumerable<Users>> GetAsync();
         public Task<Users> GetByIdAsync(int user);
+        public Task<IEnumerable<Users>> GetClientsForAccountantAsync(int id);
         public Task<Users> AddAsync(Users user);
         public Task<bool> UpdateAsync(int id, Users user);
         public Task DeleteAsync(int id);

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../UserRedux/reduxStore";
 import { Files } from "../models/Files";
 import { Invoice } from "../models/Invoice";
+import { useParams } from "react-router";
 
 const ShowInvoices = () => {
     const [files, setFiles] = useState<Array<Files>>([]);
@@ -18,16 +19,17 @@ const ShowInvoices = () => {
     const [filterMonth, setFilterMonth] = useState<number | null>(null);
     const [filterSupplier, setFilterSupplier] = useState<string>("");
     const user = useSelector((state: RootState) => state.Auth.user);
+    const { id } = useParams<{ id?: string }>();
+    const url = "https://localhost:7160/api/File/";
     const fetchInvoices = async () => {
         const token = user.token;
-     
         if (!token) {
             setError("No token found");
             setLoading(false);
             return;
         }
         try {
-            const response = await axios.get("https://localhost:7160/api/File/editor-or-admin", {
+            const response = await axios.get(url + (id !== undefined ? `accountant/${id}` : `client`), {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
@@ -38,7 +40,7 @@ const ShowInvoices = () => {
             const updatedInvoices = await Promise.all(
                 inv.map(async (i) => {
                     const img = await axios.get("https://localhost:7160/api/Upload/download-url/" + i.fileName, {
-                        params: { userId: user.id?.toString() },
+                        params: { userId: id !== undefined ? id : user.id?.toString() },
                     });
                     i.imgSrc = img.data.downloadUrl;
                     return i;

@@ -49,7 +49,7 @@ namespace Api_Bussiness.API.Controllers
         }
 
         [HttpGet("client")]
-        [Authorize(Policy = "Client")] //Client can access
+        [Authorize(Policy = "ClientOnly")] //Client can access
         public async Task<IActionResult> ClientAsync()
         {
             var userClaim = User.FindFirstValue(ClaimTypes.Name);

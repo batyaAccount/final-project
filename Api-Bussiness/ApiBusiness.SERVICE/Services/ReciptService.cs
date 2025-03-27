@@ -106,17 +106,27 @@ namespace ApiBusiness.SERVICE.Services
                                     receipeDto.Amount = double.Parse(prediction.Ocr_text);
                                     break;
                                 case "invoice_date":
-                                    receipeDto.Date = DateTime.Parse(prediction.Ocr_text);
+                                    try
+                                    {
+                                        receipeDto.Date = DateTime.Parse(prediction.Ocr_text);
+                                    }
+                                    catch
+                                    {
+                                        receipeDto.Date = DateTime.Now;
+                                    }
                                     break;
                                 default:
-                                    receipeDto.Amount = 0;
-                                    receipeDto.Supplier = " ";
+
                                     break;
                             }
 
 
                         }
                     }
+                    if (receipeDto.Amount == null)
+                        receipeDto.Amount = 0;
+                    if (receipeDto.Supplier == null)
+                        receipeDto.Supplier = " ";
                     return await AddAsync(receipeDto);
                 }
                 else

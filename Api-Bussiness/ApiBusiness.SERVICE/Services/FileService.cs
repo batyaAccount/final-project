@@ -47,9 +47,7 @@ namespace ApiBusiness.SERVICE.Services
             var file = _mapper.Map<File>(fileDto);
             file.CreatedAt = DateTime.UtcNow;
             file.ReceiptId = invoice.Id;
-            //var userNameClaim = User.FindFirst(ClaimTypes.Name);
-            //var id = _userService.GetByNameAsync(userName).Result.Id;
-            //file.OwnerId = id;
+          
             File r = await _fileRepository.AddAsync(file);
             if (r == null)
                 return null;

@@ -55,6 +55,11 @@ namespace ApiBusiness.SERVICE.Services
         {
             return _mapper.Map<UserDto>(await _userRepository.GetByIdAsync(id));
         }
+        
+        public async Task<IEnumerable<UserDto>> GetClientsForAccountantAsync(int id)
+        {
+            return _mapper.Map<IEnumerable<UserDto>>(await _userRepository.GetClientsForAccountantAsync(id));
+        }
         public async Task<UserDto> GetByNameAsync(string name)
         {
             return _mapper.Map<UserDto>(await _userRepository.FindByUsernameAsync(name));

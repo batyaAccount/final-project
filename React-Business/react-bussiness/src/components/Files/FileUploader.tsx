@@ -14,7 +14,6 @@ const FileUploader = () => {
     const [file, setFile] = useState<File | null>(null);
     const [progress, setProgress] = useState(0);
     const [uploadType, setUploadType] = useState("");
-
     const user = useSelector((state: RootState) => state.Auth.user);
     const token = user.token;
 
@@ -24,10 +23,8 @@ const FileUploader = () => {
         }
     };
 
-
     const handleUpload = async () => {
         if (!file) return;
-
 
         try {
             const response = await axios.get("https://localhost:7160/api/Upload/presigned-url", {
@@ -45,13 +42,12 @@ const FileUploader = () => {
                     setProgress(percent);
                 },
             });
-            debugger
             await axios.post("https://localhost:7160/api/File/" + uploadType, {
                 FileName: file.name,
                 FileType: file.type,
                 Size: file.size,
                 S3Key: `users/${user.id}/${file.name}`,
-                OwnerId: user.id?.toString(),
+                ClientId: user.id?.toString(),
             }, {
                 headers: {
                     'Authorization': `Bearer ${token}`,

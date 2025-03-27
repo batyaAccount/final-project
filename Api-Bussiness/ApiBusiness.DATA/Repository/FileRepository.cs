@@ -35,12 +35,12 @@ namespace ApiBusiness.DATA.Repository
         public async Task<IEnumerable<CORE.Entities.File>> GetClientsByAccountantAccessibleProjectsAsync(int clientId,int accountantId)
         {
             var f = await GetAllAsync();
-            return f.Where(p => p.Client.AccountantId == accountantId || p.ClientId == clientId && p.IsDeleted == false);
+            return f.Where(p =>( p.ClientId == clientId )&& p.IsDeleted == false);
         }
 
         public async Task<IEnumerable<CORE.Entities.File>> GetAllAsync()
         {
-            var files = await _dbSet.ToListAsync();
+            var files = await _dbSet.Include(ur => ur.Client).ToListAsync();
             return files.FindAll(f => f.IsDeleted == false);
         }
 

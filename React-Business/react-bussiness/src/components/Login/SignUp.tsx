@@ -26,7 +26,7 @@ const SignUp = () => {
     const [AccountantId, setAccountantId] = useState<number | undefined>(-1);
     const mailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    const [roleName, setRoleName] = useState<string>(''); // State for role
+    const [roleName, setRoleName] = useState<string>('');
     const dispatch = useDispatch<AppDispatch>();
     const [, setIslogin] = useContext(IsloginContext);
     const navigate = useNavigate();
@@ -44,7 +44,6 @@ const SignUp = () => {
 
     const handleSignUp = async (e: React.FormEvent) => {
         e.preventDefault();
-        debugger
         const newUser = {
             name: NameRef.current?.value,
             email: mailRef.current?.value,

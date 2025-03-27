@@ -1,10 +1,12 @@
 // reduxStore.ts
 import { configureStore } from "@reduxjs/toolkit";
-import  userReducer  from "./fetchUser";
+import userReducer from "./fetchUser";
+import clientsReducer from "./fetchClients";
 
 const store = configureStore({
     reducer: {
-        Auth: userReducer
+        Auth: userReducer,
+        Clients: clientsReducer
     }
 });
 

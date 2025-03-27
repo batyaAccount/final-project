@@ -34,6 +34,11 @@ namespace ApiBusiness.DATA.Repository
         {
             return await _dbSet.ToListAsync();
         }
+        public async Task<IEnumerable<Users>> GetClientsForAccountantAsync(int id)
+        {
+            var res = await _dbSet.ToListAsync();
+            return res.FindAll(f => f.AccountantId == id);
+        }
 
         public async Task<Users> GetByIdAsync(int user)
         {
@@ -48,7 +53,7 @@ namespace ApiBusiness.DATA.Repository
                 r.Email = user.Email;
                 r.Name = user.Name;
                 r.Password = user.Password;
-                r.AccountantId  = user.AccountantId;
+                r.AccountantId = user.AccountantId;
                 r.UpdatedAt = DateTime.UtcNow;
                 return true;
             }
