@@ -1,21 +1,13 @@
-import { Box, Button, Modal, TextField, Select, MenuItem, FormControl, InputLabel } from "@mui/material"
-import { use, useContext, useRef, useState } from "react"
+import { Box, Button, Modal, TextField, Select, MenuItem, FormControl, InputLabel, Autocomplete } from "@mui/material"
+import { useContext, useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router";
 import { signUp } from "../UserRedux/fetchUser";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../UserRedux/reduxStore";
 import { IsloginContext } from "../Layout";
+import axios from "axios";
+import { User } from "../models/User";
 
-export type User = {
-    id: number | undefined,
-    name: string | undefined,
-    email: string | undefined,
-    password: string | undefined,
-    roleName: string | undefined,
-    token: string | undefined,
-    accountantId: number | undefined,
-}
-export type partUser = Partial<User>
 
 const SignUp = () => {
     const style = {
@@ -31,35 +23,51 @@ const SignUp = () => {
     };
     const [open, setOpen] = useState(true)
     const NameRef = useRef<HTMLInputElement>(null);
+    const [AccountantId, setAccountantId] = useState<number | undefined>(-1);
     const mailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const [roleName, setRoleName] = useState<string>(''); // State for role
     const dispatch = useDispatch<AppDispatch>();
     const [, setIslogin] = useContext(IsloginContext);
     const navigate = useNavigate();
-    const [isAccounter, setIsAccounter] = useState(false);
+    const [accounters, setAccounters] = useState<User[]>([]);
+    const [searchTerm,] = useState('');
+
+
+    const getAccounts = async () => {
+        const response = await axios.get("https://localhost:7160/api/User");
+        const data = response.data;
+        setAccounters(data);
+    };
+    useEffect(() => { getAccounts() }, [])
+
+
     const handleSignUp = async (e: React.FormEvent) => {
         e.preventDefault();
+        debugger
         const newUser = {
             name: NameRef.current?.value,
             email: mailRef.current?.value,
             password: passwordRef.current?.value,
-            roleName: roleName, // Use the state for roleName
+            roleName: roleName,
+            accountantId: AccountantId
         };
 
         const actionResult = await dispatch(signUp({ user: newUser }));
-
         if (signUp.fulfilled.match(actionResult)) {
             setOpen(false);
             setIslogin(true);
-            roleName == "Accounter" ? setIsAccounter(true): setIsAccounter(false);
             navigate("/HomePage", { replace: true });
         } else {
             setOpen(false);
-            alert("Cant login. please enter the correct details.");
+            alert("Cannot login. Please enter the correct details.");
         }
+
     };
 
+    const filteredAccountants = accounters.filter(accountant =>
+        accountant.accountantId !== undefined && accountant.name?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
     return (
         <>
             <Modal open={open} onClose={() => setOpen(false)}>
@@ -69,17 +77,18 @@ const SignUp = () => {
                     <TextField label='Password' inputRef={passwordRef} fullWidth />
                     <FormControl fullWidth>
                         <InputLabel id="role-label">Role</InputLabel>
-                        <Select
-                            labelId="role-label"
-                            value={roleName}
-                            onChange={(e) => setRoleName(e.target.value as string)} // Update state on change
-                        >
+                        <Select labelId="role-label" onChange={(e) => setRoleName(e.target.value as string)} >
                             <MenuItem value="Admin">Admin</MenuItem>
                             <MenuItem value="Client">Client</MenuItem>
                             <MenuItem value="Accountant">Accountant</MenuItem>
                         </Select>
                     </FormControl>
-                    <Button onClick={handleSignUp}>
+                    {roleName === "Client" && (
+                        <Autocomplete options={filteredAccountants} getOptionLabel={(option) => option.name || ''}
+                            onChange={(_, value) => { setAccountantId(value?.id) }}
+                            renderInput={(params) => (<TextField {...params} label="Select Accountant" fullWidth />)} />
+                    )}
+                    <Button onClick={(e) => handleSignUp(e)}>
                         Sign up
                     </Button>
                 </Box>

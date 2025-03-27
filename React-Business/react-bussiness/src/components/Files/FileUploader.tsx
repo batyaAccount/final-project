@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-
-import {
-    Box, Button, Container, LinearProgress, Typography, Paper,
-    TextField
-} from "@mui/material";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload"; // Upload icon
+import { Box, Button, Container, LinearProgress, Typography, Paper, TextField } from "@mui/material";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/system";
 import { useSelector } from "react-redux";
 import { RootState } from "../UserRedux/reduxStore";
@@ -34,15 +30,12 @@ const FileUploader = () => {
 
 
         try {
-            // Get Presigned URL from server
             const response = await axios.get("https://localhost:7160/api/Upload/presigned-url", {
                 params: { userId: user.id?.toString(), fileName: file.name, contentType: file.type, Category: uploadType, size: file.size },
             });
             const presignedUrl = response.data.url;
-            // console.log(response);
-            
-            // Upload file to S3
-            
+
+
             await axios.put(presignedUrl, file, {
                 headers: {
                     "Content-Type": file.type,
@@ -52,7 +45,7 @@ const FileUploader = () => {
                     setProgress(percent);
                 },
             });
-     debugger
+            debugger
             await axios.post("https://localhost:7160/api/File/" + uploadType, {
                 FileName: file.name,
                 FileType: file.type,

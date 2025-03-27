@@ -54,7 +54,7 @@ export default ({ invoiceId }: { invoiceId: number }) => {
                     supplier: invoice.supplier,
                 });
                 setOpen(!open);
-               debugger
+                debugger
                 alert("Invoice updated successfully!");
             } catch (err) {
                 setOpen(!open);
@@ -65,53 +65,21 @@ export default ({ invoiceId }: { invoiceId: number }) => {
     if (isLoading) return <div>Loading...</div>;
 
     return (
-        <Modal
-            open={open}
-            onClose={() => setOpen(!open)}
-        >
+        <Modal open={open} onClose={() => setOpen(!open)}   >
             <Box sx={style}>
                 <Typography variant="h6" component="h2">
                     Edit Invoice
                 </Typography>
                 {invoice && (
                     <form onSubmit={handleSubmit}>
-                        <TextField
-                            label="Amount"
-                            type="number"
-                            name="amount"
-                            value={invoice.amount}
-                            onChange={handleChange}
-                            fullWidth
-                            margin="normal"
-                        />
-                        <TextField
-                            label="Category"
-                            type="text"
-                            name="category"
-                            value={invoice.category}
-                            onChange={handleChange}
-                            fullWidth
-                            margin="normal"
-                        />
-                        <TextField
-                            label="Date"
-                            type="date"
-                            name="date"
-                            value={invoice.date ? invoice.date.toString().substring(0, 10) : ''}
-                            onChange={handleChange}
-                            fullWidth
-                            margin="normal"
-                        />
-                        <TextField
-                            label="Supplier"
-                            type="text"
-                            name="supplier"
-                            value={invoice.supplier}
-                            onChange={handleChange}
-                            fullWidth
-                            margin="normal"
-                        />
-
+                        <TextField label="Amount" type="number" name="amount"
+                            value={invoice.amount} onChange={handleChange} fullWidth margin="normal" />
+                        <TextField label="Category" type="text" name="category"
+                            value={invoice.category} onChange={handleChange} fullWidth margin="normal" />
+                        <TextField label="Date" type="date" name="date"
+                            value={invoice.date ? invoice.date.toString().substring(0, 10) : ''} onChange={handleChange} fullWidth margin="normal" />
+                        <TextField label="Supplier" type="text" name="supplier"
+                            value={invoice.supplier} onChange={handleChange} fullWidth margin="normal" />
                         <Button type="submit" variant="contained" color="primary" style={{ marginTop: '16px' }}>
                             Update Invoice
                         </Button>

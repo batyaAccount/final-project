@@ -1,9 +1,6 @@
-import { Avatar, Typography, AppBar, styled, Toolbar, Button, IconButton } from "@mui/material";
-import { deepOrange } from '@mui/material/colors';
-import { useSelector } from "react-redux";
+import {   AppBar, styled, Toolbar, Button, IconButton } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
-import { RootState } from "./UserRedux/reduxStore";
-import { Home, Upload, ExitToApp } from '@mui/icons-material'; // Importing icons
+import { Home, Upload, ExitToApp } from '@mui/icons-material'; 
 import Userdetails from "./Login/Userdetails";
 import { useContext } from "react";
 import { IsloginContext } from "./Layout";

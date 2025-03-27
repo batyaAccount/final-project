@@ -1,6 +1,4 @@
-import { Box, Button, Container, Fade, Typography } from "@mui/material";
-import FileUploader from "./Files/FileUploader";
-import { useState } from "react";
+import {Container, Typography } from "@mui/material";
 
 
 const HomePage = () => {

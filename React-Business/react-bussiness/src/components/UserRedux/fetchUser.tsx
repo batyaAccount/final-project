@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { User } from "../Login/SignUp";
+import { User } from "../models/User";
 const url = 'https://localhost:7160/api/Auth';
 
 export const signIn = createAsyncThunk('Auth/login', async ({ user }: { user: Partial<User>; }, thunkAPI) => {
@@ -22,8 +22,11 @@ export const signUp = createAsyncThunk('Auth/register', async ({ user }: { user:
             Name: user.name,
             Password: user.password,
             Email: user.email,
-            RoleName: user.roleName
+            RoleName: user.roleName,
+            accountantId: user.accountantId
         });
+        debugger
+
         return res.data;
     } catch (err: any) {
         return thunkAPI.rejectWithValue(err.response.data || 'Failed to sign up');

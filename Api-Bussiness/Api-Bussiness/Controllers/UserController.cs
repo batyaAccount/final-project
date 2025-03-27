@@ -30,7 +30,7 @@ namespace Api_Bussiness.API.Controllers
             var userDtos = _mapper.Map<IEnumerable<UserDto>>(users);
             return Ok(userDtos);
         }
-
+       
         // GET api/<UserController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetAsync(int id)
