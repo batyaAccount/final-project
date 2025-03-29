@@ -4,6 +4,7 @@ import { Card, CardContent, Typography, CircularProgress, Container, Grid, Paper
 import { ReceiptLong, Category, CalendarToday, Store,  CheckCircle, Cancel } from "@mui/icons-material";
 import { Invoice } from "../models/Invoice";
 
+
 // Invoice Component
 export default ({ invoiceId }: { invoiceId: number }) => {
     const [invoice, setInvoice] = useState<Invoice | null>(null);

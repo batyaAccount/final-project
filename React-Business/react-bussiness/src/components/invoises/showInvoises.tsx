@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Accordion, AccordionDetails, AccordionSummary, Button, Typography, TextField, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Button, Typography, Box, Grid, Grid2 } from "@mui/material";
 import InvoiceForm from "./InvoiceForm";
 import ShowOneInvoice from "./showOneInvoice";
 import { useSelector } from "react-redux";
 import { RootState } from "../UserRedux/reduxStore";
 import { Files } from "../models/Files";
 import { Invoice } from "../models/Invoice";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import FilterInvoiecs from "./FilterInvoices";
+import { Upload } from "@mui/icons-material";
 
 const ShowInvoices = () => {
     const [files, setFiles] = useState<Array<Files>>([]);
@@ -16,10 +19,9 @@ const ShowInvoices = () => {
     const [error, setError] = useState("");
     const [selectedInvoice, setSelectedInvoice] = useState<Files | null>(null);
     const [confirmedInvoices, setConfirmedInvoices] = useState<Record<number, boolean>>({});
-    const [filterMonth, setFilterMonth] = useState<number | null>(null);
-    const [filterSupplier, setFilterSupplier] = useState<string>("");
     const user = useSelector((state: RootState) => state.Auth.user);
     const { id } = useParams<{ id?: string }>();
+    const navigate = useNavigate();
     const url = "https://localhost:7160/api/File/";
     const fetchInvoices = async () => {
         const token = user.token;
@@ -69,6 +71,7 @@ const ShowInvoices = () => {
 
     useEffect(() => {
         fetchInvoices();
+       
     }, []);
 
     const handleUpdateClick = (invoice: Files) => {
@@ -88,7 +91,6 @@ const ShowInvoices = () => {
             setError("Error confirming invoice");
         }
     };
-
     const handleDelete = async (invoice: Files) => {
         try {
             await axios.delete(`https://localhost:7160/api/File/delete/${invoice.receiptId}`, {
@@ -103,60 +105,30 @@ const ShowInvoices = () => {
             alert("An error occurred");
         }
     };
-    const handleFilter = async () => {
-        debugger
-        var invoices = await fetchInvoices() as (Invoice[] | Files[])[];
-
-        console.log(invoiceArray);
-        console.log(files);
-        let filteredFiles = invoices;
-
-        if (filterMonth) {
-            filteredFiles[0] = (filteredFiles[0] as Invoice[])?.filter(invoice => new Date(invoice.date).getMonth() + 1 === filterMonth);
-        }
-
-        if (filterSupplier) {
-            filteredFiles[1] = (filteredFiles[0] as Invoice[])?.filter(invoice => invoice.supplier.includes(filterSupplier));
-        }
-        var ff = (filteredFiles[1] as Files[]).filter(f => (filteredFiles[0] as Invoice[])?.find(f1 => f1.id == f.receiptId))
-        setFiles(ff);
-    };
-
-    const resetFilters = () => {
-        setFilterMonth(null);
-        setFilterSupplier("");
-        fetchInvoices();
-    };
-
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
-
     return (
         <div style={{ padding: '20px' }}>
-            <Typography variant="h4" gutterBottom align="center">חשבוניות</Typography>
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px', gap: '10px' }}>
-                <FormControl variant="outlined" style={{ minWidth: 120 }}>
-                    <InputLabel>חודש</InputLabel>
-                    <Select value={filterMonth || ""} onChange={(e: any) => setFilterMonth(e.target.value)} label="חודש" >
-                        <MenuItem value=""><em>כל החודשים</em></MenuItem>
-                        {[...Array(12)].map((_, index) => (
-                            <MenuItem key={index + 1} value={index + 1}>{index + 1}</MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <TextField label="שם ספק" variant="outlined" value={filterSupplier} onChange={(e) => setFilterSupplier(e.target.value)} />
-                <Button variant="contained" color="primary" onClick={handleFilter}>סנן</Button>
-                <Button variant="contained" color="inherit" onClick={resetFilters}>חזור לכל החשבוניות</Button>
-            </div>
+            <Typography variant="h4" gutterBottom align="center">Invoices</Typography>
+            <FilterInvoiecs fetchInvoices={fetchInvoices} files={files} setFiles={setFiles} invoiceArray={invoiceArray}></FilterInvoiecs>
+
             {files.length > 0 ? (
                 files.map((invoice, index) => (
                     <Accordion key={index} style={{ width: '100%', marginBottom: '10px', boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}>
                         <AccordionSummary
                             aria-controls={`panel${index}-content`}
                             id={`panel${index}-header`}
+                            style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                         >
-                            <Typography variant="h6">חשבונית {index + 1}</Typography>
+                            <Box display="flex" flexDirection="column" alignItems="center">
+                                <Typography variant="h6" style={{ margin: '0' }}>Invoice {index + 1}</Typography>
+                                {/* <Typography variant="body2" style={{ margin: '0' }}>
+                                    {`${new Date(invoiceArray[index]?.date).toLocaleDateString() || 'N/A'}`}
+                                </Typography> */}
+                            </Box>
                         </AccordionSummary>
+
+
                         <AccordionDetails style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
                             <div style={{ flex: 1, minWidth: '300px', maxWidth: '400px' }}>
                                 <ShowOneInvoice key={confirmedInvoices[invoice.receiptId] ? `confirmed-${invoice.receiptId}` : `invoice-${invoice.receiptId}`} invoiceId={invoice.receiptId} />
@@ -164,27 +136,57 @@ const ShowInvoices = () => {
                             <img src={invoice.imgSrc} alt={`Invoice`}
                                 style={{ flex: 1, minWidth: '300px', maxWidth: '400px', objectFit: "cover", borderRadius: "8px", boxShadow: '0 2px 5px rgba(0,0,0,0.2)' }}
                             />
-                            <div>
-                                <Button variant="contained" color="primary" onClick={() => handleUpdateClick(invoice)} style={{ marginBottom: '10px' }}>
-                                    Update
-                                </Button>
-                                <Button variant="contained" color="secondary" onClick={() => handleApproveClick(invoice)} style={{ marginBottom: '10px' }} >
-                                    Confirm
-                                </Button>
-                                <Button variant="contained" color="error" onClick={() => handleDelete(invoice)} style={{ marginBottom: '10px' }} >
-                                    Delete
-                                </Button>
-                            </div>
+
+                            {user.accountantId === null && (
+                                <Grid2 container spacing={2} direction="column" alignItems="center">
+                                    <Grid item>
+                                        <Button variant="contained" color="primary" onClick={() => handleUpdateClick(invoice)} style={{ marginBottom: '10px' }}>
+                                            Update
+                                        </Button>
+                                    </Grid>
+                                    <Grid item>
+                                        <Button variant="contained" color="success" onClick={() => handleApproveClick(invoice)} style={{ marginBottom: '10px' }}>
+                                            Confirm
+                                        </Button>
+                                    </Grid>
+                                    <Grid item>
+                                        <Button variant="contained" color="error" onClick={() => handleDelete(invoice)} style={{ marginBottom: '10px' }}>
+                                            Delete
+                                        </Button>
+                                    </Grid>
+                                </Grid2>
+                            )}
                         </AccordionDetails>
                     </Accordion>
                 ))
-            ) : (
-                <Typography variant="body1" color="textSecondary" align="center">לא נמצאו חשבוניות.</Typography>
-            )}
+            )
+                : (
+                    <Typography variant="body1" color="textSecondary" align="center">No invoices found.</Typography>
+                )}
             {selectedInvoice && (
                 <InvoiceForm invoiceId={selectedInvoice.receiptId} />
             )}
+            {id !== undefined && (<>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => navigate("/Uplaod Invoice/" + id, { replace: true })}
+                    startIcon={<Upload />}
+                >
+                </Button>
+
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => navigate("/Accountant", { replace: true })}
+                    style={{ marginBottom: '20px', position: 'absolute', left: '40px' }}
+                    startIcon={<ArrowBackIcon />}>
+                </Button>
+            </>
+            )
+            }
         </div>
+
     );
 };
 

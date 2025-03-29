@@ -13,9 +13,6 @@ const NavLinkStyled = styled(NavLink)(({ theme }) => ({
     borderRadius: '5px',
 
 }));
-
-
-
 const NavBar = () => {
     const isLoggedIn = sessionStorage.getItem('user');
     const navigate = useNavigate();
@@ -36,13 +33,13 @@ const NavBar = () => {
             <Toolbar>
                 <NavLinkStyled to='/ShowInvoices'>
                     <IconButton color="inherit">
-                        <Home /> {/* Home icon */}
+                        <Home /> 
                     </IconButton>
                     Invoices
                 </NavLinkStyled>
                 <NavLinkStyled to='/Uplaod Invoice'>
                     <IconButton color="inherit">
-                        <Upload /> {/* Upload icon */}
+                        <Upload />
                     </IconButton>
                     Upload Invoices
                 </NavLinkStyled>

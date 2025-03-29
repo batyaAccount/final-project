@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Invoice } from "../models/Invoice";
 import { Modal, Box, Button, TextField, Typography } from "@mui/material";
 
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -32,6 +33,7 @@ export default ({ invoiceId }: { invoiceId: number }) => {
 
     useEffect(() => {
         getInvoiceById();
+      
     }, [invoiceId]);
 
     const handleChange = async (event: any) => {

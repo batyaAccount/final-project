@@ -27,11 +27,11 @@ const SignUp = () => {
     const mailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const [roleName, setRoleName] = useState<string>('');
-    const dispatch = useDispatch<AppDispatch>();
     const [, setIslogin] = useContext(IsloginContext);
     const navigate = useNavigate();
     const [accounters, setAccounters] = useState<User[]>([]);
     const [searchTerm,] = useState('');
+    const dispatch = useDispatch<AppDispatch>();
 
 
     const getAccounts = async () => {

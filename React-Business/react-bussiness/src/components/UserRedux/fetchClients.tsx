@@ -7,7 +7,7 @@ const url = 'https://localhost:7160/api/User/clients/';
 export const get = createAsyncThunk('clients', async ({ id }: { id: number; }, thunkAPI) => {
     try {
         const res = await axios.get(url + id);
-        return res.data; // Assuming res.data is User[]
+        return res.data; 
     } catch (err: any) {
         return thunkAPI.rejectWithValue(err.response.data || 'Failed to fetch data');
     }

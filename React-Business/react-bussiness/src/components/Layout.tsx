@@ -21,8 +21,8 @@ const Layout = () => {
                 <Box
                     display="flex"
                     justifyContent="center"
-                    alignItems="flex-start" // Align items to the top
-                    style={{ width: "100%", marginBottom: "20px" }} // Set width for full width
+                    alignItems="flex-start"
+                    style={{ width: "100%", marginBottom: "20px" }} 
                 >
                   
                 </Box>
