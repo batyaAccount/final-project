@@ -25,9 +25,7 @@ const FileUploader = () => {
     const dispatch = useDispatch<AppDispatch>();
     const c = useSelector((state: RootState) => state.Clients.clients);
     const fetchClients = async () => {
-        if (userIdForAccountant) {
-            await dispatch(get({ id: user.id as number }));
-        }
+        await dispatch(get({ id: user.id as number }));
     };
 
     useEffect(() => {
@@ -36,9 +34,8 @@ const FileUploader = () => {
             setOpenDialog(true);
         }
         fetchClients();
-        console.log(c);
+    }, [userId_Accountant, user.accountantId, user.id, window]);
 
-    }, [userId_Accountant, user.accountantId]);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
@@ -127,11 +124,11 @@ const FileUploader = () => {
                     sx={{ borderRadius: 2, paddingX: 4, paddingY: 1, fontSize: "16px", boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.2)" }}>
                     Upload File
                 </Button>
-                {(user.accountantId== undefined) && (
+                {(user.accountantId == undefined) && (
                     <Button
                         variant="outlined"
                         onClick={() => setOpenDialog(true)}
-                       
+
                         sx={{ borderRadius: 2, paddingX: 4, paddingY: 1, fontSize: "16px", mt: 2 }}
                     >
                         Select New Client

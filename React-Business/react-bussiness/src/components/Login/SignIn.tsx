@@ -3,8 +3,8 @@ import { useContext, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../UserRedux/reduxStore";
 import { signIn } from "../UserRedux/fetchUser";
-import { useNavigate } from 'react-router-dom';
 import { IsloginContext } from "../Layout";
+import { useNavigate } from "react-router";
 const SignIn = () => {
     const style = {
         position: 'absolute',
@@ -21,7 +21,7 @@ const SignIn = () => {
     const nameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const dispatch = useDispatch<AppDispatch>();
-    const navigate = useNavigate();  // Initialize navigate
+    const navigate = useNavigate(); 
     const [, setIslogin] = useContext(IsloginContext);
 
     const handleSignIn = async (e: React.FormEvent) => {

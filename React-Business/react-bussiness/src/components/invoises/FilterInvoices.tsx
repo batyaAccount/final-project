@@ -5,11 +5,12 @@ import { Invoice } from "../models/Invoice";
 import FilterListIcon from '@mui/icons-material/FilterList';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const FilterInvoiecs = ({ fetchInvoices, files,setFiles, invoiceArray }: { fetchInvoices: Function, files: Array<Files>,setFiles:Function, invoiceArray: Array<Invoice> }) => {
+const FilterInvoiecs = ({ fetchInvoices, files, setFiles, invoiceArray }: { fetchInvoices: Function, files: Array<Files>, setFiles: Function, invoiceArray: Array<Invoice> }) => {
     const [filterMonth, setFilterMonth] = useState<number | null>(null);
     const [filterSupplier, setFilterSupplier] = useState<string>("");
     const [filterYear, setFilterYear] = useState<number | null>(null);
     const currentYear = new Date().getFullYear();
+
     const years = [];
     for (let year = 2000; year <= currentYear; year++) {
         years.push(year);
@@ -65,8 +66,43 @@ const FilterInvoiecs = ({ fetchInvoices, files,setFiles, invoiceArray }: { fetch
                 </FormControl>
 
                 <TextField label="Supplier name" variant="outlined" value={filterSupplier} onChange={(e) => setFilterSupplier(e.target.value)} />
-                <Button  variant="contained" color="primary" onClick={handleFilter}  startIcon={<FilterListIcon/>}>Filter</Button>
-                <Button variant="contained" color="inherit" onClick={resetFilters}  startIcon={<ArrowBackIcon/>}>Back to all invoices</Button>
+
+                <Button
+                    variant="outlined"
+                    style={{
+                        backgroundColor: 'rgba(0, 0, 255, 0.2)', // bg-blue-500/20
+                        color: 'white', // text-white
+                        border: '1px solid rgba(0, 0, 255, 0.5)', // border-blue-500/50
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = 'rgba(0, 0, 255, 0.3)'; // hover:bg-blue-500/30
+                    }} startIcon={<FilterListIcon />}
+
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'rgba(0, 0, 255, 0.2)'; // מחזיר את הצבע המקורי
+                    }} onClick={handleFilter}
+                >
+
+                    Filter
+                </Button>
+                <Button
+                    variant="outlined"
+                    style={{
+                        backgroundColor: 'rgba(0, 0, 255, 0.2)', // bg-blue-500/20
+                        color: 'white', // text-white
+                        border: '1px solid rgba(0, 0, 255, 0.5)', // border-blue-500/50
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = 'rgba(0, 0, 255, 0.3)'; // hover:bg-blue-500/30
+                    }}
+                    startIcon={<ArrowBackIcon />}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'rgba(0, 0, 255, 0.2)'; // מחזיר את הצבע המקורי
+                    }} onClick={resetFilters}
+                >
+
+                    Back to all invoices
+                </Button>
             </div>
         </>
     )

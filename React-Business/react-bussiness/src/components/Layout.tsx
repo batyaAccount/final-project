@@ -15,16 +15,16 @@ const Layout = () => {
 
     return (
         <IsloginContext.Provider value={[islogin, setIslogin]}>
-            {islogin && <NavBar />} 
-             {!islogin && <LoginPage />}
-            <Container style={{ marginTop: "20px" }}>
+            {islogin && <NavBar />}
+            {!islogin && <LoginPage />}
+            <Container style={{}}>
                 <Box
                     display="flex"
                     justifyContent="center"
                     alignItems="flex-start"
-                    style={{ width: "100%", marginBottom: "20px" }} 
+                    style={{ width: "100%", padding: "0px" }}
                 >
-                  
+
                 </Box>
                 <Outlet />
             </Container>
