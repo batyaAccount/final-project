@@ -30,7 +30,7 @@ const FileUploader = () => {
 
     useEffect(() => {
         setUserIdForAccountant(userId_Accountant ? parseInt(userId_Accountant) : undefined);
-        if (user.accountantId == null && userId_Accountant === undefined) {
+        if (user.accountantId == null ||user.accountantId == -1 && userId_Accountant === undefined) {
             setOpenDialog(true);
         }
         fetchClients();
@@ -124,7 +124,7 @@ const FileUploader = () => {
                     sx={{ borderRadius: 2, paddingX: 4, paddingY: 1, fontSize: "16px", boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.2)" }}>
                     Upload File
                 </Button>
-                {(user.accountantId == undefined) && (
+                {(user.accountantId == undefined || user.accountantId == -1) && (
                     <Button
                         variant="outlined"
                         onClick={() => setOpenDialog(true)}

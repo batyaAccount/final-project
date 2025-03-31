@@ -277,7 +277,7 @@ const ShowInvoices = () => {
                                                     }} />
                                             </motion.div>
                                         </div>
-                                        {user.accountantId === null && (
+                                        {(user.accountantId === null || user.accountantId === -1) && (
                                             <div className="flex flex-col gap-3 justify-center">
                                                 <Button
                                                     variant="outlined"
