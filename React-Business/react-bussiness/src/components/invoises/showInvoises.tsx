@@ -28,7 +28,6 @@ const ShowInvoices = () => {
 
     const fetchInvoices = async () => {
         const token = user.token   
-         console.log(token);
 
         if (!token) {
             
