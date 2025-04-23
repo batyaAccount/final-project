@@ -109,10 +109,12 @@ namespace ApiBusiness.SERVICE.Services
                                     try
                                     {
                                         receipeDto.Date = DateTime.Parse(prediction.Ocr_text);
+                                        receipeDto.Date = DateTime.SpecifyKind(receipeDto.Date, DateTimeKind.Utc);
+
                                     }
                                     catch
                                     {
-                                        receipeDto.Date = DateTime.Now;
+                                        receipeDto.Date = DateTime.UtcNow;
                                     }
                                     break;
                                 default:

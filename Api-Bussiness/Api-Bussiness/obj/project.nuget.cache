@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XMHR3cpx+43VWO8nRlXsL1mRVsedm6dPWyUFCi+ZlFPc52Tp5OZs624KLZcn22uci8VLzjTECAwF4Qd5+f48rg==",
+  "dgSpecHash": "azs1AwPkJOFuAySreEpVW+G5FObkREER+pfogeL3iEd4+xdaQ18wLxJmkG9kAq1VgnGK+okAK7hNQFXoSp/WaQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\Api-Bussiness\\Api-Bussiness.API.csproj",
   "expectedPackageFiles": [
@@ -42,6 +42,7 @@
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.9\\microsoft.netcore.platforms.3.1.9.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\user1\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.18.1\\microsoft.visualstudio.azure.containers.tools.targets.1.18.1.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\user1\\.nuget\\packages\\mysqlconnector\\2.4.0\\mysqlconnector.2.4.0.nupkg.sha512",
