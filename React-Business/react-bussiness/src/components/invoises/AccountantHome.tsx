@@ -9,6 +9,7 @@ import { motion } from "framer-motion"
 
 import { Sparkles } from "lucide-react"
 import { Card, CardContent, Button } from "@mui/material"
+import { styleCard, styleDiv, styleDivLoad, styleError } from "./AccountantHomeStyle"
 
 const AccountantHome = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -47,33 +48,26 @@ const AccountantHome = () => {
     }
 
     return (
-        <div style={{
-            maxWidth: '1200px', // container (בהנחה שזו הרוחב המקסימלי)
-            marginLeft: 'auto', // mx-auto
-            marginRight: 'auto', // mx-auto
-            paddingLeft: '1rem', // px-4 (4 * 0.25rem)
-            paddingRight: '1rem', // px-4 (4 * 0.25rem)
-            paddingTop: '2rem', // py-8 (8 * 0.25rem)
-            paddingBottom: '2rem', // py-8 (8 * 0.25rem)
-        }}>
+        <div
+            style={styleDiv}>
             <motion.div
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6 }}
                 style={{
-                    textAlign: 'center', // text-center
-                    marginBottom: '3rem', // mb-12 (12 * 0.25rem)
+                    textAlign: 'center',
+                    marginBottom: '3rem',
                 }}
             >
                 <h1 style={{
-                    fontSize: '2.25rem', // text-4xl (4 * 0.75rem)
-                    fontWeight: 'bold', // font-bold
-                    marginBottom: '0.5rem', // mb-2 (2 * 0.25rem)
-                    color: 'white', // text-white
+                    fontSize: '2.25rem',
+                    fontWeight: 'bold',
+                    marginBottom: '0.5rem',
+                    color: 'white',
                 }}>
                     <span style={{
-                        position: 'relative', // relative
-                        display: 'inline-block', // inline-block
+                        position: 'relative',
+                        display: 'inline-block',
                     }}>
                         Client Dashboard
                         <motion.span
@@ -102,16 +96,8 @@ const AccountantHome = () => {
                     marginTop: '2rem', // my-8 (8 * 0.25rem)
                     marginBottom: '2rem', // my-8 (8 * 0.25rem)
                 }}>
-                    <div style={{
-                        width: '3rem', // w-12 (12 * 0.25rem)
-                        height: '3rem', // h-12 (12 * 0.25rem)
-                        borderRadius: '50%', // rounded-full
-                        borderWidth: '4px', // border-4
-                        borderStyle: 'solid',
-                        borderColor: 'rgba(255, 255, 255, 0.2)', // border-white/20
-                        borderTopColor: 'white', // border-t-white
-                        animation: 'spin 1s linear infinite', // animate-spin
-                    }}></div>
+                    <div
+                        style={styleDivLoad}></div>
                 </div>
             )}
 
@@ -119,18 +105,7 @@ const AccountantHome = () => {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    style={{
-                        backgroundColor: 'rgba(239, 68, 68, 0.2)', // bg-red-500/20
-                        backdropFilter: 'blur(4px)', // backdrop-blur-sm (בהנחה של 4px)
-                        color: 'white', // text-white
-                        padding: '1rem', // p-4 (4 * 0.25rem)
-                        borderRadius: '0.5rem', // rounded-lg
-                        marginBottom: '2rem', // mb-8 (8 * 0.25rem)
-                        borderWidth: '1px', // border
-                        borderStyle: 'solid',
-                        borderColor: 'rgba(239, 68, 68, 0.5)', // border-red-500/50
-                    }}
-                >
+                    style={styleError}>
                     {error}
                 </motion.div>
             )}
@@ -144,15 +119,8 @@ const AccountantHome = () => {
                 {clients && clients.length > 0 ? (
                     clients.map((client) => (
                         <motion.div key={client.id} variants={item}>
-                            <Card style={{
-                                overflow: 'hidden', // overflow-hidden
-                                backdropFilter: 'blur(4px)', // backdrop-blur-sm (בהנחה של 4px)
-                                backgroundColor: 'rgba(255, 255, 255, 0.1)', // bg-white/10
-                                border: 'none', // border-none
-                                height: '100%', // h-full
-                                transition: 'all 0.3s', // transition-all duration-300
-                                marginBottom:"50px"
-                            }}
+                            <Card
+                                style={styleCard}
                                 className="hover:shadow-xl" >
                                 <div style={{
                                     position: 'absolute', // absolute

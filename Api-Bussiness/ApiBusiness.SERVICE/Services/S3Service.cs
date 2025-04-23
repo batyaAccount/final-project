@@ -43,6 +43,7 @@ namespace ApiBusiness.SERVICE.Services
                 Verb = HttpVerb.PUT,
                 Expires = DateTime.UtcNow.AddMinutes(60),
                 ContentType = contentType
+                
             };
 
             return await _s3Client.GetPreSignedURLAsync(request);

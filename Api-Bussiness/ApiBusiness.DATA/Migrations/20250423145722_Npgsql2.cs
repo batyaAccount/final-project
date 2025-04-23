@@ -4,7 +4,7 @@
 
 namespace ApiBusiness.DATA.Migrations
 {
-    public partial class financialTransaction2 : Migration
+    public partial class Npgsql2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

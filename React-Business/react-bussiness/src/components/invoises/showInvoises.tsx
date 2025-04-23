@@ -9,7 +9,7 @@ import type { Invoice } from "../models/Invoice"
 import { useNavigate, useParams } from "react-router"
 import { motion, AnimatePresence } from "framer-motion"
 import { Accordion, AccordionDetails, AccordionSummary, Button, Card, CardContent } from "@mui/material"
-import { ArrowLeft, Upload, Pencil, Check, Trash2, AlertCircle } from "lucide-react"
+import { ArrowLeft, Upload, Pencil, Check, Trash2, AlertCircle, Download } from "lucide-react"
 import InvoiceForm from "./InvoiceForm"
 import ShowOneInvoice from "./showOneInvoice"
 import FilterInvoiecs from "./FilterInvoices"
@@ -264,17 +264,52 @@ const ShowInvoices = () => {
                                                 whileHover={{ scale: 1.02 }}
                                                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
                                                 style={{
+                                                    position:'relative',
                                                     overflow: 'hidden',
                                                     borderRadius: '0.5rem',
                                                     boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
-                                                }}
-                                            >
+                                                }}>
                                                 <img src={invoice.imgSrc || "/placeholder.svg"}
                                                     alt={`Invoice`}
                                                     style={{
                                                         width: '100%',
                                                         height: '100%',
                                                     }} />
+                                                <div
+                                                    onClick={async () => {
+                                                        try {
+                                                            const response = await fetch(invoice.imgSrc);
+                                                            if (!response.ok) {
+                                                                throw new Error('Network response was not ok');
+                                                            }
+                                                            const blob = await response.blob();
+                                                            const link = document.createElement('a');
+                                                            link.href = URL.createObjectURL(blob);
+                                                            link.download = `Invoice_${invoice.receiptId}.png`;
+                                                            document.body.appendChild(link);
+                                                            link.click();
+                                                            document.body.removeChild(link);
+                                                            URL.revokeObjectURL(link.href);
+                                                        } catch (error) {
+                                                            console.error('Error downloading the image:', error);
+                                                            alert('Failed to download the invoice image.');
+                                                        }
+                                                    }}
+                                                    style={{
+                                                        position: 'absolute',
+                                                        bottom: '10px', // Adjust as needed
+                                                        right: '10px',  // Adjust as needed
+                                                        backgroundColor: 'rgba(255, 255, 255, 0.7)', // Semi-transparent background
+                                                        borderRadius: '50%',
+                                                        padding: '0.5rem',
+                                                        cursor: 'pointer',
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        alignItems: 'center'
+                                                    }}
+                                                >
+                                                    <Download size={20} /> {/* Adjust icon size as needed */}
+                                                </div>
                                             </motion.div>
                                         </div>
                                         {(user.accountantId === null || user.accountantId === -1) && (
@@ -328,6 +363,7 @@ const ShowInvoices = () => {
                                                     }} />
                                                     Delete
                                                 </Button>
+                                             
                                             </div>
                                         )}
 

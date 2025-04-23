@@ -15,6 +15,9 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Text.Json.Serialization;
 using Amazon.Runtime;
+using ApiBusiness.CORE.Entities;
+using Microsoft.AspNetCore.Hosting.Server;
+using System.Runtime.InteropServices;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -24,7 +27,7 @@ builder.Services.AddScoped<ApiBusiness.CORE.Entities.Receipts>();
 builder.Services.AddScoped<ApiBusiness.CORE.Entities.File>();
 builder.Services.AddDbContext<DataContext>(option =>
 {
-    option.UseSqlServer("Data Source=DESKTOP-SSNMLFD;Initial Catalog=Invoicify;Integrated Security=true;");
+    option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddScoped<IReciptService, ReciptService>();
 builder.Services.AddScoped<IUserService, UserService>();
