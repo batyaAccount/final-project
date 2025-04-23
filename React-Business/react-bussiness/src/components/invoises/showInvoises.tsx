@@ -27,9 +27,10 @@ const ShowInvoices = () => {
     const url = "https://final-project-x2ln.onrender.com/api/File/"
 
     const fetchInvoices = async () => {
-        const token = user.token
+        const token = user.token   
+         console.log(token);
+
         if (!token) {
-            console.log(token);
             
             setError("No token found")
             setLoading(false)
