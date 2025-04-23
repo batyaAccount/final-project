@@ -29,6 +29,8 @@ const ShowInvoices = () => {
     const fetchInvoices = async () => {
         const token = user.token
         if (!token) {
+            console.log(token);
+            
             setError("No token found")
             setLoading(false)
             return
