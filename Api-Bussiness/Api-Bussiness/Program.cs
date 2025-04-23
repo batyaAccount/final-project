@@ -27,7 +27,7 @@ builder.Services.AddScoped<ApiBusiness.CORE.Entities.Receipts>();
 builder.Services.AddScoped<ApiBusiness.CORE.Entities.File>();
 builder.Services.AddDbContext<DataContext>(option =>
 {
-    option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    option.UseNpgsql(Environment.GetEnvironmentVariable("DefaultConnection"));
 });
 builder.Services.AddScoped<IReciptService, ReciptService>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -67,9 +67,9 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+        ValidIssuer = Environment.GetEnvironmentVariable("Issuer"),
+        ValidAudience = Environment.GetEnvironmentVariable("Audience"),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("Key"))),
         ClockSkew = TimeSpan.Zero
     };
 });
@@ -88,7 +88,6 @@ builder.Services.AddCors(options =>
                           .AllowAnyHeader());
 });
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
