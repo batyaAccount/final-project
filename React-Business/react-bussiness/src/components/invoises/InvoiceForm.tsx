@@ -22,7 +22,7 @@ export default ({ invoiceId }: { invoiceId: number }) => {
 
     const getInvoiceById = async () => {
         try {
-            const response = await axios.get(`https://localhost:7160/api/Recipt/${invoiceId}`);
+            const response = await axios.get(`https://final-project-x2ln.onrender.com/api/Recipt/${invoiceId}`);
             setInvoice(response.data);
         } catch (err) {
             console.error(err);
@@ -49,7 +49,7 @@ export default ({ invoiceId }: { invoiceId: number }) => {
         event.preventDefault();
         if (invoice) {
             try {
-                await axios.put(`https://localhost:7160/api/Recipt/${invoiceId}`, {
+                await axios.put(`https://final-project-x2ln.onrender.com/api/Recipt/${invoiceId}`, {
                     amount: invoice.amount,
                     category: invoice.category,
                     date: invoice.date,

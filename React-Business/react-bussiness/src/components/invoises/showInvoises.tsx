@@ -24,7 +24,7 @@ const ShowInvoices = () => {
     const user = useSelector((state: RootState) => state.Auth.user)
     const { id } = useParams<{ id?: string }>()
     const navigate = useNavigate()
-    const url = "https://localhost:7160/api/File/"
+    const url = "https://final-project-x2ln.onrender.com/api/File/"
 
     const fetchInvoices = async () => {
         const token = user.token
@@ -44,7 +44,7 @@ const ShowInvoices = () => {
             const inv: Array<Files> = response.data
             const updatedInvoices = await Promise.all(
                 inv.map(async (i) => {
-                    const img = await axios.get("https://localhost:7160/api/Upload/download-url/" + i.fileName, {
+                    const img = await axios.get("https://final-project-x2ln.onrender.com/api/Upload/download-url/" + i.fileName, {
                         params: { userId: id !== undefined ? id : user.id?.toString() },
                     })
                     i.imgSrc = img.data.downloadUrl
@@ -58,7 +58,7 @@ const ShowInvoices = () => {
             var invoices: Array<Invoice> = []
             await Promise.all(
                 inv.map(async (i) => {
-                    const res = await axios.get(`https://localhost:7160/api/Recipt/${i.receiptId}`)
+                    const res = await axios.get(`https://final-project-x2ln.onrender.com/api/Recipt/${i.receiptId}`)
                     invoices.push(res.data)
                 }),
             )
@@ -85,7 +85,7 @@ const ShowInvoices = () => {
 
     const handleApproveClick = async (invoice: Files) => {
         try {
-            await axios.put(`https://localhost:7160/api/Recipt/confirm/${invoice.receiptId}`)
+            await axios.put(`https://final-project-x2ln.onrender.com/api/Recipt/confirm/${invoice.receiptId}`)
             setConfirmedInvoices((prev) => ({
                 ...prev,
                 [invoice.receiptId]: true,
@@ -99,7 +99,7 @@ const ShowInvoices = () => {
 
     const handleDelete = async (invoice: Files) => {
         try {
-            await axios.delete(`https://localhost:7160/api/File/delete/${invoice.receiptId}`, {
+            await axios.delete(`https://final-project-x2ln.onrender.com/api/File/delete/${invoice.receiptId}`, {
                 headers: {
                     Authorization: `Bearer ${user.token}`,
                 },

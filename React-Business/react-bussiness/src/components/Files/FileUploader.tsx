@@ -46,7 +46,7 @@ const FileUploader = () => {
     const handleUpload = async () => {
         if (!file) return;
         try {
-            const response = await axios.get("https://localhost:7160/api/Upload/presigned-url", {
+            const response = await axios.get("https://final-project-x2ln.onrender.com/api/Upload/presigned-url", {
                 params: {
                     userId: userIdForAccountant !== undefined ? userIdForAccountant.toString() : user.id?.toString(),
                     fileName: file.name, contentType: file.type, Category: uploadType, size: file.size
@@ -63,7 +63,7 @@ const FileUploader = () => {
                     setProgress(percent);
                 },
             });
-            await axios.post("https://localhost:7160/api/File/" + uploadType, {
+            await axios.post("https://final-project-x2ln.onrender.com/api/File/" + uploadType, {
                 FileName: file.name,
                 FileType: file.type,
                 Size: file.size,

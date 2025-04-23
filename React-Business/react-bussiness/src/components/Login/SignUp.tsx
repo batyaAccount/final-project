@@ -35,7 +35,7 @@ const SignUp = () => {
 
 
     const getAccounts = async () => {
-        const response = await axios.get("https://localhost:7160/api/User");
+        const response = await axios.get("https://final-project-x2ln.onrender.com/api/User");
         const data = response.data;
         setAccounters(data);
     };

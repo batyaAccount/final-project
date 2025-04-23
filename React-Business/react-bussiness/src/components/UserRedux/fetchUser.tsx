@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { User } from "../models/User";
-const url = 'https://localhost:7160/api/Auth';
+const url = 'https://final-project-x2ln.onrender.com/api/Auth';
 
 export const signIn = createAsyncThunk('Auth/login', async ({ user }: { user: Partial<User>; }, thunkAPI) => {
     try {

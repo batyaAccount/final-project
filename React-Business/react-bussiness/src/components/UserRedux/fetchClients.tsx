@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { User } from "../models/User";
 
-const url = 'https://localhost:7160/api/User/clients/';
+const url = 'https://final-project-x2ln.onrender.com/api/User/clients/';
 
 export const get = createAsyncThunk('clients', async ({ id }: { id: number; }, thunkAPI) => {
     try {
