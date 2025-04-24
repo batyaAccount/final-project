@@ -27,7 +27,7 @@ builder.Services.AddScoped<ApiBusiness.CORE.Entities.Receipts>();
 builder.Services.AddScoped<ApiBusiness.CORE.Entities.File>();
 builder.Services.AddDbContext<DataContext>(option =>
 {
-    option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    option.UseNpgsql(builder.Configuration["DefaultConnection"]);
 });
 builder.Services.AddScoped<IReciptService, ReciptService>();
 builder.Services.AddScoped<IUserService, UserService>();
