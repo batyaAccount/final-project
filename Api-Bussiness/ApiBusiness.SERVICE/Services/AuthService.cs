@@ -19,6 +19,7 @@ namespace ApiBusiness.SERVICE.Services
         public AuthService(IConfiguration configuration)
         {
             _configuration = configuration;
+            Console.WriteLine(_configuration["Key"]);
         }
 
         public string GenerateJwtToken(string username, string[] roles)
