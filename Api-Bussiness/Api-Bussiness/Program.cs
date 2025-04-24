@@ -27,7 +27,7 @@ builder.Services.AddScoped<ApiBusiness.CORE.Entities.Receipts>();
 builder.Services.AddScoped<ApiBusiness.CORE.Entities.File>();
 builder.Services.AddDbContext<DataContext>(option =>
 {
-    option.UseNpgsql(Environment.GetEnvironmentVariable("DefaultConnection"));
+    option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddScoped<IReciptService, ReciptService>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -67,15 +67,12 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = Environment.GetEnvironmentVariable("Issuer"),
-        ValidAudience = Environment.GetEnvironmentVariable("Audience"),
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("Key"))),
+        ValidIssuer = builder.Configuration["Issuer"],
+        ValidAudience = builder.Configuration["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Key"])),
         ClockSkew = TimeSpan.Zero
     };
-    if (string.IsNullOrEmpty(options.TokenValidationParameters.ValidIssuer))
-    {
-        throw new Exception("Issuer environment variable is not set.");
-    }
+  
 
 });
 
