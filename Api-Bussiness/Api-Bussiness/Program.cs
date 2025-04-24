@@ -72,6 +72,11 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("Key"))),
         ClockSkew = TimeSpan.Zero
     };
+    if (string.IsNullOrEmpty(options.TokenValidationParameters.ValidIssuer))
+    {
+        throw new Exception("Issuer environment variable is not set.");
+    }
+
 });
 
 builder.Services.AddAuthorization(options =>
