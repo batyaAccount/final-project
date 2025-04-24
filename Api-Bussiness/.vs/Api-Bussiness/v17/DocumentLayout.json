@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|solutionrelative:api-bussiness\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0E81E0E4-F201-42D7-8A4F-6D4D0C9F2F97}|ApiBusiness.SERVICE\\ApiBusiness.SERVICE.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\apibusiness.service\\services\\s3service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0E81E0E4-F201-42D7-8A4F-6D4D0C9F2F97}|ApiBusiness.SERVICE\\ApiBusiness.SERVICE.csproj|solutionrelative:apibusiness.service\\services\\s3service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\api-bussiness\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|solutionrelative:api-bussiness\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E81E0E4-F201-42D7-8A4F-6D4D0C9F2F97}|ApiBusiness.SERVICE\\ApiBusiness.SERVICE.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\apibusiness.service\\services\\s3service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E81E0E4-F201-42D7-8A4F-6D4D0C9F2F97}|ApiBusiness.SERVICE\\ApiBusiness.SERVICE.csproj|solutionrelative:apibusiness.service\\services\\s3service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\api-bussiness\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,15 +38,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\Api-Bussiness\\appsettings.json",
               "RelativeDocumentMoniker": "Api-Bussiness\\appsettings.json",
               "ToolTip": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\Api-Bussiness\\appsettings.json",
               "RelativeToolTip": "Api-Bussiness\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-24T19:28:59.155Z"
+              "WhenOpened": "2025-04-24T19:28:59.155Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -56,7 +57,7 @@
               "RelativeDocumentMoniker": "Api-Bussiness\\Program.cs",
               "ToolTip": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\Api-Bussiness\\Program.cs",
               "RelativeToolTip": "Api-Bussiness\\Program.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAAEoAAABDAAAAAAAAAA==",
+              "ViewState": "AgIAADgAAAAAAAAAAAAowEoAAABqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T19:16:30.411Z",
               "EditorCaption": ""
@@ -75,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "S3Service.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\ApiBusiness.SERVICE\\Services\\S3Service.cs",
               "RelativeDocumentMoniker": "ApiBusiness.SERVICE\\Services\\S3Service.cs",
@@ -83,8 +84,7 @@
               "RelativeToolTip": "ApiBusiness.SERVICE\\Services\\S3Service.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAYwBgAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T11:50:34.811Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T11:50:34.811Z"
             },
             {
               "$type": "Bookmark",
