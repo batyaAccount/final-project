@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\api-bussiness\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|solutionrelative:api-bussiness\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\api-bussiness\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|solutionrelative:api-bussiness\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\api-bussiness\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|solutionrelative:api-bussiness\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\api-bussiness\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,30 +26,38 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\Api-Bussiness\\appsettings.json",
               "RelativeDocumentMoniker": "Api-Bussiness\\appsettings.json",
               "ToolTip": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\Api-Bussiness\\appsettings.json",
               "RelativeToolTip": "Api-Bussiness\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-04-24T19:28:59.155Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\Api-Bussiness\\Program.cs",
               "RelativeDocumentMoniker": "Api-Bussiness\\Program.cs",
               "ToolTip": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\Api-Bussiness\\Program.cs",
               "RelativeToolTip": "Api-Bussiness\\Program.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAAEIAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T19:16:30.411Z",
               "EditorCaption": ""
@@ -65,14 +73,6 @@
               "ViewState": "AgIAABcAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T19:11:36.441Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             },
             {
               "$type": "Document",

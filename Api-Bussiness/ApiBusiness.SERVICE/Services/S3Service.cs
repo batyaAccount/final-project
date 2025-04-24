@@ -20,9 +20,9 @@ namespace ApiBusiness.SERVICE.Services
 
         public S3Service(IConfiguration configuration)
         {
-            var accessKey = Environment.GetEnvironmentVariable("AccessKey");
-            var secretKey = Environment.GetEnvironmentVariable("SecretKey");
-            var region = Environment.GetEnvironmentVariable("Region");
+            var accessKey = configuration["AccessKey"];
+            var secretKey = configuration["SecretKey"];
+            var region = configuration["Region"];
 
             
             Console.WriteLine(accessKey);
