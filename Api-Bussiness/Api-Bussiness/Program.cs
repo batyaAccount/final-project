@@ -72,8 +72,7 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Key"])),
         ClockSkew = TimeSpan.Zero
     };
-    Console.WriteLine(options.TokenValidationParameters.ValidIssuer+"------------------------#############");
-
+    Console.WriteLine("key:" + builder.Configuration["Key"]);
 });
 
 builder.Services.AddAuthorization(options =>
