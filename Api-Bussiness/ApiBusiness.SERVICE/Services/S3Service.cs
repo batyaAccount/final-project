@@ -20,15 +20,13 @@ namespace ApiBusiness.SERVICE.Services
 
         public S3Service(IConfiguration configuration)
         {
-            var accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID", EnvironmentVariableTarget.User);
-            var secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY", EnvironmentVariableTarget.User);
-            var region = Environment.GetEnvironmentVariable("AWS_REGION", EnvironmentVariableTarget.User);
+            var accessKey = Environment.GetEnvironmentVariable("AccessKey");
+            var secretKey = Environment.GetEnvironmentVariable("SecretKey");
+            var region = Environment.GetEnvironmentVariable("Region");
 
-            var awsOptions = configuration.GetSection("AWS");
             
             Console.WriteLine(accessKey);
             Console.WriteLine(secretKey);
-            var name = awsOptions["BucketName"];
 
             _s3Client = new AmazonS3Client(accessKey, secretKey, Amazon.RegionEndpoint.GetBySystemName(region));
         }
