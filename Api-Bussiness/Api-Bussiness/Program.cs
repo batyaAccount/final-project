@@ -23,20 +23,20 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped<ApiBusiness.CORE.Entities.Users>();
 builder.Services.AddScoped<ApiBusiness.CORE.Entities.FinancialTransaction>();
-builder.Services.AddScoped<ApiBusiness.CORE.Entities.Receipts>();
+builder.Services.AddScoped<ApiBusiness.CORE.Entities.Invoices>();
 builder.Services.AddScoped<ApiBusiness.CORE.Entities.File>();
 builder.Services.AddDbContext<DataContext>(option =>
 {
     option.UseNpgsql(builder.Configuration["DefaultConnection"]);
 });
-builder.Services.AddScoped<IReciptService, ReciptService>();
+builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<AuthService, AuthService>();
 
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IRoleRpository, RoleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IReciptsRepository, ReciptRepository>();
+builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
 builder.Services.AddScoped<IUserRolesRepository, UserRolesRepository>();
 builder.Services.AddScoped<IFileRepository, FileRepository>();
 builder.Services.AddScoped<IFileService, FileService>();

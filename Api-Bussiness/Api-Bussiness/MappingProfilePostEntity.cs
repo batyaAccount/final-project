@@ -11,7 +11,7 @@ namespace Api_Bussiness.API
         {
 
             CreateMap<UserPostEntity, UserDto>().ReverseMap();
-            CreateMap<ReceipePostEntity, ReceipeDto>().ReverseMap();
+            CreateMap<InvoicePostEntity, InvoiceDto>().ReverseMap();
             CreateMap<RegisterModel, UserDto>().ReverseMap();
             CreateMap<ApiBusiness.CORE.Entities.File, FileDto>().ReverseMap();
             CreateMap<FilePostEntity, FileDto>().ReverseMap();

@@ -14,9 +14,9 @@ namespace ApiBusiness.DATA.Repository
     {
         private readonly DataContext _context;
         public IUserRepository Users { get; }
-        public IReciptsRepository Recipts { get; }
+        public IInvoiceRepository Recipts { get; }
         
-        public RepositoryManager(DataContext context, IUserRepository User, IReciptsRepository Recipts)
+        public RepositoryManager(DataContext context, IUserRepository User, IInvoiceRepository Recipts)
         {
             _context = context;
             Users = User;

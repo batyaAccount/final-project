@@ -19,7 +19,7 @@ namespace ApiBusiness.CORE.Entities
         [MaxLength(500)]
         public string S3Key { get; set; }
         public int ReceiptId { get; set; }
-        public Receipts Receipt { get; set; }
+        public Invoices Receipt { get; set; }
         public int ClientId { get; set; }
         public Users Client { get; set; }
         public DateTime CreatedAt { get; set; }

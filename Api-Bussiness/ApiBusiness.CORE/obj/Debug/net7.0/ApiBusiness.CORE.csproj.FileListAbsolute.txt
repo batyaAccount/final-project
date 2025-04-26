@@ -10,3 +10,4 @@ C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.CORE\ob
 C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.CORE\obj\Debug\net7.0\refint\ApiBusiness.CORE.dll
 C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.CORE\obj\Debug\net7.0\ApiBusiness.CORE.pdb
 C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.CORE\obj\Debug\net7.0\ref\ApiBusiness.CORE.dll
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.CORE\obj\Debug\net7.0\ApiBusiness.CORE.sourcelink.json

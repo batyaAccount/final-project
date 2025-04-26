@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ApiBusiness.CORE.Entities
 {
-    public class Receipts
+    public class Invoices
     {
         [Key]
         public int Id { get; set; } // מזהה ייחודי

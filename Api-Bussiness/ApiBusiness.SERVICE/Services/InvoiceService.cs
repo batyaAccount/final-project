@@ -16,28 +16,28 @@ using static ApiBusiness.CORE.Entities.Predicates;
 
 namespace ApiBusiness.SERVICE.Services
 {
-    public class ReciptService : IReciptService
+    public class InvoiceService : IInvoiceService
     {
-        private readonly IReciptsRepository _receiptRepository;
+        private readonly IInvoiceRepository _invoiceRepository;
         private readonly IRepositoryManager _repositoryManager;
         private readonly IFinancialTransactionService _financialTransactionService;
         private readonly IS3Service _s3Service;
         private readonly IMapper _mapper;
 
-        public ReciptService(IS3Service s3Service, IFinancialTransactionService financialTransactionService, IReciptsRepository receiptRepository, IRepositoryManager repositoryManager, IMapper mapper)
+        public InvoiceService(IS3Service s3Service, IFinancialTransactionService financialTransactionService, IInvoiceRepository invoiceRepository, IRepositoryManager repositoryManager, IMapper mapper)
         {
-            _receiptRepository = receiptRepository;
+            _invoiceRepository = invoiceRepository;
             _repositoryManager = repositoryManager;
             _financialTransactionService = financialTransactionService;
             _mapper = mapper;
             _s3Service = s3Service;
         }
 
-        public async Task<ReceipeDto> AddAsync(ReceipeDto receipt)
+        public async Task<InvoiceDto> AddAsync(InvoiceDto invoice)
         {
-            if (await GetByIdAsync(receipt.Id) != null)
+            if (await GetByIdAsync(invoice.Id) != null)
                 return null;
-            var rD = _mapper.Map<Receipts>(receipt);
+            var rD = _mapper.Map<Invoices>(invoice);
             rD.Update = false;
             FinancialTransaction financialTransaction = new FinancialTransaction()
             {
@@ -48,20 +48,20 @@ namespace ApiBusiness.SERVICE.Services
             };
             var f = await _financialTransactionService.AddAsync(financialTransaction);
             rD.FinancialTransaction = f;
-            Receipts r = await _receiptRepository.AddAsync(rD);
+            Invoices r = await _invoiceRepository.AddAsync(rD);
             await _repositoryManager.SaveAsync();
-            var r2 = _mapper.Map<ReceipeDto>(r);
+            var r2 = _mapper.Map<InvoiceDto>(r);
             return r2;
         }
 
         /// <summary>
         ///של חשבונית ששמורה בענן ומכניסה נתונים לטבלת חשבוניות url פונקציה זו מקבלת ניתוב ל 
         /// </summary>
-        /// <param name="receiptUrl"></param>
+        /// <param name="invoiceUrl"></param>
         /// <returns></returns>
-        public async Task<ReceipeDto> AddByUrlAsync(string userId, string fileName)
+        public async Task<InvoiceDto> AddByUrlAsync(string userId, string fileName)
         {
-            ReceipeDto receipeDto = new ReceipeDto();
+            InvoiceDto receipeDto = new InvoiceDto();
             var client = new RestClient("https://app.nanonets.com/api/v2/OCR/Model/0b2a69ae-c240-42d6-a8bd-cade12838663/LabelFile/?async=false");
             var request = new RestRequest("", Method.Post);
 
@@ -143,37 +143,37 @@ namespace ApiBusiness.SERVICE.Services
             }
 
         }
-        public async Task<ReceipeDto> ConfirmReceipeAsync(int id)
+        public async Task<InvoiceDto> ConfirmReceipeAsync(int id)
         {
-            var r = await _receiptRepository.GetByIdAsync(id);
+            var r = await _invoiceRepository.GetByIdAsync(id);
             r.Update = true;
-            var rD = _mapper.Map<ReceipeDto>(r);
+            var rD = _mapper.Map<InvoiceDto>(r);
             await _repositoryManager.SaveAsync();
             return rD;
         }
         public async Task DeleteAsync(int id)
         {
-            await _receiptRepository.DeleteAsync(id);
+            await _invoiceRepository.DeleteAsync(id);
             await _repositoryManager.SaveAsync();
         }
 
-        public async Task<IEnumerable<ReceipeDto>> GetAllAsync()
+        public async Task<IEnumerable<InvoiceDto>> GetAllAsync()
         {
 
-            return _mapper.Map<IEnumerable<ReceipeDto>>(await _receiptRepository.GetAsync());
+            return _mapper.Map<IEnumerable<InvoiceDto>>(await _invoiceRepository.GetAsync());
         }
 
-        public async Task<ReceipeDto> GetByIdAsync(int id)
+        public async Task<InvoiceDto> GetByIdAsync(int id)
         {
-            var r = await _receiptRepository.GetByIdAsync(id);
-            return _mapper.Map<ReceipeDto>(r);
+            var r = await _invoiceRepository.GetByIdAsync(id);
+            return _mapper.Map<InvoiceDto>(r);
         }
 
-        public async Task<bool> UpdateAsync(int id, ReceipeDto receipt)
+        public async Task<bool> UpdateAsync(int id, InvoiceDto invoice)
         {
-            var reD = _mapper.Map<Receipts>(receipt);
+            var reD = _mapper.Map<Invoices>(invoice);
             reD.Update = true;
-            bool f = await _receiptRepository.UpdateAsync(id, reD);
+            bool f = await _invoiceRepository.UpdateAsync(id, reD);
             await _repositoryManager.SaveAsync();
             return f;
         }

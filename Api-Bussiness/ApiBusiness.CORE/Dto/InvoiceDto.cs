@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ApiBusiness.CORE.Dto
 {
-    public class ReceipeDto
+    public class InvoiceDto
     {
         public int Id { get; set; } 
         public double Amount { get; set; } 

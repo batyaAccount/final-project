@@ -583,7 +583,10 @@
           "Microsoft.EntityFrameworkCore.Abstractions": "6.0.36"
         },
         "runtime": {
-          "ApiBusiness.CORE.dll": {}
+          "ApiBusiness.CORE.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

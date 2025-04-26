@@ -37,3 +37,6 @@ export const styleCard =  {
     transition: 'all 0.3s', // transition-all duration-300
     marginBottom: "50px"
 }
+export const h1 = {
+    fontSize: '2.25rem', fontWeight: 'bold', marginBottom: '0.5rem', color: 'white' 
+}

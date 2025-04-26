@@ -2,7 +2,7 @@
 
 namespace Api_Bussiness.API.PostEntity
 {
-    public class ReceipePostEntity
+    public class InvoicePostEntity
     {
         public double Amount { get; set; }
         public int Category { get; set; } 

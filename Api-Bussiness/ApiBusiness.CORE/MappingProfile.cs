@@ -16,7 +16,7 @@ namespace ApiBusiness.CORE
         public MappingProfile()
         {
             CreateMap<Users, UserDto>().ReverseMap();
-            CreateMap<Receipts, ReceipeDto>().ReverseMap();
+            CreateMap<Invoices, InvoiceDto>().ReverseMap();
             CreateMap<Entities.File, FileDto>().ReverseMap();
             
         }

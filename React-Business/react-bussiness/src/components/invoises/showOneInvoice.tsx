@@ -4,8 +4,6 @@ import { Card, CardContent, Typography, CircularProgress, Container, Grid, Paper
 import { ReceiptLong, Category, CalendarToday, Store,  CheckCircle, Cancel } from "@mui/icons-material";
 import { Invoice } from "../models/Invoice";
 
-
-// Invoice Component
 export default ({ invoiceId }: { invoiceId: number }) => {
     const [invoice, setInvoice] = useState<Invoice | null>(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +12,6 @@ export default ({ invoiceId }: { invoiceId: number }) => {
     const getInvoiceById = async () => {
         try {
             const response = await axios.get(`https://final-project-x2ln.onrender.com/api/Recipt/${invoiceId}`);
-            // console.log("API Response:", response.data);
             if (response.data) {
                 setInvoice(response.data);
                 setIsLoading(false);  

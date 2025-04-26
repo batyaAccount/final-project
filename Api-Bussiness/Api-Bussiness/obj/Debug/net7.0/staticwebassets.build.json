@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "sLsjYvZRZqyfweIv9mlBehZfJX40Yc+ytRBIIzMsJPU=",
+  "Hash": "9Pr+FSf/hotOVu6X+Hk2o6ws635aPqq+wu0mZ4j7Xj8=",
   "Source": "Api-Bussiness.API",
   "BasePath": "_content/Api-Bussiness.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

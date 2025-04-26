@@ -20,12 +20,12 @@ namespace ApiBusiness.SERVICE.Services
     {
         private readonly IFileRepository _fileRepository;
         private readonly IRepositoryManager _repositoryManager;
-        private readonly IReciptService _receiptService;
+        private readonly IInvoiceService _receiptService;
         private readonly IUserRepository _userRepository;
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
 
-        public FileService(IUserService userService, IUserRepository userRepository, IFileRepository fileRepository, IRepositoryManager repositoryManager, IReciptService receiptService, IMapper mapper)
+        public FileService(IUserService userService, IUserRepository userRepository, IFileRepository fileRepository, IRepositoryManager repositoryManager, IInvoiceService receiptService, IMapper mapper)
         {
             _fileRepository = fileRepository;
             _repositoryManager = repositoryManager;

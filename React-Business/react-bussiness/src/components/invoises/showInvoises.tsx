@@ -13,6 +13,7 @@ import { ArrowLeft, Upload, Pencil, Check, Trash2, AlertCircle, Download } from 
 import InvoiceForm from "./InvoiceForm"
 import ShowOneInvoice from "./showOneInvoice"
 import FilterInvoiecs from "./FilterInvoices"
+import { accordionSummary, arrow, button, button1, button2, button3, button4, card, check, div, div1, div2, div3, div4, h1, motionDiv, motionDiv1, motionDiv2, span, trash2, upload } from "./showInvoicesDesign"
 
 const ShowInvoices = () => {
     const [files, setFiles] = useState<Array<Files>>([])
@@ -27,10 +28,10 @@ const ShowInvoices = () => {
     const url = "https://final-project-x2ln.onrender.com/api/File/"
 
     const fetchInvoices = async () => {
-        const token = user.token   
+        const token = user.token
 
         if (!token) {
-            
+
             setError("No token found")
             setLoading(false)
             return
@@ -131,80 +132,36 @@ const ShowInvoices = () => {
 
     return (
         <div
-            style={{
-                margin: '0 auto',
-                paddingLeft: '1rem',
-                paddingRight: '1rem',
-                paddingTop: '2rem',
-                paddingBottom: '2rem',
-                position: 'relative'
-            }}>
+            style={div}>
             <motion.div
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6 }}
-                style={{
-                    textAlign: 'center',
-                    marginBottom: '2rem'
-                }}
+                style={{ textAlign: 'center', marginBottom: '2rem' }}
             >
-                <h1 style={{
-                    fontSize: '2.25rem',
-                    fontWeight: 'bold',
-                    marginBottom: '1rem',
-                    color: 'white'
-                }}>Invoices</h1>
+                <h1 style={h1}>Invoices</h1>
             </motion.div>
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                style={{
-                    marginBottom: '2rem'
-                }}            >
+                style={{ marginBottom: '2rem' }}>
                 <FilterInvoiecs fetchInvoices={fetchInvoices} files={files} setFiles={setFiles} invoiceArray={invoiceArray} />
             </motion.div>
 
             {loading ? (
-                <div style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    marginTop: '3rem',
-                    marginBottom: '3rem'
-                }}>
-                    <div style={{
-                        width: '4rem',
-                        height: '4rem',
-                        borderRadius: '50%',
-                        borderWidth: '0.25rem',
-                        borderStyle: 'solid',
-                        borderColor: 'rgba(255, 255, 255, 0.2)',
-                        borderTopColor: 'white',
-                        animation: 'spin 1s linear infinite'
-                    }}></div>
+                <div style={div1}>
+                    <div style={div2}>
+
+                    </div>
                 </div>
             ) : error ? (
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    style={{
-                        backgroundColor: 'rgba(255, 0, 0, 0.2)',
-                        backdropFilter: 'blur(4px)',
-                        color: 'white',
-                        padding: '1.5rem',
-                        borderRadius: '0.5rem',
-                        marginBottom: '2rem',
-                        border: '1px solid rgba(255, 0, 0, 0.5)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.75rem'
-                    }}
-
-                >
-                    <AlertCircle style={{
-                        color: 'rgb(239, 68, 68)'
-                    }} />
+                    style={motionDiv}>
+                    <AlertCircle style={{ color: 'rgb(239, 68, 68)' }} />
                     <span>{error}</span>
                 </motion.div>
             ) : (
@@ -215,39 +172,16 @@ const ShowInvoices = () => {
                                 <Accordion component="div" className="w-full" style={{
                                     backgroundColor: 'rgba(255, 255, 255, 0.1)'
                                 }}>
-                                    <AccordionSummary style={{
-                                        paddingLeft: '1.5rem',
-                                        paddingRight: '1.5rem',
-                                        paddingTop: '1rem',
-                                        paddingBottom: '1rem',
-                                        transition: 'all 0.3s ease',
-                                    }}
-                                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)'} // hover:bg-white/5
+                                    <AccordionSummary style={accordionSummary}
+                                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)'}
                                         onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
-                                        <div style={{
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            alignItems: 'center'
-                                        }}>
-                                            <span style={{
-                                                fontSize: '1.25rem',
-                                                fontWeight: '600'
-                                            }}>Invoice {index + 1}</span>
+                                        <div style={div3}>
+                                            <span style={span}>Invoice {index + 1}</span>
                                         </div>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <div style={{
-                                            padding: '1rem',
-                                            display: 'flex',
-                                            gridTemplateColumns: 'repeat(1, 1fr)',
-                                            gap: '1.5rem'
-                                        }}>
-                                            <Card style={{
-                                                backdropFilter: 'blur(4px)',
-                                                backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                                                border: 'none',
-                                                overflow: 'hidden'
-                                            }}>
+                                        <div style={div4}>
+                                            <Card style={card}>
                                                 <CardContent style={{
                                                     padding: '1rem'
                                                 }}>
@@ -265,18 +199,10 @@ const ShowInvoices = () => {
                                             <motion.div
                                                 whileHover={{ scale: 1.02 }}
                                                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                                                style={{
-                                                    position:'relative',
-                                                    overflow: 'hidden',
-                                                    borderRadius: '0.5rem',
-                                                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
-                                                }}>
+                                                style={motionDiv1}>
                                                 <img src={invoice.imgSrc || "/placeholder.svg"}
                                                     alt={`Invoice`}
-                                                    style={{
-                                                        width: '100%',
-                                                        height: '100%',
-                                                    }} />
+                                                    style={{ width: '100%', height: '100%' }} />
                                                 <div
                                                     onClick={async () => {
                                                         try {
@@ -297,20 +223,9 @@ const ShowInvoices = () => {
                                                             alert('Failed to download the invoice image.');
                                                         }
                                                     }}
-                                                    style={{
-                                                        position: 'absolute',
-                                                        bottom: '10px', // Adjust as needed
-                                                        right: '10px',  // Adjust as needed
-                                                        backgroundColor: 'rgba(255, 255, 255, 0.7)', // Semi-transparent background
-                                                        borderRadius: '50%',
-                                                        padding: '0.5rem',
-                                                        cursor: 'pointer',
-                                                        display: 'flex',
-                                                        justifyContent: 'center',
-                                                        alignItems: 'center'
-                                                    }}
+                                                    style={motionDiv2}
                                                 >
-                                                    <Download size={20} /> {/* Adjust icon size as needed */}
+                                                    <Download size={20} />
                                                 </div>
                                             </motion.div>
                                         </div>
@@ -318,11 +233,7 @@ const ShowInvoices = () => {
                                             <div className="flex flex-col gap-3 justify-center">
                                                 <Button
                                                     variant="outlined"
-                                                    style={{
-                                                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
-                                                        color: 'white',
-                                                        border: '1px solid rgba(37, 99, 235, 0.5)',
-                                                    }}
+                                                    style={button}
                                                     onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(37, 99, 235, 0.3)'}
                                                     onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(37, 99, 235, 0.2)'} onClick={() => handleUpdateClick(invoice)}
                                                 >
@@ -332,40 +243,24 @@ const ShowInvoices = () => {
 
                                                 <Button
                                                     variant="outlined"
-                                                    style={{
-                                                        backgroundColor: 'rgba(22, 163, 74, 0.2)',
-                                                        color: 'white',
-                                                        border: '1px solid rgba(22, 163, 74, 0.5)',
-                                                    }}
+                                                    style={button1}
                                                     onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(22, 163, 74, 0.3)'}
                                                     onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(22, 163, 74, 0.2)'} onClick={() => handleApproveClick(invoice)}
                                                 >
-                                                    <Check style={{
-                                                        marginRight: '0.5rem',
-                                                        height: '1rem',
-                                                        width: '1rem',
-                                                    }} />
+                                                    <Check style={check} />
                                                     Confirm
                                                 </Button>
 
                                                 <Button
                                                     variant="outlined"
-                                                    style={{
-                                                        backgroundColor: 'rgba(248, 113, 113, 0.2)',
-                                                        color: 'white',
-                                                        border: '1px solid rgba(248, 113, 113, 0.5)',
-                                                    }}
+                                                    style={button2}
                                                     onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(248, 113, 113, 0.3)'}
                                                     onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(248, 113, 113, 0.2)'} onClick={() => handleDelete(invoice)}
                                                 >
-                                                    <Trash2 style={{
-                                                        marginRight: '0.5rem',
-                                                        height: '1rem',
-                                                        width: '1rem',
-                                                    }} />
+                                                    <Trash2 style={trash2} />
                                                     Delete
                                                 </Button>
-                                             
+
                                             </div>
                                         )}
 
@@ -412,11 +307,7 @@ const ShowInvoices = () => {
                     <>
                         <Button
                             variant="outlined"
-                            style={{
-                                backgroundColor: 'rgba(128, 0, 128, 0.2)',
-                                color: 'white',
-                                border: '1px solid rgba(128, 0, 128, 0.5)',
-                            }}
+                            style={button3}
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.backgroundColor = 'rgba(128, 0, 128, 0.3)';
                             }}
@@ -424,21 +315,13 @@ const ShowInvoices = () => {
                                 e.currentTarget.style.backgroundColor = 'rgba(128, 0, 128, 0.2)';
                             }} onClick={() => navigate("/Uplaod Invoice/" + id, { replace: true })}
                         >
-                            <Upload style={{
-                                marginRight: '0.5rem',
-                                height: '1rem',
-                                width: '1rem',
-                            }} />
+                            <Upload style={upload} />
                             Upload Invoice
                         </Button>
 
                         <Button
                             variant="outlined"
-                            style={{
-                                backgroundColor: 'rgba(0, 0, 255, 0.2)',
-                                color: 'white', // text-white
-                                border: '1px solid rgba(0, 0, 255, 0.5)',
-                            }}
+                            style={button4}
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.backgroundColor = 'rgba(0, 0, 255, 0.3)';
                             }}
@@ -446,11 +329,7 @@ const ShowInvoices = () => {
                                 e.currentTarget.style.backgroundColor = 'rgba(0, 0, 255, 0.2)';
                             }} onClick={() => navigate("/Accountant", { replace: true })}
                         >
-                            <ArrowLeft style={{
-                                marginRight: '0.5rem',
-                                height: '1rem',
-                                width: '1rem',
-                            }} />
+                            <ArrowLeft style={arrow} />
                             Back to Dashboard
                         </Button>
                     </>
@@ -459,6 +338,5 @@ const ShowInvoices = () => {
         </div>
     )
 }
-
 export default ShowInvoices
 

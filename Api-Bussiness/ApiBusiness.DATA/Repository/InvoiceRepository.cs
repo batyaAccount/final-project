@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace ApiBusiness.DATA.Repository
 {
-    public class ReciptRepository : IReciptsRepository
+    public class InvoiceRepository : IInvoiceRepository
     {
-        protected readonly DbSet<Receipts> _dbSet;
-        public ReciptRepository(DataContext context)
+        protected readonly DbSet<Invoices> _dbSet;
+        public InvoiceRepository(DataContext context)
         {
             _dbSet = context.Recipts;
         }
-        public async Task<Receipts> AddAsync(Receipts receipt)
+        public async Task<Invoices> AddAsync(Invoices receipt)
         {
             await _dbSet.AddAsync(receipt);
             receipt.CreatedAt = DateTime.UtcNow;
@@ -29,19 +29,19 @@ namespace ApiBusiness.DATA.Repository
             _dbSet.Remove(r);
         }
 
-        public async Task<IEnumerable<Receipts>> GetAsync()
+        public async Task<IEnumerable<Invoices>> GetAsync()
         {
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<Receipts> GetByIdAsync(int receipt)
+        public async Task<Invoices> GetByIdAsync(int receipt)
         {
            return await _dbSet.FindAsync(receipt);
         }
 
-        public async Task<bool> UpdateAsync(int id, Receipts receipt)
+        public async Task<bool> UpdateAsync(int id, Invoices receipt)
         {
-            Receipts r =await GetByIdAsync(id);
+            Invoices r =await GetByIdAsync(id);
             if (r != null)
             {
                 r.Supplier = receipt.Supplier;

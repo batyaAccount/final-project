@@ -12,4 +12,5 @@ C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE
 C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\refint\ApiBusiness.SERVICE.dll
 C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\ApiBusiness.SERVICE.pdb
 C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\ref\ApiBusiness.SERVICE.dll
-C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\ApiBusiness.SERVICE.csproj.CopyComplete
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\ApiBusiness.SERVICE.sourcelink.json
+C:\Users\user1\Desktop\Batya\Practicum-project\Api-Bussiness\ApiBusiness.SERVICE\obj\Debug\net7.0\ApiBusin.C0DE3F76.Up2Date

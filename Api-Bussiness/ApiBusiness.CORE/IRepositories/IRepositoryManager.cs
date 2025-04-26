@@ -9,7 +9,7 @@ namespace ApiBusiness.CORE.IRepositories
     public interface IRepositoryManager
     {
         public IUserRepository Users { get; }
-        public IReciptsRepository Recipts { get; }
+        public IInvoiceRepository Recipts { get; }
 
 
         public Task SaveAsync();

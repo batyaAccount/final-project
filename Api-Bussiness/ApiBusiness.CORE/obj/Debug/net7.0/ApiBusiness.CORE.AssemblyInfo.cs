@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiBusiness.CORE")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3a33f9871a735edb11428c54544743caa620825")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c7e801ec0c3e8781f78483e3e20632d5da70651")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiBusiness.CORE")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiBusiness.CORE")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

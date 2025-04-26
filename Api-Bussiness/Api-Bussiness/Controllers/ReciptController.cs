@@ -13,30 +13,30 @@ namespace Api_Bussiness.API.Controllers
     [ApiController]
     public class ReciptController : ControllerBase
     {
-        private readonly IReciptService _receiptService;
+        private readonly IInvoiceService _invoiceService;
         private readonly IMapper _mapper;
 
 
-        public ReciptController(IReciptService receiptService,IMapper mapper)
+        public ReciptController(IInvoiceService invoiceService,IMapper mapper)
         {
-            _receiptService = receiptService;
+            _invoiceService = invoiceService;
             _mapper = mapper;
         }
 
         // GET: api/<ReciptController>
         [HttpGet]
 
-        public async Task<ActionResult<IEnumerable<ReceipeDto>>> GetAsync()
+        public async Task<ActionResult<IEnumerable<InvoiceDto>>> GetAsync()
         {
-            var receipts = await _receiptService.GetAllAsync();
+            var receipts = await _invoiceService.GetAllAsync();
             return Ok(receipts);
         }
 
         // GET api/<ReciptController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ReceipeDto>> GetAsync(int id)
+        public async Task<ActionResult<InvoiceDto>> GetAsync(int id)
         {
-            var receipt =await _receiptService.GetByIdAsync(id);
+            var receipt =await _invoiceService.GetByIdAsync(id);
             if (receipt == null)
             {
                 return NotFound();
@@ -46,10 +46,10 @@ namespace Api_Bussiness.API.Controllers
 
         // POST api/<ReciptController>
         [HttpPost]
-        public async Task<ActionResult<ReceipeDto>> PostAsync([FromBody] ReceipePostEntity receipt)
+        public async Task<ActionResult<InvoiceDto>> PostAsync([FromBody] InvoicePostEntity receipt)
         {
-            var receiptD = _mapper.Map<ReceipeDto>(receipt);
-            var createdReceipt = await _receiptService.AddAsync(receiptD);
+            var receiptD = _mapper.Map<InvoiceDto>(receipt);
+            var createdReceipt = await _invoiceService.AddAsync(receiptD);
             if (createdReceipt == null)
                 return BadRequest();
             return Ok(createdReceipt);
@@ -57,11 +57,11 @@ namespace Api_Bussiness.API.Controllers
 
         // PUT api/<ReciptController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync( [FromBody] ReceipePostEntity receipt,int id)
+        public async Task<IActionResult> PutAsync( [FromBody] InvoicePostEntity receipt,int id)
         {
-            var receiptD = _mapper.Map<ReceipeDto>(receipt);
+            var receiptD = _mapper.Map<InvoiceDto>(receipt);
 
-            if (! await _receiptService.UpdateAsync(id, receiptD))
+            if (! await _invoiceService.UpdateAsync(id, receiptD))
             {
                 return NotFound();
             }
@@ -70,7 +70,7 @@ namespace Api_Bussiness.API.Controllers
         [HttpPut("confirm/{id}")]
         public async Task<IActionResult> ConfirmAsync(int id)
         { 
-            var re = await _receiptService.ConfirmReceipeAsync(id) == null;
+            var re = await _invoiceService.ConfirmReceipeAsync(id) == null;
             if (re== null)
             {
                 return NotFound();
@@ -82,7 +82,7 @@ namespace Api_Bussiness.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
-           await _receiptService.DeleteAsync(id);
+           await _invoiceService.DeleteAsync(id);
             return NoContent();
         }
     }
