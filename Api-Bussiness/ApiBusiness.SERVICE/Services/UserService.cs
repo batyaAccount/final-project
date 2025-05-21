@@ -3,6 +3,7 @@ using ApiBusiness.CORE.Entities;
 using ApiBusiness.CORE.IRepositories;
 using ApiBusiness.CORE.IServices;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,20 +20,26 @@ namespace ApiBusiness.SERVICE.Services
         private readonly IRoleRpository _roleRpository;
         private readonly IMapper _mapper;
         private readonly IUserRolesRepository _userRolesRepository;
+        private readonly ILogger<UserService> _logger;
 
-        public UserService(IRoleRpository roleRpository, IUserRepository userRepository, IRepositoryManager repositoryManager, IMapper mapper, IUserRolesRepository userRolesRepository)
+        public UserService(IRoleRpository roleRpository, IUserRepository userRepository, IRepositoryManager repositoryManager, IMapper mapper, IUserRolesRepository userRolesRepository,ILogger<UserService> logger)
         {
             _userRepository = userRepository;
             _repositoryManager = repositoryManager;
             _mapper = mapper;
             _userRolesRepository = userRolesRepository;
             _roleRpository = roleRpository;
+            _logger = logger;
         }
         public async Task<UserDto> AddAsync(UserDto user, string roleName)
         {
             var user2 = _mapper.Map<Users>(user);
+
             if (await GetByIdAsync(user.Id) != null)
+            {
+                _logger.LogInformation(" user : ####################" + user.Id);
                 return null;
+            }
             Users u = await _userRepository.AddAsync(user2);
             if (u == null)
                 return null;

@@ -1910,6 +1910,7 @@
           "ApiBusiness.CORE": "1.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.1",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.2",
           "Newtonsoft.Json": "13.0.3",
           "RestSharp": "112.1.0",
           "System.IdentityModel.Tokens.Jwt": "6.36.0",
