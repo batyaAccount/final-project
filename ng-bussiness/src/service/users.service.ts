@@ -26,6 +26,7 @@ export class UsersService {
       email: user.email,
       roleName: user.roleName,
       accountantId: user.accountantId
+      
   },{headers});
 
   }
