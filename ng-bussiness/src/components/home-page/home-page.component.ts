@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { log } from 'console';
 
 @Component({
   selector: 'app-home-page',
@@ -7,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
-
+    constructor() {
+    console.log("home page ");
+  }
 }

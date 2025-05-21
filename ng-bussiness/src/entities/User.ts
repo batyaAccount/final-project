@@ -1,11 +1,12 @@
 export type User = {
 
-    Id: number,
-    Name: string,
-    Email: string,
-    Password: string,
-    RoleName: string,
-    token: string
+    id: number,
+    name: string,
+    email: string,
+    password: string,
+    roleName: string,
+    token: string,
+    accountantId:number
 }
 /*
 public int Id { get; set; }

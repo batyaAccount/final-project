@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
 
-  private apiUrl = 'https://localhost:7160/api';
+  private apiUrl = 'https://final-project-x2ln.onrender.com/api';
 
   constructor(private http: HttpClient) { }
   loginUser(person: Partial<User>): Observable<any> {

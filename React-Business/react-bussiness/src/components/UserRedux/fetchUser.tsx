@@ -19,10 +19,10 @@ export const signIn = createAsyncThunk('Auth/login', async ({ user }: { user: Pa
 export const signUp = createAsyncThunk('Auth/register', async ({ user }: { user: Partial<User>; }, thunkAPI) => {
     try {
         const res = await axios.post(url + '/' + "register", {
-            Name: user.name,
-            Password: user.password,
-            Email: user.email,
-            RoleName: user.roleName,
+            name: user.name,
+            password: user.password,
+            email: user.email,
+            roleName: user.roleName,
             accountantId: user.accountantId
         });
         debugger

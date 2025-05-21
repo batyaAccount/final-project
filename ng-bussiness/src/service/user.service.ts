@@ -9,7 +9,6 @@ import { User } from '../entities/User';
 export class UserService {
 
   private readonly user: BehaviorSubject<Partial<User>> = new BehaviorSubject<Partial<User>>(
-
     this.getUserFromSessionStorage()
   );
   user$ = this.user.asObservable();
@@ -31,25 +30,19 @@ export class UserService {
   getTeacerById(id: string|undefined): Observable<Partial<User>> {
     if(id == undefined) 
       alert("Please provide a valid id");
-    return this.http.get(`http://localhost:3000/api/users/${id}`, { headers: this.getHeaders() })
+    return this.http.get(`https://final-project-x2ln.onrender.com/api/users/${id}`, { headers: this.getHeaders() })
   }
   setValue(newValue: Partial<User>): void {
     this.user.next(newValue);
     this.saveUserToSessionStorage(newValue);
 
   }
-
   get currentValue(): Partial<User> {
     return this.user.value;
   }
-  /*Id: numb
-Name: st
-Email: s
-Password
-RoleName
-token: s */
+ 
   clearUser(): void {
-    this.user.next({Id:0,  Name: '', Email: '', Password: '', token: '',RoleName:'', });
+    this.user.next({id:0,  name: '', email: '', password: '', token: '',roleName:'', });
     sessionStorage.removeItem('user'); // Clear from sessionStorage
   }
 

@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginService } from '../../service/login.service';
 import { UserService } from '../../service/user.service';
@@ -28,7 +28,8 @@ export class SignInComponent {
 
   private closeDialogAndNavigate() {
     this.dialogRef.closeAll();
-    setTimeout(() => this.router.navigate(['/home']), 100);
+    setTimeout(() => this.router.navigate(['/UserManagement']), 100);
+
   }
   
   signIn() {
@@ -46,6 +47,7 @@ export class SignInComponent {
 
       });
     }
+  
 
   }
 }
