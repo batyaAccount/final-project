@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Api-Bussiness.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c4d075df3bb31d4d178dfe362be7f2cfece232af")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+72cfc612f483c5a31acf38e812ab180f756ad85f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Api-Bussiness.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Api-Bussiness.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
