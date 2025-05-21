@@ -55,6 +55,7 @@ namespace Api_Bussiness.API.Controllers
             }
             return Unauthorized();
         }
+
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel model)
         {
@@ -62,6 +63,7 @@ namespace Api_Bussiness.API.Controllers
             {
                 return Conflict("User is not valid");
             }
+
             var modelD = _mapper.Map<UserDto>(model);
             var existingUser = await _userService.AddAsync(modelD,model.RoleName);
             if (existingUser == null)
