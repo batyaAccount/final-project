@@ -23,17 +23,23 @@ namespace Api_Bussiness.API.Controllers
         private readonly AuthService _authService;
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
-        public AuthController(IConfiguration configuration, AuthService authService, IUserService userService, IMapper mapper)
+        private readonly ILogger<AuthController> _logger;
+
+        public AuthController(IConfiguration configuration, AuthService authService, IUserService userService, IMapper mapper, ILogger<AuthController> logger)
         {
             _configuration = configuration;
             _authService = authService;
             _userService = userService;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
+            _logger.LogInformation("This is a log message from the controller during a GET request.");
+
+            Console.WriteLine("The model:" + model);
             var role = await _userService.AuthenticateAsync(model.Name, model.Password);
             if (role != null)
             {
@@ -59,11 +65,13 @@ namespace Api_Bussiness.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel model)
         {
+
+            _logger.LogInformation("register - - This is a log message from the controller during a GET request.");
+
             if (model == null)
             {
                 return Conflict("User is not valid");
             }
-
             var modelD = _mapper.Map<UserDto>(model);
             var existingUser = await _userService.AddAsync(modelD,model.RoleName);
             if (existingUser == null)
