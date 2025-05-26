@@ -184,7 +184,7 @@ const AnimatedIcon = styled(CloudUploadIcon)(({ hasFile }: { hasFile: boolean })
     animation: hasFile ? `${pulse} 2s ease-in-out infinite` : "none",
 }))
 
-const StyledRadio = styled(Radio)(({ theme }) => ({
+const StyledRadio = styled(Radio)(() => ({
     color: "rgba(255, 255, 255, 0.7)",
     "&.Mui-checked": {
         color: "#4CAF50",
@@ -194,7 +194,7 @@ const StyledRadio = styled(Radio)(({ theme }) => ({
     },
 }))
 
-const StyledFormControlLabel = styled(FormControlLabel)(({ theme }) => ({
+const StyledFormControlLabel = styled(FormControlLabel)(() => ({
     "& .MuiFormControlLabel-label": {
         color: "white",
         fontSize: "16px",
@@ -243,7 +243,7 @@ const GlassAlert = styled(Alert)(() => {
     }
 })
 
-const StyledLinearProgress = styled(LinearProgress)(({ theme }) => ({
+const StyledLinearProgress = styled(LinearProgress)(() => ({
     height: 8,
     borderRadius: 4,
     backgroundColor: "rgba(255, 255, 255, 0.1)",
@@ -253,7 +253,7 @@ const StyledLinearProgress = styled(LinearProgress)(({ theme }) => ({
     },
 }))
 
-const LoadingSpinner = styled(Box)(({ theme }) => ({
+const LoadingSpinner = styled(Box)(() => ({
     width: 20,
     height: 20,
     border: "2px solid rgba(255,255,255,0.3)",
@@ -262,7 +262,7 @@ const LoadingSpinner = styled(Box)(({ theme }) => ({
     animation: `${rotate} 1s linear infinite`,
 }))
 
-const GlassDialog = styled(Dialog)(({ theme }) => ({
+const GlassDialog = styled(Dialog)(() => ({
     "& .MuiDialog-paper": {
         backdropFilter: "blur(20px)",
         background: "rgba(255, 255, 255, 0.1)",
@@ -280,7 +280,7 @@ const GlassDialog = styled(Dialog)(({ theme }) => ({
     },
 }))
 
-const ClientButton = styled(Button)(({ theme }) => ({
+const ClientButton = styled(Button)(() => ({
     background: "rgba(255, 255, 255, 0.1)",
     color: "white",
     border: "1px solid rgba(255, 255, 255, 0.2)",
