@@ -1,49 +1,3 @@
-<!-- <div>
-  <h2>ניהול משתמשים</h2>
-
-  <form [formGroup]="userForm" (ngSubmit)="editingUser ? updateUser() : addUser()">
-    <input formControlName="id" type="hidden">
-    <label for="name">שם:</label>
-    <input formControlName="name" id="name" required>
-
-    <label for="email">אימייל:</label>
-    <input formControlName="email" id="email" required type="email">
-
-    <label for="password">סיסמה:</label>
-    <input formControlName="password" id="password" required type="password">
-
-    <label for="accountantId">Accountant ID:</label>
-    <input formControlName="accountantId" id="accountantId" type="number">
-
-    <button type="submit">{{ editingUser ? 'עדכן' : 'הוסף משתמש' }}</button>
-  </form>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>שם</th>
-        <th>אימייל</th>
-        <th>פעולות</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (user of users; track user.Id){
-      <td>{{ user.Id }}</td>
-      <td>{{ user.Name }}</td>
-      <td>{{ user.Email }}</td>
-      <td>
-        <button (click)="editUser(user)">ערוך</button>
-        <button (click)="deleteUser(user.Id)">מחק</button>
-      </td>
-      }
-
-    </tbody>
-  </table>
-</div> -->
-
-
-
 <div class="users-container">
   <div class="page-header">
     <h1>ניהול משתמשים</h1>
@@ -128,18 +82,30 @@
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>תפקיד</mat-label>
-          <input matInput formControlName="roleName" type="text">
-
-          <!-- <mat-select formControlName="RoleName">
-            <mat-option value="client">Client</mat-option>
-            <mat-option value="accountantId">Accountant</mat-option>
-          </mat-select> -->
+          <mat-select (selectionChange)="onRoleChange($event.value)" formControlName="roleName">
+            <mat-option value="Client">Client</mat-option>
+            <mat-option value="Accountant">Accountant</mat-option>
+            <mat-option value="Admin">Admin</mat-option>
+          </mat-select>
           <mat-icon matPrefix>person</mat-icon>
           <ng-container *ngIf="userForm.get('roleName')?.hasError('required')">
             <mat-error>שדה חובה</mat-error>
           </ng-container>
         </mat-form-field>
-        
+
+
+
+
+        <div *ngIf="showAccountantSelect">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>בחר רואה חשבון</mat-label>
+            <mat-select formControlName="accountantId">
+              <mat-option *ngFor="let accountant of accountants" [value]="accountant.id">
+                {{ accountant.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>סיסמה</mat-label>

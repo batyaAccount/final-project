@@ -476,5 +476,25 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "Api_Bussiness.API.Controllers.UserController",
+    "Method": "GetUsersPerMonth",
+    "RelativePath": "api/User/per-month",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32[]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

@@ -12,8 +12,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { MatOption } from '@angular/material/core';
-
-//מחיקה ועדכון לא עובד!!!!!!!!!!!
+import { MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-user-management',
@@ -27,14 +26,17 @@ import { MatOption } from '@angular/material/core';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatOption,
+    MatSelect
+
+
   ],
   templateUrl: './user-management.component.html',
   styleUrl: './user-management.component.css'
 })
 export class UserManagementComponent {
   users: User[] = [];
-
   userForm: FormGroup;
   editingUser: User | null = null;
   hidePassword: boolean = true;
@@ -44,6 +46,10 @@ export class UserManagementComponent {
   private dialogRef!: MatDialogRef<any>;
 
   add_user: boolean = false;
+  accountants: User[] = [];
+  showAccountantSelect: boolean = false;
+
+
   constructor(private userService: UsersService, private fb: FormBuilder, private dialog: MatDialog) {
 
 
@@ -53,13 +59,37 @@ export class UserManagementComponent {
       password: ['', Validators.required],
       accountantId: [null],
       roleName: ['', Validators.required]
-
     });
 
   }
   ngOnInit(): void {
     this.loadUsers();
+    this.loadAccountants();
+
     console.log(this.users);
+
+  }
+
+  loadAccountants(): void {
+    this.userService.getAllUsers().subscribe({
+      next: (data: User[]) => {
+        this.accountants = data.filter(user => user.accountantId === -1 || user.accountantId === null && user.roleName !== 'Admin'
+        );
+      },
+      error: (err) => {
+        console.error('Error fetching accountants:', err);
+      }
+    });
+  }
+
+  onRoleChange(event: any): void {
+    this.showAccountantSelect = (event === 'Client');
+
+    const currentRoles = this.userForm.get('roleName')?.value || [];
+    if (!currentRoles.includes(event)) {
+      currentRoles.push(event);
+      this.userForm.patchValue({ roleName: currentRoles });
+    }
 
   }
   getUserInitials(user: User): string {
@@ -93,16 +123,20 @@ export class UserManagementComponent {
     });
   }
   startEdit(user: User) {
-    debugger
     this.editingUserId = user.id;
     this.add_user = false;
 
     this.userForm.reset();
+    debugger
     this.userForm.patchValue({
       email: user.email,
       name: user.name,
-
+      roleName: user.roleName,
+      password: user.password
     });
+
+
+    this.openDialog();
   }
   cancelEdit() {
     this.editingUserId = null;
@@ -118,6 +152,7 @@ export class UserManagementComponent {
     let updatedUser: User = {
       ...formValue,
       password: formValue.password || '',
+      id: this.editingUserId
     };
 
     if (formValue.password && formValue.password.trim() !== '') {
@@ -152,17 +187,27 @@ export class UserManagementComponent {
     });
   }
 
+
   // addUser(): void {
   //   if (this.userForm.valid) {
-  //     debugger
-  //     this.userService.addUser(this.userForm.value).subscribe({
+
+  //     const userToAdd = {
+  //       name: this.userForm.value.name,
+  //       email: this.userForm.value.email,
+  //       password: this.userForm.value.password,
+  //       roleName: this.userForm.value.roleName,
+  //       accountantId: -1
+  //     };
+
+  //     this.userService.addUser(userToAdd as User).subscribe({
   //       next: () => {
   //         this.loadUsers();
   //         this.userForm.reset();
   //       },
-  //       error: (err) => {
-  //         console.error('Error adding user:', err);
+  //       error: (error) => {
+  //         console.error('Error adding user:', error.error.message || error.message);
   //       }
+
   //     });
   //   }
   // }
@@ -172,8 +217,8 @@ export class UserManagementComponent {
         name: this.userForm.value.name,
         email: this.userForm.value.email,
         password: this.userForm.value.password,
-        roleName: this.userForm.value.roleName,
-        accountantId:-1
+        roleName: this.userForm.value.roleName.join(','), // המרת המערך למחרוזת
+        accountantId: this.userForm.value.accountantId || -1
       };
 
       this.userService.addUser(userToAdd as User).subscribe({
@@ -184,7 +229,6 @@ export class UserManagementComponent {
         error: (error) => {
           console.error('Error adding user:', error.error.message || error.message);
         }
-
       });
     }
   }
@@ -212,7 +256,7 @@ export class UserManagementComponent {
   deleteUser(userId: number): void {
     this.userService.deleteUser(userId).subscribe({
       next: () => {
-        this.loadUsers(); // טען מחדש את המשתמשים
+        this.loadUsers();
       },
       error: (err) => {
         console.error('Error deleting user:', err);

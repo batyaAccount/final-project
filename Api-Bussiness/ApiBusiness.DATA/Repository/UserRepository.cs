@@ -63,5 +63,24 @@ namespace ApiBusiness.DATA.Repository
         {
             return await _dbSet.FirstOrDefaultAsync(u => u.Name == username);
         }
+        public async Task<int[]> GetUsersPerMonthAsync()
+        {
+            // יוצר מערך בגודל 12 (לכל חודש בשנה)
+            var usersPerMonth = new int[12];
+
+            var users = await _dbSet.ToListAsync();
+
+            foreach (var user in users)
+            {
+                if (user.CreatedAt.Year != DateTime.UtcNow.Year)
+                    continue;
+
+                int month = user.CreatedAt.Month - 1;
+
+                usersPerMonth[month]++;
+            }
+
+            return usersPerMonth;
+        }
     }
 }

@@ -92,5 +92,10 @@ namespace ApiBusiness.SERVICE.Services
 
             return userRole;
         }
+
+        public async Task<int[]> GetUsersPerMonthAsync()
+        {
+            return await _userRepository.GetUsersPerMonthAsync();
+        }
     }
 }

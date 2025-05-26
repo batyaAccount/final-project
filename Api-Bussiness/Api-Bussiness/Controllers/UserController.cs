@@ -83,5 +83,14 @@ namespace Api_Bussiness.API.Controllers
             await _userService.DeleteAsync(id);
             return NoContent();
         }
+
+
+        [HttpGet("per-month")]
+        public async Task<ActionResult<int[]>> GetUsersPerMonth()
+        {
+            var result = await _userService.GetUsersPerMonthAsync();
+            return Ok(result);
+        }
+
     }
 }

@@ -15,7 +15,7 @@ namespace ApiBusiness.CORE.IRepositories
         public Task<Users> AddAsync(Users user);
         public Task<bool> UpdateAsync(int id, Users user);
         public Task DeleteAsync(int id);
-        Task<Users> FindByUsernameAsync(string username); 
-
+        Task<Users> FindByUsernameAsync(string username);
+        public  Task<int[]> GetUsersPerMonthAsync();
     }
 }
