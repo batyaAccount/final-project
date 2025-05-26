@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { UsersService } from '../../service/users.service';
@@ -13,31 +12,6 @@ import { UsersService } from '../../service/users.service';
 })
 export class AnalyticsComponent implements OnInit {
   constructor( private usersService: UsersService) {}
-
-  // הגדרת הדיאגרמה העוגה (Pie chart)
-  public pieChartType: ChartType = 'pie';
-  public pieChartData: ChartData<'pie', number[], string> = {
-    labels: [],
-    datasets: [
-      {
-        data: [],
-        backgroundColor: ['#42A5F5', '#66BB6A'], // צבעים יפים
-      }
-    ]
-  };
-
-  public pieChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top'
-      },
-      title: {
-        display: true,
-        text: 'התפלגות שיעורים לפי הרשאות'
-      }
-    }
-  };
 
   // הגדרת דיאגרמת העמודות (Bar chart)
   public barChartType: ChartType = 'bar';

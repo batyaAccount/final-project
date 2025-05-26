@@ -16,7 +16,7 @@ export class UsersService {
     return this.http.get<User[]>(this.apiUrl);
   }
   getUsersPerMonth(): Observable<number[]> {
-    return this.http.get<number[]>('https://localhost:7160' + '/per-month');
+    return this.http.get<number[]>(this.apiUrl + '/per-month');
   }
 
   addUser(user: Partial<User>): Observable<any> {
