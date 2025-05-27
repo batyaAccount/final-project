@@ -23,13 +23,11 @@ namespace ApiBusiness.DATA.Repository
             user.CreatedAt = DateTime.UtcNow;
             return user;
         }
-
         public async Task DeleteAsync(int id)
         {
             var user = await GetByIdAsync(id);
             _dbSet.Remove(user);
         }
-
         public async Task<IEnumerable<Users>> GetAsync()
         {
             return await _dbSet.ToListAsync();
@@ -39,12 +37,10 @@ namespace ApiBusiness.DATA.Repository
             var res = await _dbSet.ToListAsync();
             return res.FindAll(f => f.AccountantId == id);
         }
-
         public async Task<Users> GetByIdAsync(int user)
         {
             return await _dbSet.FindAsync(user);
         }
-
         public async Task<bool> UpdateAsync(int id, Users user)
         {
             Users r = await GetByIdAsync(id);
@@ -81,6 +77,23 @@ namespace ApiBusiness.DATA.Repository
             }
 
             return usersPerMonth;
+        }
+        public async Task<int[]> GetClientPlusAccountant()
+        {
+            var clients_0_Accountant_1 = new int[2];
+
+            var users = await _dbSet.ToListAsync();
+
+            foreach (var user in users)
+            {
+                if (user.AccountantId != -1 && user.AccountantId != null)
+                    clients_0_Accountant_1[0]++;
+                else
+                    clients_0_Accountant_1[1]++;
+
+            }
+
+            return clients_0_Accountant_1;
         }
     }
 }

@@ -18,6 +18,9 @@ export class UsersService {
   getUsersPerMonth(): Observable<number[]> {
     return this.http.get<number[]>(this.apiUrl + '/per-month');
   }
+  GetClientPlusAccountant(): Observable<number[]> {
+    return this.http.get<number[]>(this.apiUrl + '/per-client-accountant');
+  }
 
   addUser(user: Partial<User>): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

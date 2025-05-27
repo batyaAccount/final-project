@@ -1,17 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
 import { UsersService } from '../../service/users.service';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @Component({
   selector: 'app-analytics',
-  imports: [BaseChartDirective],
+  imports: [NgChartsModule],
   templateUrl: './analytics.component.html',
   styleUrl: './analytics.component.css'
 })
 export class AnalyticsComponent implements OnInit {
-  constructor( private usersService: UsersService) {}
+  constructor(private usersService: UsersService) { }
+
+
+  public pieChartType: ChartType = 'pie';
+  public pieChartData: ChartData<'pie', number[], string> = {
+    labels: [],
+    datasets: [
+      {
+        data: [],
+        backgroundColor: ['#42A5F5', '#66BB6A'], // צבעים יפים
+      }
+    ]
+  };
+
+  public pieChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top'
+      },
+      title: {
+        display: true,
+        text: 'התפלגות שיעורים לפי הרשאות'
+      }
+    }
+  };
 
   // הגדרת דיאגרמת העמודות (Bar chart)
   public barChartType: ChartType = 'bar';
@@ -50,11 +75,22 @@ export class AnalyticsComponent implements OnInit {
   };
 
   ngOnInit(): void {
-   
+    // קריאה למידע על שיעורים והתפלגות הרשאות
+    this.usersService.GetClientPlusAccountant().subscribe(data => {
+      this.pieChartData = {
+        labels: ['ציבורי', 'פרטי'],
+        datasets: [
+          {
+            data: [data[0], data[1]],
+            backgroundColor: ['#42A5F5', '#66BB6A']
+          }
+        ]
+      };
+    });
     // קריאה למידע על מספר נרשמים לכל חודש
     this.usersService.getUsersPerMonth().subscribe(data => {
       const months = [
-        'ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 
+        'ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני',
         'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'
       ];
       this.barChartData = {

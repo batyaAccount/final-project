@@ -1,5 +1,6 @@
 ﻿using ApiBusiness.CORE.Dto;
 using ApiBusiness.CORE.Entities;
+using ApiBusiness.CORE.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,6 @@ namespace ApiBusiness.CORE.IServices
         Task<bool> UpdateAsync(int id, UserDto user);
         public Task<UserRoles> AuthenticateAsync(string username, string password);
         public Task<int[]> GetUsersPerMonthAsync();
+        public  Task<int[]> GetClientPlusAccountant();
     }
 }

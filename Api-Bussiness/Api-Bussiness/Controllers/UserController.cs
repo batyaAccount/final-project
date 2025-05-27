@@ -91,6 +91,12 @@ namespace Api_Bussiness.API.Controllers
             var result = await _userService.GetUsersPerMonthAsync();
             return Ok(result);
         }
+        [HttpGet("per-client-accountant")]
+        public async Task<ActionResult<int[]>> GetClientPlusAccountant()
+        {
+            var result = await _userService.GetClientPlusAccountant();
+            return Ok(result);
+        }
 
     }
 }
