@@ -87,9 +87,9 @@ namespace ApiBusiness.DATA.Repository
             foreach (var user in users)
             {
                 if (user.AccountantId != -1 && user.AccountantId != null)
-                    clients_0_Accountant_1[0]++;
-                else
                     clients_0_Accountant_1[1]++;
+                else
+                    clients_0_Accountant_1[0]++;
 
             }
 

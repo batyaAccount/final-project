@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\api-bussiness\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|solutionrelative:api-bussiness\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0E81E0E4-F201-42D7-8A4F-6D4D0C9F2F97}|ApiBusiness.SERVICE\\ApiBusiness.SERVICE.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\apibusiness.service\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E81E0E4-F201-42D7-8A4F-6D4D0C9F2F97}|ApiBusiness.SERVICE\\ApiBusiness.SERVICE.csproj|solutionrelative:apibusiness.service\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1666A22C-A2C5-4358-AD19-93EE58B3483F}|ApiBusiness.CORE\\ApiBusiness.CORE.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\apibusiness.core\\iservices\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1666A22C-A2C5-4358-AD19-93EE58B3483F}|ApiBusiness.CORE\\ApiBusiness.CORE.csproj|solutionrelative:apibusiness.core\\iservices\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0E81E0E4-F201-42D7-8A4F-6D4D0C9F2F97}|ApiBusiness.SERVICE\\ApiBusiness.SERVICE.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\apibusiness.service\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0E81E0E4-F201-42D7-8A4F-6D4D0C9F2F97}|ApiBusiness.SERVICE\\ApiBusiness.SERVICE.csproj|solutionrelative:apibusiness.service\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1666A22C-A2C5-4358-AD19-93EE58B3483F}|ApiBusiness.CORE\\ApiBusiness.CORE.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\apibusiness.core\\iservices\\istatisticsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1666A22C-A2C5-4358-AD19-93EE58B3483F}|ApiBusiness.CORE\\ApiBusiness.CORE.csproj|solutionrelative:apibusiness.core\\iservices\\istatisticsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\api-bussiness\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|solutionrelative:api-bussiness\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BF43E41A-B71B-4A0E-8470-ACE83D8B5FB4}|ApiBusiness.DATA\\ApiBusiness.DATA.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\apibusiness.data\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\api-bussiness\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{403DE40B-6CC5-4D99-BEC3-32245AA98290}|Api-Bussiness\\Api-Bussiness.API.csproj|solutionrelative:api-bussiness\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1666A22C-A2C5-4358-AD19-93EE58B3483F}|ApiBusiness.CORE\\ApiBusiness.CORE.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\apibusiness.core\\iservices\\istatisticsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1666A22C-A2C5-4358-AD19-93EE58B3483F}|ApiBusiness.CORE\\ApiBusiness.CORE.csproj|solutionrelative:apibusiness.core\\iservices\\istatisticsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BF43E41A-B71B-4A0E-8470-ACE83D8B5FB4}|ApiBusiness.DATA\\ApiBusiness.DATA.csproj|c:\\users\\user1\\desktop\\batya\\practicum-project\\api-bussiness\\apibusiness.data\\repository\\userrolesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -117,7 +117,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -129,33 +129,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "UserService.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\ApiBusiness.SERVICE\\Services\\UserService.cs",
               "RelativeDocumentMoniker": "ApiBusiness.SERVICE\\Services\\UserService.cs",
               "ToolTip": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\ApiBusiness.SERVICE\\Services\\UserService.cs",
               "RelativeToolTip": "ApiBusiness.SERVICE\\Services\\UserService.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAQwGIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAWwD8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-21T13:42:32.808Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\Api-Bussiness\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Api-Bussiness\\Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\Api-Bussiness\\Controllers\\UserController.cs",
               "RelativeToolTip": "Api-Bussiness\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAE8AAAAAAAAAAAAswF4AAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-24T19:11:36.441Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\Api-Bussiness\\Program.cs",
               "RelativeDocumentMoniker": "Api-Bussiness\\Program.cs",
@@ -163,12 +163,11 @@
               "RelativeToolTip": "Api-Bussiness\\Program.cs",
               "ViewState": "AgIAAEUAAAAAAAAAAAAAwFgAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T19:16:30.411Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-24T19:16:30.411Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\ApiBusiness.DATA\\Repository\\UserRepository.cs",
               "RelativeDocumentMoniker": "ApiBusiness.DATA\\Repository\\UserRepository.cs",
@@ -176,12 +175,11 @@
               "RelativeToolTip": "ApiBusiness.DATA\\Repository\\UserRepository.cs",
               "ViewState": "AgIAADkAAAAAAAAAAAA5wFAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T14:37:10.713Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-21T14:37:10.713Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "IStatisticsService.cs",
               "DocumentMoniker": "C:\\Users\\user1\\Desktop\\Batya\\Practicum-project\\Api-Bussiness\\ApiBusiness.CORE\\IServices\\IStatisticsService.cs",
               "RelativeDocumentMoniker": "ApiBusiness.CORE\\IServices\\IStatisticsService.cs",
@@ -189,7 +187,8 @@
               "RelativeToolTip": "ApiBusiness.CORE\\IServices\\IStatisticsService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T13:48:39.997Z"
+              "WhenOpened": "2025-05-25T13:48:39.997Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

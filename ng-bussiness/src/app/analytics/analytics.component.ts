@@ -78,7 +78,7 @@ export class AnalyticsComponent implements OnInit {
     // קריאה למידע על שיעורים והתפלגות הרשאות
     this.usersService.GetClientPlusAccountant().subscribe(data => {
       this.pieChartData = {
-        labels: ['ציבורי', 'פרטי'],
+        labels: ['Accountants', 'Clients'],
         datasets: [
           {
             data: [data[0], data[1]],
