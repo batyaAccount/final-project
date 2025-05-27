@@ -1,0 +1,27 @@
+.charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    background: #f9fafb;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  .chart-box {
+    flex: 1 1 400px;
+    max-width: 500px;
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease;
+  }
+  
+  .chart-box:hover {
+    transform: translateY(-4px);
+  }
+  
