@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
     <button mat-raised-button (click)="SignIn()">Sign In</button>
 </mat-toolbar>
 
@@ -7,4 +7,96 @@
         The Admin side 
     </p>
 </div>
-<!-- <router-outlet></router-outlet> -->
+
+ -->
+
+ <!-- Glass Morphism Toolbar -->
+<mat-toolbar class="glass-toolbar" [@slideInLeft]>
+    <div class="toolbar-content">
+      <div class="logo-section" [@float]>
+        <mat-icon class="logo-icon">admin_panel_settings</mat-icon>
+        <span class="logo-text">Admin Portal</span>
+      </div>
+      
+      <div class="toolbar-actions">
+        <button 
+          mat-raised-button 
+          class="gradient-button signin-button"
+          (click)="SignIn()"
+          [@fadeInUp]>
+          <mat-icon>login</mat-icon>
+          Sign In
+        </button>
+      </div>
+    </div>
+  </mat-toolbar>
+  
+  <!-- Main Content Area -->
+  <div class="main-container">
+    <!-- Animated Background Elements -->
+    <div class="background-elements">
+      <div class="floating-shape shape-1" [@float]></div>
+      <div class="floating-shape shape-2" [@float]></div>
+      <div class="floating-shape shape-3" [@float]></div>
+    </div>
+  
+    <!-- Glass Card Container -->
+    <mat-card class="glass-card" [@fadeInUp]>
+      <mat-card-content class="card-content">
+        <!-- Animated Icon -->
+        <div class="icon-container" [@pulse]>
+          <mat-icon class="admin-icon">shield</mat-icon>
+          <div class="icon-glow"></div>
+        </div>
+  
+        <!-- Main Title -->
+        <h1 class="main-title" [@fadeInUp]>
+          <span class="gradient-text">The Admin Side</span>
+        </h1>
+  
+        <!-- Subtitle -->
+        <p class="subtitle" [@fadeInUp]>
+          Manage your system with powerful administrative tools
+        </p>
+  
+        <!-- Feature Cards -->
+        <div class="features-grid" [@fadeInUp]>
+          <mat-card class="feature-card">
+            <mat-card-content>
+              <mat-icon class="feature-icon">dashboard</mat-icon>
+              <h3>Dashboard</h3>
+              <p>Monitor system performance</p>
+            </mat-card-content>
+          </mat-card>
+  
+          <mat-card class="feature-card">
+            <mat-card-content>
+              <mat-icon class="feature-icon">people</mat-icon>
+              <h3>Users</h3>
+              <p>Manage user accounts</p>
+            </mat-card-content>
+          </mat-card>
+  
+          <mat-card class="feature-card">
+            <mat-card-content>
+              <mat-icon class="feature-icon">settings</mat-icon>
+              <h3>Settings</h3>
+              <p>Configure system options</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+  
+        <!-- Action Buttons -->
+        <div class="action-buttons" [@fadeInUp]>
+          <button mat-raised-button class="gradient-button primary-button" (click)="SignIn()">
+            <mat-icon>explore</mat-icon>
+            Get Started
+          </button>
+        
+        </div>
+      </mat-card-content>
+    </mat-card>
+  
+  
+  </div>
+  

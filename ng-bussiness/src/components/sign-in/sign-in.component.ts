@@ -28,7 +28,7 @@ export class SignInComponent {
 
   private closeDialogAndNavigate() {
     this.dialogRef.closeAll();
-    setTimeout(() => this.router.navigate(['/UserManagement']), 100);
+    setTimeout(() => this.router.navigate(['/home']), 100);
 
   }
   

@@ -65,8 +65,10 @@ const SignUp = () => {
     };
 
     const filteredAccountants = accounters.filter(accountant =>
-        accountant.accountantId !== undefined && accountant.name?.toLowerCase().includes(searchTerm.toLowerCase())
+        (accountant.accountantId === undefined || accountant.accountantId === null || accountant.accountantId === -1) && accountant.name?.toLowerCase().includes(searchTerm.toLowerCase()) && accountant.name !== "Admin"
     );
+    console.log(filteredAccountants);
+    
     return (
         <>
             <Modal open={open} onClose={() => setOpen(false)}>

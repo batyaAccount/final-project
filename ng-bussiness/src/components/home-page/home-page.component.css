@@ -1,0 +1,4 @@
+nav ul li a:hover {
+    background-color: #e2e6ea; /* צבע רקע בעת ריחוף */
+    color: #0056b3; /* שינוי צבע טקסט בעת ריחוף */
+}

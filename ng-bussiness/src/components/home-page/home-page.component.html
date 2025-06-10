@@ -1,1 +1,14 @@
-<p>home-page works!</p>
+
+<header>
+    <nav style="width: 100%; line-height: 50px;"> <!-- הוספת line-height -->
+        <ul style="display: flex; list-style-type: none; padding: 0; background-color: #f8f9fa; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            <li style="margin-right: 20px;">
+                <a routerLink="./UserManagement" style="text-decoration: none; color: #007bff; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s;">User Management</a>
+            </li>
+            <li>
+                <a routerLink="./AnalyticsComponent" style="text-decoration: none; color: #007bff; padding: 10px 15px; border-radius: 5px; transition: background-color 0.3s;">Analytics</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<router-outlet></router-outlet>

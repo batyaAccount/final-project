@@ -1,3 +1,5 @@
+
+
 <div class="users-container">
   <div class="page-header">
     <h1>ניהול משתמשים</h1>
@@ -85,7 +87,6 @@
           <mat-select (selectionChange)="onRoleChange($event.value)" formControlName="roleName">
             <mat-option value="Client">Client</mat-option>
             <mat-option value="Accountant">Accountant</mat-option>
-            <mat-option value="Admin">Admin</mat-option>
           </mat-select>
           <mat-icon matPrefix>person</mat-icon>
           <ng-container *ngIf="userForm.get('roleName')?.hasError('required')">

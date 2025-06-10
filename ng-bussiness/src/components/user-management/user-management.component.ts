@@ -28,7 +28,7 @@ import { MatSelect } from '@angular/material/select';
     MatDialogModule,
     MatTooltipModule,
     MatOption,
-    MatSelect
+    MatSelect,
 
 
   ],
@@ -73,7 +73,7 @@ export class UserManagementComponent {
   loadAccountants(): void {
     this.userService.getAllUsers().subscribe({
       next: (data: User[]) => {
-        this.accountants = data.filter(user => user.accountantId === -1 || user.accountantId === null && user.roleName !== 'Admin'
+        this.accountants = data.filter(user => (user.accountantId === -1 || user.accountantId === null) && user.name !== 'Admin'
         );
       },
       error: (err) => {
